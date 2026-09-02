@@ -803,17 +803,8 @@ a {
   background: var(--color-brand);
 }
 
-.gbp-mockup__photos {
-  display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(0, 0.8fr);
-  grid-template-rows: repeat(2, minmax(4.5rem, 1fr));
+.gbp-mockup__media {
   min-height: clamp(11rem, 46vw, 17rem);
-  gap: 0.25rem;
-  background: var(--color-surface);
-}
-
-.gbp-mockup__photo {
-  position: relative;
   overflow: hidden;
   background-color: #dcefe4;
   background-image:
@@ -822,33 +813,10 @@ a {
     linear-gradient(25deg, #b8e4cb 0 35%, transparent 35.5%);
 }
 
-.gbp-mockup__photo-image {
+.gbp-mockup__profile-image {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/*
- * Enquanto as fotos finais não existem, data-src evita requisições quebradas.
- * Quando cada arquivo estiver disponível, basta trocar data-src por src.
- */
-.gbp-mockup__photo-image[data-src] {
-  display: none;
-}
-
-.gbp-mockup__photo--main {
-  grid-row: 1 / -1;
-}
-
-.gbp-mockup__photo--small {
-  background-color: #eef4f1;
-  background-position: center;
-}
-
-.gbp-mockup__photo--small-alt {
-  background-color: #d6e0dc;
-  background-position: 70% 20%;
+  height: auto;
 }
 
 .gbp-mockup__profile {
