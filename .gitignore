@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Windows
+Thumbs.db
+
+# Editors and local workspace settings
+.vscode/
+.idea/
+.history/
+*.swp
+*.swo
+*~
+
+# Temporary files and logs
+*.tmp
+*.temp
+*.log
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Dependencies and local caches, if introduced later
+node_modules/
+.cache/
