@@ -1,5 +1,36 @@
 "use strict";
 
+const analyticsElements = document.querySelectorAll("[data-analytics-event]");
+
+const sendAnalyticsEvent = (element) => {
+  if (typeof window.gtag !== "function") {
+    return;
+  }
+
+  const eventName = element.dataset.analyticsEvent;
+  const parameters = {};
+
+  [...element.attributes].forEach((attribute) => {
+    const prefix = "data-analytics-";
+
+    if (!attribute.name.startsWith(prefix) || attribute.name === `${prefix}event`) {
+      return;
+    }
+
+    const parameterName = attribute.name
+      .slice(prefix.length)
+      .replaceAll("-", "_");
+
+    parameters[parameterName] = attribute.value;
+  });
+
+  window.gtag("event", eventName, parameters);
+};
+
+analyticsElements.forEach((element) => {
+  element.addEventListener("click", () => sendAnalyticsEvent(element));
+});
+
 const faqAccordion = document.querySelector("[data-faq-accordion]");
 
 if (faqAccordion) {
