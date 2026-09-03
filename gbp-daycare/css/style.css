@@ -375,6 +375,20 @@ a {
   margin-inline: auto;
 }
 
+.search-demand__eyebrow {
+  width: fit-content;
+  margin: 0 0 1.25rem;
+  padding: 0.45rem 0.75rem;
+  border: 0.0625rem solid #cdebd9;
+  border-radius: 999rem;
+  background: var(--color-brand-soft);
+  color: var(--color-brand-dark);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  line-height: 1.2;
+}
+
 .search-demand__title {
   max-width: 18ch;
   margin: 0;
@@ -456,6 +470,21 @@ a {
   stroke: var(--color-muted);
   stroke-linecap: round;
   stroke-width: 2;
+}
+
+.search-demand__opportunity {
+  max-width: 49rem;
+  margin: clamp(2rem, 5vw, 3rem) 0 0;
+  color: var(--color-ink);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 650;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+
+.search-demand__opportunity strong {
+  color: var(--color-brand-dark);
+  font-weight: 800;
 }
 
 .search-demand__context {
@@ -1552,9 +1581,14 @@ a {
 
 @media (min-width: 40rem) {
   .hero__button {
-    width: auto;
-    min-width: 12.5rem;
+    width: 19.25rem;
     justify-self: start;
+  }
+
+  .hero__benefits {
+    width: 19.25rem;
+    justify-content: space-between;
+    column-gap: 0.5rem;
   }
 
   .search-demand__grid {
