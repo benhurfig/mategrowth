@@ -10,6 +10,9 @@
   </head>
   <body>
     <main id="main-content">
+      <!-- =========================================
+           INÍCIO: HERO
+      ========================================== -->
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero__wave hero__wave--top" aria-hidden="true"></div>
 
@@ -47,7 +50,13 @@
 
         <div class="hero__wave hero__wave--bottom" aria-hidden="true"></div>
       </section>
+      <!-- =========================================
+           FIM: HERO
+      ========================================== -->
 
+      <!-- =========================================
+           INÍCIO: DADOS DE PESQUISA
+      ========================================== -->
       <section class="search-demand" aria-labelledby="search-demand-title">
         <div class="search-demand__container">
           <h2 class="search-demand__title" id="search-demand-title">
@@ -132,7 +141,13 @@
           </p>
         </div>
       </section>
+      <!-- =========================================
+           FIM: DADOS DE PESQUISA
+      ========================================== -->
 
+      <!-- =========================================
+           INÍCIO: PERFIL PREPARADO X PERFIL INCOMPLETO
+      ========================================== -->
       <section class="profile-readiness" aria-labelledby="profile-readiness-title">
         <div class="profile-readiness__container">
           <header class="profile-readiness__heading">
@@ -185,7 +200,13 @@
           </p>
         </div>
       </section>
+      <!-- =========================================
+           FIM: PERFIL PREPARADO X PERFIL INCOMPLETO
+      ========================================== -->
 
+      <!-- =========================================
+           INÍCIO: GOOGLE PARA DAYCARE
+      ========================================== -->
       <section class="service-intro" id="servico" aria-labelledby="service-intro-title">
         <div class="service-intro__container">
           <p class="service-intro__eyebrow">Google para Daycare</p>
@@ -303,7 +324,77 @@
           </aside>
         </div>
       </section>
+      <!-- =========================================
+           FIM: GOOGLE PARA DAYCARE
+      ========================================== -->
 
+      <!-- =========================================
+           INÍCIO: NOVO BLOCO MOTIVACIONAL
+      ========================================== -->
+      <section class="motivation" aria-labelledby="motivation-title">
+        <div class="motivation__container">
+          <p class="motivation__eyebrow">MAIS UM CAMINHO PARA SUA DAYCARE</p>
+
+          <h2 class="motivation__title" id="motivation-title">
+            Sua daycare não precisa depender de um único caminho.
+          </h2>
+
+          <figure class="motivation__visual">
+            <div class="motivation__visual-frame"
+                 aria-label="Espaço reservado para uma provedora de daycare confiante em um ambiente organizado">
+              <!-- Trocar data-src por src quando a imagem final estiver disponível. -->
+              <img class="motivation__image"
+                   data-src="./assets/images/daycare-provider-confident.webp"
+                   alt="Provedora de Home Daycare alegre e confiante em um ambiente organizado"
+                   loading="lazy"
+                   decoding="async">
+            </div>
+          </figure>
+
+          <div class="motivation__copy">
+            <p>
+              Indicações, agências, Facebook e Instagram podem continuar ajudando sua
+              daycare.
+            </p>
+            <p>
+              O Google entra como mais um caminho para sua daycare ser encontrada por
+              famílias que estão procurando cuidado infantil na região.
+            </p>
+          </div>
+
+          <aside class="motivation__proof" aria-label="Dado do Massachusetts EEC sobre pesquisas online">
+            <p class="motivation__proof-number">45%</p>
+            <p class="motivation__proof-text">
+              dos responsáveis que já haviam procurado child care disseram usar
+              pesquisas online, como Google, durante a procura.
+            </p>
+            <p class="motivation__proof-sample">
+              Pesquisa com 1.073 responsáveis em Massachusetts.
+            </p>
+            <p class="motivation__proof-source">
+              Fonte: Massachusetts Department of Early Education and Care (EEC)
+            </p>
+            <a class="motivation__proof-link"
+               href="https://www.mass.gov/doc/brief-i-how-and-why-do-caregivers-search-for-child-care/download"
+               target="_blank"
+               rel="noopener noreferrer">
+              Ver estudo do Massachusetts EEC
+            </a>
+          </aside>
+
+          <p class="motivation__highlight">
+            <strong>Mais visibilidade.</strong>
+            <strong>Mais chances de ser encontrada.</strong>
+          </p>
+        </div>
+      </section>
+      <!-- =========================================
+           FIM: NOVO BLOCO MOTIVACIONAL
+      ========================================== -->
+
+      <!-- =========================================
+           INÍCIO: PREÇOS
+      ========================================== -->
       <section class="pricing" aria-labelledby="pricing-title">
         <div class="pricing__container">
           <p class="pricing__eyebrow">Investimento</p>
@@ -347,23 +438,12 @@
               </p>
             </div>
 
-            <!--
-              Configuração pendente: preencher data-whatsapp-number somente com os
-              dígitos do número oficial, incluindo código do país. Exemplo: 15551234567.
-              O main.js habilita o botão automaticamente quando o número for válido.
-            -->
-            <button class="pricing-card__cta"
-                    type="button"
-                    data-whatsapp-cta
-                    data-whatsapp-number=""
-                    data-whatsapp-message="Olá! Quero preparar meu Google para Daycare."
-                    aria-describedby="whatsapp-configuration-note"
-                    disabled>
+            <a class="pricing-card__cta"
+               href="https://wa.me/17746156579?text=Ol%C3%A1%21%20Vi%20a%20p%C3%A1gina%20Google%20para%20Daycare%20da%20MateGrowth%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20servi%C3%A7o."
+               target="_blank"
+               rel="noopener noreferrer">
               Quero preparar meu Google
-            </button>
-            <p class="pricing-card__cta-note" id="whatsapp-configuration-note">
-              Contato pelo WhatsApp será ativado quando o número oficial for configurado.
-            </p>
+            </a>
           </article>
 
           <div class="pricing__intro">
@@ -429,7 +509,13 @@
           </aside>
         </div>
       </section>
+      <!-- =========================================
+           FIM: PREÇOS
+      ========================================== -->
 
+      <!-- =========================================
+           INÍCIO: FAQ
+      ========================================== -->
       <section class="faq" aria-labelledby="faq-title">
         <div class="faq__container">
           <header class="faq__header">
@@ -572,7 +658,13 @@
           </div>
         </div>
       </section>
+      <!-- =========================================
+           FIM: FAQ
+      ========================================== -->
 
+      <!-- =========================================
+           INÍCIO: CTA FINAL
+      ========================================== -->
       <section class="final-cta" aria-labelledby="final-cta-title">
         <div class="final-cta__wave" aria-hidden="true"></div>
         <div class="final-cta__container">
@@ -596,34 +688,39 @@
             <p>Criamos ou organizamos seu perfil e ensinamos você a cuidar dele.</p>
           </div>
 
-          <!--
-            Configuração pendente: inserir em data-whatsapp-number somente os
-            dígitos do número oficial da MateGrowth, incluindo o código do país.
-          -->
-          <button class="final-cta__button"
-                  type="button"
-                  data-whatsapp-cta
-                  data-whatsapp-number=""
-                  data-whatsapp-message="Olá! Quero preparar meu Google para Daycare."
-                  aria-describedby="final-cta-microcopy"
-                  disabled>
+          <a class="final-cta__button"
+             href="https://wa.me/17746156579?text=Ol%C3%A1%21%20Vi%20a%20p%C3%A1gina%20Google%20para%20Daycare%20da%20MateGrowth%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20servi%C3%A7o."
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-describedby="final-cta-microcopy">
             Quero preparar meu Google
-          </button>
+          </a>
           <p class="final-cta__microcopy" id="final-cta-microcopy">Tire suas dúvidas antes de contratar.</p>
         </div>
       </section>
+      <!-- =========================================
+           FIM: CTA FINAL
+      ========================================== -->
     </main>
 
+    <!-- =========================================
+         INÍCIO: FOOTER
+    ========================================== -->
     <footer class="site-footer">
       <div class="site-footer__container">
         <div class="site-footer__brand">
           <strong>MateGrowth</strong>
           <span>Smart Systems. Real Growth.</span>
         </div>
+        <!-- Adicionar o link somente após confirmar a URL oficial do Instagram. -->
+        <span class="site-footer__instagram">Instagram <span aria-hidden="true">•</span> MateGrowth</span>
         <p class="site-footer__copyright">© <span data-current-year>2026</span> MateGrowth.</p>
         <!-- Espaço reservado para links das futuras páginas legais. -->
       </div>
     </footer>
+    <!-- =========================================
+         FIM: FOOTER
+    ========================================== -->
 
     <script src="./js/main.js" defer></script>
   </body>

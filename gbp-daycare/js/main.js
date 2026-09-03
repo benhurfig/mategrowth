@@ -1,22 +1,5 @@
 "use strict";
 
-const whatsappCtas = document.querySelectorAll("[data-whatsapp-cta]");
-
-whatsappCtas.forEach((whatsappCta) => {
-  const whatsappNumber = whatsappCta.dataset.whatsappNumber.replace(/\D/g, "");
-  const whatsappMessage = whatsappCta.dataset.whatsappMessage || "";
-  const hasValidWhatsappNumber = /^\d{10,15}$/.test(whatsappNumber);
-
-  if (hasValidWhatsappNumber) {
-    whatsappCta.disabled = false;
-    whatsappCta.addEventListener("click", () => {
-      const whatsappUrl = new URL(`https://wa.me/${whatsappNumber}`);
-      whatsappUrl.searchParams.set("text", whatsappMessage);
-      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-    });
-  }
-});
-
 const faqAccordion = document.querySelector("[data-faq-accordion]");
 
 if (faqAccordion) {
