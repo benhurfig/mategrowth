@@ -347,6 +347,14 @@ a {
   text-wrap: balance;
 }
 
+.search-demand__cards-intro {
+  max-width: 44rem;
+  margin: clamp(1.5rem, 4vw, 2rem) 0 0;
+  color: var(--color-muted);
+  font-size: clamp(1.05rem, 2.6vw, 1.2rem);
+  line-height: 1.6;
+}
+
 .search-demand__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -359,7 +367,6 @@ a {
   min-width: 0;
   min-height: 14rem;
   flex-direction: column;
-  justify-content: flex-end;
   padding: clamp(1.5rem, 5vw, 2rem);
   overflow: hidden;
   border: 0.0625rem solid var(--color-border);
@@ -368,24 +375,13 @@ a {
   box-shadow: 0 1rem 2.75rem rgb(14 27 43 / 7%);
 }
 
-.search-card--primary {
-  border-color: var(--color-brand);
-  background: var(--color-brand);
-  box-shadow: 0 1.25rem 3rem rgb(8 115 61 / 18%);
-  color: #ffffff;
-}
-
 .search-card__number {
-  margin: 0;
+  margin: clamp(1.5rem, 5vw, 2.25rem) 0 0;
   color: var(--color-brand);
   font-size: clamp(3.5rem, 14vw, 5.25rem);
   font-weight: 800;
   letter-spacing: -0.06em;
   line-height: 0.9;
-}
-
-.search-card--primary .search-card__number {
-  color: #ffffff;
 }
 
 .search-card__frequency {
@@ -395,24 +391,32 @@ a {
   font-weight: 700;
 }
 
-.search-card--primary .search-card__frequency {
-  color: var(--color-ink);
-}
-
 .search-card__term {
-  margin: 1.5rem 0 0;
-  padding-top: 1rem;
-  border-top: 0.0625rem solid var(--color-border);
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.8rem 0.9rem;
+  border: 0.0625rem solid #d6dce3;
+  border-radius: 999px;
+  background: #ffffff;
   color: var(--color-ink);
-  font-size: 1rem;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
   font-weight: 800;
-  line-height: 1.35;
+  line-height: 1.25;
   overflow-wrap: anywhere;
 }
 
-.search-card--primary .search-card__term {
-  border-color: rgb(14 27 43 / 22%);
-  color: var(--color-ink);
+.search-card__icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: var(--color-muted);
+  stroke-linecap: round;
+  stroke-width: 2;
 }
 
 .search-demand__context {
@@ -2102,6 +2106,13 @@ a {
 
 .site-footer__instagram {
   white-space: nowrap;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.22em;
+}
+
+.site-footer__instagram:hover,
+.site-footer__instagram:focus-visible {
+  color: #ffffff;
 }
 
 .site-footer__copyright {
