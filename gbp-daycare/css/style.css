@@ -1079,7 +1079,7 @@ a {
 
 .motivation__visual-frame {
   position: relative;
-  min-height: clamp(17rem, 76vw, 30rem);
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   border: 0.0625rem solid #cdebd9;
   border-radius: clamp(1.5rem, 5vw, 2.25rem);
@@ -1106,10 +1106,6 @@ a {
   display: block;
   width: 100%;
   height: auto;
-}
-
-.motivation__image[data-src] {
-  display: none;
 }
 
 .motivation__copy {
@@ -1540,10 +1536,6 @@ a {
     grid-template-columns: minmax(13rem, 0.65fr) minmax(0, 1.35fr);
     align-items: center;
     gap: clamp(2rem, 6vw, 4rem);
-  }
-
-  .motivation__visual-frame {
-    min-height: 28rem;
   }
 
   .pricing-card__cta {
