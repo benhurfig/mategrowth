@@ -2955,3 +2955,176 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ================================================================
+   OTIMIZAÇÃO DE CONVERSÃO — GBP DAYCARE
+   Alterações limitadas à página .conversion-page. Os estilos originais
+   permanecem acima para permitir reativar os blocos comentados no HTML.
+   Sem fontes externas, bibliotecas novas ou animações adicionais.
+   ================================================================ */
+html { scroll-padding-block: 1.5rem 7rem; }
+.conversion-page { padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px)); }
+.conversion-page main { overflow: clip; }
+.conversion-page :where(a, button, [id]) { scroll-margin-block: 1.5rem 7rem; }
+.conversion-page .contact-icon { display: block; width: 1.4rem; height: 1.4rem; flex: 0 0 1.4rem; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.conversion-page .compact-section { padding: clamp(3rem, 5vw, 4.5rem) var(--page-padding); }
+.conversion-page .compact-container { width: min(100%, var(--content-width)); margin-inline: auto; }
+.conversion-page .compact-eyebrow { margin: 0 0 0.9rem; color: var(--color-brand-dark); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+.conversion-page .compact-title { max-width: 24ch; margin: 0; color: var(--color-ink); font-size: clamp(1.85rem, 3.7vw, 2.75rem); font-weight: 800; letter-spacing: -0.045em; line-height: 1.12; text-wrap: balance; }
+.conversion-page .compact-title span { color: var(--color-brand-dark); }
+
+/* HERO: conteúdo e CTA primeiro; foto abaixo no mobile. */
+.conversion-page .hero { display: block; min-height: 0; }
+.conversion-page .hero__container { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "content" "visual"; align-items: start; gap: 1.75rem; padding: 1.5rem var(--page-padding) 3rem; }
+.conversion-page .hero__content { grid-area: content; display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.conversion-page .hero__brand { margin: 0 0 1.2rem; color: var(--color-ink); font-size: 1.3rem; line-height: 1.1; font-weight: 850; letter-spacing: -0.06em; }
+.conversion-page .hero__brand span { color: var(--color-brand-dark); font-weight: 600; }
+.conversion-page .hero__badge { margin-bottom: 1rem; padding: 0.55rem 0.75rem; font-size: 0.72rem; }
+.conversion-page .hero__title { max-width: 16ch; font-size: clamp(2.4rem, 10.6vw, 3.65rem); line-height: 1.04; letter-spacing: -0.05em; }
+.conversion-page .hero__lead { max-width: 32rem; margin: 1.1rem 0 0; font-size: clamp(1.1rem, 2vw, 1.25rem); line-height: 1.5; font-weight: 500; }
+.conversion-page .hero__lead strong { color: var(--color-brand-dark); font-weight: 800; }
+.conversion-page .hero__audience { margin: 0.45rem 0 0; font-size: 0.875rem; color: var(--color-muted); line-height: 1.5; }
+.conversion-page .hero__offer { margin-top: 1.3rem; padding-left: 1rem; border-left: 3px solid var(--color-brand); }
+.conversion-page .hero__offer p { display: flex; align-items: baseline; flex-wrap: wrap; column-gap: 0.75rem; margin: 0; }
+.conversion-page .hero__offer strong { color: var(--color-brand-dark); font-size: 2.2rem; font-weight: 850; line-height: 1.15; letter-spacing: -0.055em; }
+.conversion-page .hero__offer span { font-size: 0.95rem; font-weight: 700; }
+.conversion-page .hero__offer .hero__no-monthly { display: block; margin-top: 0.3rem; font-size: 0.9rem; color: var(--color-muted); }
+.conversion-page .hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.2rem; width: 100%; margin-top: 1.3rem; }
+.conversion-page .hero__button { width: 100%; min-height: 3.5rem; margin: 0; padding: 0.8rem 1rem; gap: 0.7rem; border-radius: 0.7rem; font-size: 1rem; line-height: 1.4; box-shadow: 0 0.5rem 1.25rem rgb(8 115 61 / 12%); }
+.conversion-page .hero__learn-more { display: inline-flex; align-items: center; min-height: 2.75rem; color: var(--color-brand-dark); font-size: 0.9rem; font-weight: 750; text-underline-offset: 0.22em; }
+.conversion-page .hero__benefits { width: auto; justify-content: flex-start; gap: 0.5rem 1rem; margin-top: 0.65rem; }
+.conversion-page .hero__benefit { font-size: 0.8rem; font-weight: 650; }
+.conversion-page .hero__benefit > span { color: var(--color-brand-dark); }
+.conversion-page .hero__visual { grid-area: visual; width: min(100%, 31rem); margin: 0 auto; padding: 0; aspect-ratio: 16 / 10; }
+.conversion-page .hero__image { aspect-ratio: 16 / 10; height: auto; object-position: center 47%; border-radius: 1.5rem; box-shadow: 0 1rem 2rem rgb(14 27 43 / 8%); }
+.conversion-page .hero__visual-orbit { display: none; }
+.conversion-page .hero__wave { opacity: 0.045; }
+
+/* ENTREGÁVEIS: uma única lista detalhada, em três grupos. */
+.conversion-page .included { border-top: 1px solid var(--color-border); background: var(--color-surface-soft); }
+.conversion-page .included__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; margin-top: 1.75rem; }
+.conversion-page .included__card { min-width: 0; padding: 1.5rem; border: 1px solid var(--color-border); border-radius: 1rem; background: white; }
+.conversion-page .included__number { display: inline-flex; align-items: center; justify-content: center; width: 2.2rem; height: 2.2rem; border-radius: 0.6rem; background: var(--color-brand-soft); color: var(--color-brand-dark); font-size: 0.85rem; font-weight: 800; }
+.conversion-page .included__card h3 { margin: 1rem 0; font-size: 1.2rem; letter-spacing: -0.025em; line-height: 1.25; }
+.conversion-page .included__card .pricing-card__list { margin: 0; gap: 0.7rem; font-size: 1rem; line-height: 1.55; }
+
+/* TRÊS PASSOS: reaproveita os cards existentes. */
+.conversion-page .service-intro { background: white; }
+.conversion-page .service-intro__steps { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; margin-top: 1.75rem; }
+.conversion-page .service-step { min-height: 0; padding: 1.35rem 1.5rem; border-radius: 1rem; box-shadow: none; }
+.conversion-page .service-step__number { margin: 0 0 1rem; font-size: 2rem; line-height: 1; }
+.conversion-page .service-step__title { margin: 0 0 0.7rem; font-size: 1.2rem; line-height: 1.25; letter-spacing: -0.025em; }
+.conversion-page .service-step p:not(.service-step__number) { margin: 0; font-size: 1rem; line-height: 1.55; }
+
+/* PROVA: depoimentos existentes, antes do preço, mais um dado com sua fonte. */
+.conversion-page .real-results { background: var(--color-brand-soft); }
+.conversion-page .real-results::before, .conversion-page .real-results::after { display: none; }
+.conversion-page .real-results__eyebrow { margin: 0 0 0.9rem; }
+.conversion-page .real-results__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; margin-top: 1.75rem; }
+.conversion-page .results-card { padding: 1.5rem; border-radius: 1rem; box-shadow: none; }
+.conversion-page .results-card__header { gap: 0.65rem; flex-wrap: wrap; }
+.conversion-page .results-card__name { font-size: 1.2rem; }
+.conversion-page .results-card__relationship { margin-top: 0.35rem; font-size: 0.8rem; }
+.conversion-page .results-card__quote { margin-top: 1.2rem; font-size: 1.1rem; line-height: 1.65; font-weight: 600; }
+.conversion-page .results-card__outcome { margin-top: 1.2rem; padding: 1rem; border-radius: 0.6rem; font-size: 0.9rem; }
+.conversion-page .results-card__outcome-label { font-size: 0.7rem; }
+.conversion-page .results-card__outcome p + p { margin-top: 0.35rem; }
+.conversion-page .results-card--supporting { background: rgb(255 255 255 / 60%); }
+.conversion-page .results-card--supporting .results-card__quote { font-size: 1rem; margin-top: 0.8rem; }
+.conversion-page .results-card--supporting .results-card__outcome { padding: 0; background: transparent; margin-top: 0.8rem; }
+.conversion-page .search-brief { min-width: 0; padding: 1.5rem; border-radius: 1rem; background: #fff; border: 1px solid #cde5d6; }
+.conversion-page .search-brief h3 { margin: 0; font-size: 1.2rem; letter-spacing: -0.025em; }
+.conversion-page .search-brief__number { margin: 0.8rem 0 0.4rem; color: var(--color-brand-dark); font-size: clamp(2.7rem, 5vw, 3.5rem); font-weight: 850; letter-spacing: -0.055em; line-height: 1.1; }
+.conversion-page .search-brief__context { margin: 0; font-size: 1rem; line-height: 1.55; color: var(--color-ink); }
+.conversion-page .search-brief__source { margin: 1rem 0 0; font-size: 0.78rem; line-height: 1.55; color: var(--color-muted); }
+.conversion-page .search-brief .search-demand__source-link { margin-top: 0.75rem; font-size: 0.8rem; min-height: 2.75rem; display: inline-flex; align-items: center; }
+
+/* PREÇO: mesma oferta, sem repetir o inventário inteiro. */
+.conversion-page .pricing__container { grid-template-columns: minmax(0, 1fr); grid-template-areas: "eyebrow" "title" "intro" "primary" "secondary" "excluded"; }
+.conversion-page .pricing__eyebrow { margin: 0 0 0.9rem; }
+.conversion-page .pricing__title { max-width: 24ch; }
+.conversion-page .pricing__intro { margin: 1rem 0 1.75rem; font-size: 1rem; line-height: 1.55; }
+.conversion-page .pricing-card { min-width: 0; margin-top: 0; padding: 1.5rem; border-radius: 1rem; box-shadow: none; }
+.conversion-page .pricing-card--primary { transform: none; }
+.conversion-page .pricing-card--secondary { margin-top: 1rem; }
+.conversion-page .pricing-card__header { gap: 1.25rem; }
+.conversion-page .pricing-card__title { font-size: 1.2rem; line-height: 1.3; letter-spacing: -0.02em; }
+.conversion-page .pricing-card__price { font-size: 3.4rem; line-height: 1; letter-spacing: -0.05em; }
+.conversion-page .pricing-card--secondary .pricing-card__price { font-size: 2.75rem; }
+.conversion-page .pricing-card__price span { font-size: 1rem; }
+.conversion-page .pricing-card__frequency { font-size: 0.9rem; }
+.conversion-page .pricing-card__description { margin-top: 1.25rem; font-size: 1rem; line-height: 1.6; }
+.conversion-page .pricing-card__list { gap: 0.7rem; font-size: 1rem; line-height: 1.55; }
+.conversion-page .pricing-card__summary { margin-block: 1.25rem; }
+.conversion-page .pricing-card__assurances { margin-top: 1.25rem; padding-top: 1rem; font-size: 0.9rem; line-height: 1.6; }
+.conversion-page .pricing-card__assurances p + p { margin-top: 0.5rem; }
+.conversion-page .pricing-card__cta { min-height: 3.5rem; margin-top: 1.25rem; padding: 0.8rem 1rem; gap: 0.7rem; border-radius: 0.7rem; font-size: 1rem; line-height: 1.4; }
+.conversion-page .pricing-card__cta-note { margin-top: 0.7rem; font-size: 0.8rem; }
+.conversion-page .pricing-card__note { margin-top: 1.25rem; padding: 1rem; border-radius: 0.7rem; font-size: 0.875rem; line-height: 1.55; }
+.conversion-page .pricing-card__optional-summary { margin-top: 0.65rem; font-size: 0.85rem; }
+.conversion-page .pricing__excluded { margin-top: 1.5rem; padding: 1.1rem 1.25rem; border-radius: 0.8rem; }
+.conversion-page .pricing__excluded h3 { font-size: 0.95rem; margin: 0 0 0.5rem; }
+.conversion-page .pricing__excluded p { margin: 0; font-size: 0.875rem; color: var(--color-muted); line-height: 1.65; }
+
+/* PERFIL EXISTENTE e FAQ resumido. */
+.conversion-page .existing-profile { background: var(--color-surface-soft); border-block: 1px solid var(--color-border); }
+.conversion-page .existing-profile__layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; align-items: center; }
+.conversion-page .existing-profile__layout > div > p:not(.compact-eyebrow) { max-width: 42rem; margin: 0.9rem 0 0; font-size: 1rem; line-height: 1.6; color: var(--color-muted); }
+.conversion-page .existing-profile__layout .existing-profile__answer { font-weight: 750; color: var(--color-ink); }
+.conversion-page .service-intro__existing-cta { width: 100%; margin: 0; min-height: 3.5rem; padding: 0.8rem 1rem; border-radius: 0.7rem; font-size: 1rem; line-height: 1.4; }
+.conversion-page .existing-profile__action > p { font-size: 0.8rem !important; text-align: center; }
+.conversion-page .faq__container { width: min(100%, 58rem); }
+.conversion-page .faq__accordion { margin-top: 1.75rem; border-top: 1px solid var(--color-border); }
+.conversion-page .faq-item__question { min-height: 4.25rem; padding-block: 1rem; font-size: 1rem; gap: 1rem; line-height: 1.5; }
+.conversion-page .faq-item__answer-inner { padding: 0 1rem 1.2rem 0; font-size: 1rem; line-height: 1.65; }
+
+/* CTA final e faixa fixa. O rodapé recebe espaço para ficar acessível. */
+.conversion-page .final-cta__container { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: none; gap: 1.75rem; align-items: center; }
+.conversion-page .final-cta__title { max-width: 20ch; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; }
+.conversion-page .final-cta__eyebrow { margin-bottom: 1rem; }
+.conversion-page .final-cta__copy { margin: 1rem 0 0; max-width: 36rem; font-size: 1.05rem; line-height: 1.6; }
+.conversion-page .final-cta__summary { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.65rem; margin: 0; }
+.conversion-page .final-cta__summary strong { color: #79d7a3; font-size: 2.5rem; font-weight: 850; letter-spacing: -0.055em; line-height: 1.15; }
+.conversion-page .final-cta__summary span { color: #fff; font-size: 1rem; }
+.conversion-page .final-cta__no-monthly { margin-top: 0.5rem; font-size: 0.9rem; font-weight: 500; }
+.conversion-page .final-cta__button { min-height: 3.5rem; margin-top: 1.3rem; padding: 0.8rem 1rem; gap: 0.7rem; border-radius: 0.7rem; font-size: 1rem; line-height: 1.4; }
+.conversion-page .final-cta__microcopy { margin-top: 0.65rem; font-size: 0.85rem; }
+.conversion-page .site-footer { padding-block: 1.8rem; }
+.conversion-page .contact-dock { position: fixed; z-index: 50; right: 0; bottom: 0; left: 0; padding: 0.75rem max(1rem, env(safe-area-inset-left, 0px)) calc(0.75rem + env(safe-area-inset-bottom, 0px)); border-top: 1px solid #d3e6dc; background: #fff; box-shadow: 0 -0.35rem 1.25rem rgb(14 27 43 / 6%); }
+.conversion-page .floating-whatsapp { display: flex; align-items: center; justify-content: center; gap: 0.7rem; width: 100%; min-height: 3.25rem; padding: 0.8rem 1rem; border: 1px solid var(--color-brand-dark); border-radius: 0.75rem; color: #fff; background: var(--color-brand-dark); text-align: center; text-decoration: none; font-size: 0.95rem; font-weight: 800; line-height: 1.45; }
+.conversion-page .floating-whatsapp:hover { background: #065f32; }
+.conversion-page .floating-whatsapp:focus-visible { outline: 3px solid #0e1b2b; outline-offset: 3px; }
+
+@media (min-width: 40rem) {
+  .conversion-page .hero__button { width: auto; min-width: 18rem; }
+  .conversion-page .included__grid, .conversion-page .service-intro__steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .conversion-page .included__card, .conversion-page .service-step { padding: 1.3rem; }
+  .conversion-page .hero__container { padding-top: 2.5rem; }
+}
+@media (min-width: 56.25rem) {
+  .conversion-page .hero__container { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); grid-template-areas: "content visual"; align-items: center; gap: clamp(2rem, 5vw, 4.5rem); padding-block: 3rem 3.5rem; }
+  .conversion-page .hero__title { font-size: clamp(3rem, 4.8vw, 4.15rem); }
+  .conversion-page .hero__brand { margin-bottom: 1.5rem; }
+  .conversion-page .hero__visual { width: min(100%, 27rem); aspect-ratio: 4 / 5; }
+  .conversion-page .hero__image { aspect-ratio: 4 / 5; border-radius: 2rem 1rem 2.5rem 1rem; }
+  .conversion-page .real-results__grid { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); }
+  .conversion-page .results-card--supporting { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.5fr); gap: 0.75rem 2rem; }
+  .conversion-page .results-card--supporting .results-card__header { grid-column: 1; grid-row: 1 / 3; flex-direction: column; justify-content: flex-start; gap: 0.75rem; }
+  .conversion-page .results-card--supporting .results-card__quote { margin: 0; }
+  .conversion-page .results-card--supporting .results-card__outcome { grid-column: 2; margin: 0; }
+  .conversion-page .results-card--supporting .results-card__outcome-label { display: none; }
+  .conversion-page .pricing__container { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); grid-template-areas: "eyebrow eyebrow" "title title" "intro intro" "primary secondary" "excluded excluded"; column-gap: 1.5rem; }
+  .conversion-page .pricing-card--secondary { margin-top: 0; }
+  .conversion-page .pricing-card { padding: 1.75rem; }
+  .conversion-page .existing-profile__layout { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 3rem; }
+  .conversion-page .final-cta__container { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 3rem; }
+  .conversion-page .contact-dock { left: auto; right: 1.5rem; bottom: 1.25rem; padding: 0; border: 0; border-radius: 0.8rem; box-shadow: 0 0.5rem 1.5rem rgb(14 27 43 / 16%); }
+  .conversion-page .floating-whatsapp { width: auto; padding-inline: 1.25rem; min-height: 3.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .conversion-page *, .conversion-page *::before, .conversion-page *::after { animation: none !important; transition: none !important; }
+}
+@media print {
+  .conversion-page { padding-bottom: 0; }
+  .conversion-page .contact-dock { display: none; }
+}

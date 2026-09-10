@@ -17,64 +17,44 @@
     </script>
     <link rel="stylesheet" href="./css/style.css">
   </head>
-  <body>
+  <body class="conversion-page">
     <main id="main-content">
-      <!-- =========================================
-           INÍCIO: HERO
-      ========================================== -->
-      <section class="hero" aria-labelledby="hero-title">
+<section class="hero" aria-labelledby="hero-title">
         <div class="hero__wave hero__wave--top" aria-hidden="true"></div>
 
         <div class="hero__container">
           <div class="hero__content">
-            <p class="hero__badge">
-              <span class="hero__badge-dot" aria-hidden="true"></span>
-              Google para Daycare
-            </p>
-
-            <h1 class="hero__title" id="hero-title">
-              Tem <span class="hero__title-accent">vaga</span> no seu Home Daycare?
-            </h1>
-
-            <p class="hero__lead">
-              Famílias da sua região podem estar procurando uma daycare no Google agora.
-            </p>
-
-            <p class="hero__support">
-              Ajude sua daycare a ser encontrada
-              <span class="hero__support-result">e receba mais contatos todos os meses.</span>
-            </p>
-
-            <a class="hero__button"
+            <p class="hero__brand">Mate<span>Growth</span></p>
+            <p class="hero__badge"><span class="hero__badge-dot" aria-hidden="true"></span>Google para Daycare</p>
+            <h1 class="hero__title" id="hero-title">Tem <span class="hero__title-accent">vaga</span> no seu Home Daycare?</h1>
+            <p class="hero__lead">Criamos ou organizamos o perfil da sua daycare no <strong>Google.</strong></p>
+            <p class="hero__audience">Para Home Daycare e Family Child Care.</p>
+            <div class="hero__offer" aria-label="Preço do serviço">
+              <p><strong>US$150</strong><span>pagamento único</span></p>
+              <p class="hero__no-monthly">Sem mensalidade obrigatória.</p>
+            </div>
+            <div class="hero__actions"><a class="hero__button"
+               href="https://wa.me/17746156579?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20Google%20para%20Daycare%20da%20MateGrowth%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20servi%C3%A7o."
+               target="_blank"
+               rel="noopener noreferrer"
+               data-analytics-event="whatsapp_click"
+               data-analytics-cta-location="hero"
+               data-analytics-cta-text="Tirar dúvidas no WhatsApp"
+               data-analytics-product="google_para_daycare"
+               data-analytics-offer="implantacao_150"
+               data-analytics-page-type="gbp_daycare">
+              <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.7 7.4L3 20.5l1.5-4.7A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8.3 7.4c.3-.3.7-.3.9.1l.8 1.7c.1.3 0 .5-.3.8l-.5.5c.7 1.4 1.6 2.3 3 3l.6-.7c.2-.2.5-.3.8-.1l1.6.8c.4.2.4.5.2.9-.4.8-1.1 1.2-2 1-3.5-.7-6-3.3-6.6-6.3-.1-.7.2-1.3 1.5-1.7Z"/></svg><span>Tirar dúvidas no WhatsApp</span>
+            </a><a class="hero__learn-more"
                href="#servico"
                data-analytics-event="hero_cta_click"
                data-analytics-cta-text="Ver como funciona"
                data-analytics-cta-location="hero"
                data-analytics-page-type="gbp_daycare">
               Ver como funciona
-            </a>
-
-            <ul class="hero__benefits" aria-label="Benefícios do serviço">
-              <li class="hero__benefit">
-                <svg class="hero__benefit-icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M5 5.75h14a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2h-7l-4.5 3v-3H5a2 2 0 0 1-2-2v-7.5a2 2 0 0 1 2-2Z"></path>
-                </svg>
-                <span>Contatos</span>
-              </li>
-              <li class="hero__benefit">
-                <svg class="hero__benefit-icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="10.5" cy="10.5" r="5.5"></circle>
-                  <path d="m14.5 14.5 5 5"></path>
-                </svg>
-                <span>Visibilidade</span>
-              </li>
-              <li class="hero__benefit">
-                <svg class="hero__benefit-icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M5 16.5 10 12l3 2.5 6-7"></path>
-                  <path d="M14.5 7.5H19V12"></path>
-                </svg>
-                <span>Constância</span>
-              </li>
+            </a></div>
+            <ul class="hero__benefits" aria-label="Incluído no serviço">
+              <li class="hero__benefit"><span aria-hidden="true">✓</span> Perfil no seu nome</li>
+              <li class="hero__benefit"><span aria-hidden="true">✓</span> Treinamento incluído</li>
             </ul>
           </div>
 
@@ -92,14 +72,457 @@
 
         <div class="hero__wave hero__wave--bottom" aria-hidden="true"></div>
       </section>
-      <!-- =========================================
-           FIM: HERO
-      ========================================== -->
 
-      <!-- =========================================
-           INÍCIO: DADOS DE PESQUISA
-      ========================================== -->
-      <section class="search-demand" aria-labelledby="search-demand-title">
+<section class="included compact-section" id="incluido" aria-labelledby="included-title">
+        <div class="compact-container">
+          <p class="compact-eyebrow">O QUE ESTÁ INCLUÍDO</p>
+          <h2 class="compact-title" id="included-title">O Google da sua daycare, <span>bem preparado.</span></h2>
+          <div class="included__grid"><article class="included__card" aria-labelledby="pricing-scope-profile">
+              <span class="included__number" aria-hidden="true">01</span>
+              <h3 id="pricing-scope-profile">Seu perfil</h3>
+              <ul class="pricing-card__list"><li>Criação ou organização do perfil no Google.</li><li>Informações, serviços, horários, telefone e localização.</li><li>Descrição da daycare.</li></ul>
+            </article>
+<article class="included__card" aria-labelledby="pricing-scope-images">
+              <span class="included__number" aria-hidden="true">02</span>
+              <h3 id="pricing-scope-images">Suas imagens</h3>
+              <ul class="pricing-card__list"><li>Logo básica, imagem de capa e imagem de apresentação.</li><li>Organização das fotos enviadas por você.</li></ul>
+            </article>
+<article class="included__card" aria-labelledby="pricing-scope-continue">
+              <span class="included__number" aria-hidden="true">03</span>
+              <h3 id="pricing-scope-continue">Para continuar usando</h3>
+              <ul class="pricing-card__list"><li>Orientação durante a verificação do perfil.</li><li>Texto pronto para pedir avaliações.</li><li>Treinamento para cuidar do seu Google.</li></ul>
+            </article></div>
+        </div>
+      </section>
+
+<section class="service-intro compact-section" id="servico" aria-labelledby="service-intro-title">
+        <div class="compact-container">
+          <p class="compact-eyebrow">COMO FUNCIONA</p>
+          <h2 class="compact-title" id="service-intro-title">Do primeiro ajuste <span>à sua autonomia.</span></h2>
+          <div class="service-intro__steps" aria-label="Como preparamos o perfil da daycare">
+            <article class="service-step">
+              <p class="service-step__number" aria-hidden="true">01</p>
+              <h3 class="service-step__title">Preparamos seu Google</h3>
+              <p>Criamos o perfil ou trabalhamos no que você já tem.</p>
+            </article>
+
+            <article class="service-step">
+              <p class="service-step__number" aria-hidden="true">02</p>
+              <h3 class="service-step__title">Organizamos as informações</h3>
+              <p>Preparamos os dados, a descrição e as imagens da daycare.</p>
+            </article>
+
+            <article class="service-step">
+              <p class="service-step__number" aria-hidden="true">03</p>
+              <h3 class="service-step__title">Ensinamos você a cuidar do perfil</h3>
+              <p>Mostramos como atualizar informações, publicar fotos e cuidar das avaliações.</p>
+            </article>
+          </div>
+<!-- BLOCO PAUSADO: MOCKUP DEMONSTRATIVO ORIGINAL
+Para reativar, retire este comentário externo. Se houver marcadores
+[COMENTARIO_INTERNO], restaure os delimitadores de comentário HTML.
+<figure class="gbp-mockup" aria-labelledby="gbp-mockup-caption">
+            <figcaption class="gbp-mockup__label" id="gbp-mockup-caption">
+              Exemplo demonstrativo de um perfil preparado
+            </figcaption>
+
+            <div class="gbp-mockup__window">
+              <div class="gbp-mockup__browser-bar" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+
+              <div class="gbp-mockup__media" aria-label="Espaço reservado para a imagem completa do perfil">
+                <img class="gbp-mockup__profile-image"
+                     src="./assets/images/google-profile/daycare-profile.webp"
+                     alt="Ambiente organizado de Home Daycare apresentado no perfil demonstrativo"
+                     width="1448"
+                     height="1086"
+                     loading="lazy"
+                     decoding="async">
+              </div>
+
+              <div class="gbp-mockup__profile">
+                <div class="gbp-mockup__identity">
+                  <div>
+                    <p class="gbp-mockup__name">Jardim Feliz Family Child Care</p>
+                    <p class="gbp-mockup__category">Family day care service</p>
+                  </div>
+                  <span class="gbp-mockup__status">Perfil completo</span>
+                </div>
+
+                <div class="gbp-mockup__actions" aria-label="Áreas demonstrativas do perfil">
+                  <span>Telefone</span>
+                  <span>Horários</span> 
+                  <span>Avaliações</span>
+                </div>
+
+                <dl class="gbp-mockup__details">
+                  <div>
+                    <dt>Horário</dt>
+                    <dd>Horários cadastrados e atualizados</dd>
+                  </div>
+                  <div>
+                    <dt>Telefone</dt>
+                    <dd>(000) 000-0000</dd>
+                  </div>
+                  <div>
+                    <dt>Descrição</dt>
+                    <dd>Informações claras sobre o cuidado e o ambiente da daycare.</dd>
+                  </div>
+                </dl>
+
+                <div class="gbp-mockup__services" aria-label="Exemplos de serviços organizados">
+                  <span>Full-Time</span>
+                  <span>Infants</span>
+                  <span>Toddlers</span>
+                </div>
+              </div>
+            </div>
+          </figure>
+FIM DO BLOCO PAUSADO: MOCKUP DEMONSTRATIVO ORIGINAL -->
+        </div>
+      </section>
+
+<section class="real-results compact-section" aria-labelledby="real-results-title">
+        <div class="real-results__container">
+          <p class="real-results__eyebrow">RESULTADOS REAIS</p>
+
+          <h2 class="compact-title" id="real-results-title">Quem já trabalha <span>com a MateGrowth.</span></h2>
+
+          
+
+          <div class="real-results__grid"><article class="results-card results-card--featured">
+              <header class="results-card__header">
+                <div>
+                  <h3 class="results-card__name">Espaço dos Anjos Child Care</h3>
+                  <p class="results-card__relationship">Cliente MateGrowth</p>
+                </div>
+                <div class="results-card__rating">
+                  <span class="sr-only">Avaliação positiva da cliente</span>
+                  <span class="results-card__stars" aria-hidden="true">★★★★★</span>
+                </div>
+              </header>
+
+              <blockquote class="results-card__quote">
+                <p>“Estou muito satisfeita com o trabalho da MateGrowth. Em pouco tempo já obtive resultado. Fiz um atendimento e a família me encontrou através do Google.”</p>
+              </blockquote>
+
+              <!--
+                FUTURA PROVA VISUAL: adicionar o arquivo anonimizado em
+                assets/images/reviews/espaco-dos-anjos-whatsapp.webp,
+                mover data-src para src e remover hidden deste figure.
+              -->
+              <figure class="results-card__message" hidden>
+                <img data-src="./assets/images/reviews/espaco-dos-anjos-whatsapp.webp"
+                     alt="Mensagem real da cliente Espaço dos Anjos Child Care"
+                     width="720"
+                     height="960"
+                     loading="lazy"
+                     decoding="async">
+                <figcaption>Mensagem real da cliente</figcaption>
+              </figure>
+
+              <div class="results-card__outcome">
+                <p class="results-card__outcome-label">RESULTADO PERCEBIDO PELA CLIENTE</p>
+                <p><span aria-hidden="true">✓</span> Família encontrou a daycare através do Google.</p>
+              </div>
+            </article><aside class="search-brief" aria-labelledby="search-brief-title">
+              <p class="compact-eyebrow">UM DADO DE BUSCA</p>
+              <h3 id="search-brief-title">“daycare near me”</h3>
+              <p class="search-brief__number">≈ 5.000</p>
+              <p class="search-brief__context">pesquisas por mês<br><strong>em Massachusetts</strong></p>
+              <p class="search-brief__source">Google Keyword Planner.<br>Média mensal aproximada.<br>Agosto de 2025 a julho de 2026.</p>
+              <a class="search-demand__source-link"
+               href="https://support.google.com/google-ads/answer/7337243/use-keyword-planner"
+               target="_blank"
+               rel="noopener noreferrer"
+               data-analytics-event="source_link_click"
+               data-analytics-source-name="google_keyword_planner"
+               data-analytics-page-type="gbp_daycare">
+              Sobre o Google Keyword Planner
+            </a>
+            </aside><article class="results-card results-card--supporting">
+              <header class="results-card__header">
+                <div>
+                  <h3 class="results-card__name">Care’s Corner Childcare</h3>
+                  <p class="results-card__relationship">Cliente MateGrowth</p>
+                </div>
+                <div class="results-card__rating">
+                  <span class="sr-only">Avaliação positiva da cliente</span>
+                  <span class="results-card__stars" aria-hidden="true">★★★★★</span>
+                </div>
+              </header>
+
+              <blockquote class="results-card__quote">
+                <p>“Trabalho incrível! Muito atenciosos, profissionais e sempre trazendo ideias ótimas. Estou amando o resultado!”</p>
+              </blockquote>
+
+              <div class="results-card__outcome">
+                <p class="results-card__outcome-label">EXPERIÊNCIA COM A MATEGROWTH</p>
+                <p><span aria-hidden="true">✓</span> Estratégia, atenção e novas ideias.</p>
+              </div>
+            </article></div>
+
+          
+        </div>
+      </section>
+
+<section class="pricing compact-section" aria-labelledby="pricing-title">
+        <div class="pricing__container">
+          <p class="pricing__eyebrow">GOOGLE PARA DAYCARE</p>
+
+          <h2 class="compact-title pricing__title" id="pricing-title">Um pagamento. <span>Seu Google preparado.</span></h2>
+
+          <p class="pricing__intro">
+            Pagamento único. <strong>Sem mensalidade obrigatória.</strong>
+          </p>
+
+          <article class="pricing-card pricing-card--primary">
+            <div class="pricing-card__header">
+              <h3 class="pricing-card__title">Google preparado para sua daycare</h3>
+              <div class="pricing-card__price-block">
+                <p class="pricing-card__price">US$150</p>
+                <p class="pricing-card__frequency">pagamento único</p>
+              </div>
+            </div>
+
+            <p class="pricing-card__description">
+              Criamos seu perfil no Google ou organizamos o perfil que você já possui.
+            </p>
+
+            <ul class="pricing-card__list pricing-card__summary">
+              <li>Perfil criado ou organizado.</li>
+              <li>Informações e materiais preparados.</li>
+              <li>Orientação e treinamento incluídos.</li>
+            </ul>
+
+            <div class="pricing-card__assurances">
+              <p>O perfil fica no nome e sob o controle da sua daycare.</p>
+              <p>
+                O perfil do Google é gratuito. Os US$150 são pelo trabalho realizado
+                pela MateGrowth.
+              </p>
+            </div>
+
+            <a class="pricing-card__cta"
+               href="https://wa.me/17746156579?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20Google%20para%20Daycare%20da%20MateGrowth%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20servi%C3%A7o."
+               target="_blank"
+               rel="noopener noreferrer"
+               data-analytics-event="whatsapp_click"
+               data-analytics-cta-location="pricing"
+               data-analytics-cta-text="Tirar dúvidas no WhatsApp"
+               data-analytics-product="google_para_daycare"
+               data-analytics-offer="implantacao_150"
+               data-analytics-page-type="gbp_daycare">
+              <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.7 7.4L3 20.5l1.5-4.7A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8.3 7.4c.3-.3.7-.3.9.1l.8 1.7c.1.3 0 .5-.3.8l-.5.5c.7 1.4 1.6 2.3 3 3l.6-.7c.2-.2.5-.3.8-.1l1.6.8c.4.2.4.5.2.9-.4.8-1.1 1.2-2 1-3.5-.7-6-3.3-6.6-6.3-.1-.7.2-1.3 1.5-1.7Z"/></svg><span>Tirar dúvidas no WhatsApp</span>
+            </a>
+            <p class="pricing-card__cta-note">Pagamento único • Sem mensalidade obrigatória</p>
+          </article>
+
+          <article class="pricing-card pricing-card--secondary">
+            <div class="pricing-card__header">
+              <div>
+                <p class="pricing-card__badge">OPCIONAL</p>
+                <h3 class="pricing-card__title">Quer que a MateGrowth continue cuidando?</h3>
+              </div>
+              <div class="pricing-card__price-block">
+                <p class="pricing-card__price">US$50<span>/mês</span></p>
+              </div>
+            </div>
+
+            <p class="pricing-card__description">Depois da implantação, você escolhe: cuidar do perfil com o treinamento ou contratar o cuidado mensal.</p>
+
+            <ul class="pricing-card__list">
+              <li>Informações, horários e feriados atualizados.</li>
+              <li>Uma atualização por semana e publicação das fotos enviadas por você.</li>
+              <li>Respostas às novas avaliações.</li>
+              <li>Conferência das informações e verificação mensal do perfil.</li>
+            </ul>
+
+            <div class="pricing-card__note">
+              <p>
+                A cliente precisa enviar fotos, novidades e alterações de horário para a
+                MateGrowth.
+              </p>
+              <strong>A manutenção mensal não é obrigatória.</strong>
+              <span class="pricing-card__optional-summary">US$50/mês • opcional</span>
+            </div>
+          </article>
+
+          <aside class="pricing__excluded" aria-labelledby="pricing-excluded-title">
+            <h3 id="pricing-excluded-title">Serviço focado no perfil do Google</h3>
+            <p>Não inclui website, Family Request, redes sociais, vídeos, ensaio fotográfico, SEO do website, Google Ads, Meta Ads ou investimento em anúncios.</p>
+          </aside>
+        </div>
+      </section>
+
+<section class="existing-profile compact-section" aria-labelledby="existing-profile-title">
+        <div class="compact-container existing-profile__layout">
+          <div><p class="compact-eyebrow">PARA QUEM JÁ ESTÁ NO GOOGLE</p>
+            <h2 class="compact-title" id="existing-profile-title">Já tem um perfil no Google?</h2>
+            <p class="existing-profile__answer">Não precisamos começar do zero.</p>
+            <p>Organizamos seu perfil e identificamos o que pode melhorar nas informações e na apresentação da sua daycare.</p>
+          </div>
+          <div class="existing-profile__action"><a class="service-intro__existing-cta"
+                 href="https://wa.me/17746156579?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20Google%20para%20Daycare%20da%20MateGrowth.%20J%C3%A1%20tenho%20um%20perfil%20e%20quero%20analisar%20meu%20perfil%20no%20Google."
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 data-analytics-event="whatsapp_click"
+                 data-analytics-cta-location="existing_profile"
+                 data-analytics-cta-text="Analisar meu perfil no Google"
+                 data-analytics-product="google_para_daycare"
+                 data-analytics-offer="implantacao_150"
+                 data-analytics-lead-intent="analyze_existing_profile"
+                 data-analytics-page-type="gbp_daycare">
+                Analisar meu perfil no Google
+              </a><p>Converse com a MateGrowth pelo WhatsApp.</p></div>
+        </div>
+      </section>
+
+<section class="faq compact-section" aria-labelledby="faq-title">
+        <div class="faq__container">
+          <header class="faq__header"><p class="faq__eyebrow">ANTES DE COMEÇAR</p>
+            <h2 class="compact-title" id="faq-title">Suas dúvidas, <span>respondidas.</span></h2>
+          </header>
+          <div class="faq__accordion" data-faq-accordion><div class="faq-item">
+                <h3 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-05" aria-expanded="true" aria-controls="faq-answer-05"><span>Já tenho perfil no Google. Esse serviço serve para mim?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h3>
+                <div class="faq-item__answer" id="faq-answer-05" role="region" aria-labelledby="faq-question-05"><div class="faq-item__answer-inner">
+                  <p>Sim.</p><p>Não precisamos começar do zero. A MateGrowth pode organizar o perfil que você já possui e verificar o que pode ser melhorado para aumentar suas chances de receber contatos.</p><p>Se esse for o seu caso, ao falar conosco diga: <strong>“Quero analisar meu perfil no Google.”</strong></p>
+                </div></div>
+              </div>
+<div class="faq-item">
+                <h3 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-06" aria-expanded="true" aria-controls="faq-answer-06"><span>O perfil fica no meu nome e sob meu controle?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h3>
+                <div class="faq-item__answer" id="faq-answer-06" role="region" aria-labelledby="faq-question-06"><div class="faq-item__answer-inner"><p>Sim.</p><p>O perfil pertence à sua daycare e fica sob o seu controle.</p></div></div>
+              </div>
+<div class="faq-item">
+                <h3 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-02" aria-expanded="true" aria-controls="faq-answer-02"><span>O Google é gratuito? Por que pago US$150?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h3>
+                <div class="faq-item__answer" id="faq-answer-02" role="region" aria-labelledby="faq-question-02"><div class="faq-item__answer-inner">
+                  <p>Sim. O perfil do Google é gratuito.</p>
+                  <p>Os US$150 são pelo trabalho da MateGrowth para criar ou organizar o perfil, preparar as informações e imagens e deixar o Google da sua daycare pronto para apresentar seu trabalho às famílias.</p>
+                </div></div>
+              </div>
+<div class="faq-item">
+                <h3 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-03" aria-expanded="true" aria-controls="faq-answer-03"><span>Tem mensalidade obrigatória?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h3>
+                <div class="faq-item__answer" id="faq-answer-03" role="region" aria-labelledby="faq-question-03"><div class="faq-item__answer-inner"><p>Não. A implantação custa US$150, em pagamento único, e inclui treinamento para você cuidar do perfil. O cuidado mensal de US$50/mês é opcional.</p></div></div>
+              </div>
+<div class="faq-item">
+                <h3 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-13" aria-expanded="true" aria-controls="faq-answer-13"><span>Vocês garantem famílias ou posição no Google?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h3>
+                <div class="faq-item__answer" id="faq-answer-13" role="region" aria-labelledby="faq-question-13"><div class="faq-item__answer-inner"><p>Não existe garantia de quantidade de famílias ou de uma posição específica no Google.</p><p>Nosso trabalho é preparar e organizar o perfil da sua daycare para aumentar sua visibilidade, passar mais confiança e aumentar suas chances de receber contatos.</p></div></div>
+              </div>
+<!-- BLOCO PAUSADO: FAQ 01
+Para reativar, retire este comentário externo. Se houver marcadores
+[COMENTARIO_INTERNO], restaure os delimitadores de comentário HTML.
+<div class="faq-item">
+                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-01" aria-expanded="true" aria-controls="faq-answer-01"><span>Quanto custa e o que está incluído nos US$150?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
+                <div class="faq-item__answer" id="faq-answer-01" role="region" aria-labelledby="faq-question-01"><div class="faq-item__answer-inner">
+                  <p>US$150, pagamento único.</p>
+                  <p>A MateGrowth cria ou organiza o perfil da sua daycare no Google, cadastra e organiza as informações da empresa, serviços, horários, telefone, localização e descrição.</p>
+                  <p>Também estão incluídos logo básica, imagem de capa, imagem de apresentação, organização das fotos enviadas pela cliente, orientação durante a verificação, texto para pedir avaliações e treinamento para cuidar do perfil.</p>
+                </div></div>
+              </div>
+FIM DO BLOCO PAUSADO: FAQ 01 -->
+<!-- BLOCO PAUSADO: FAQ 04
+Para reativar, retire este comentário externo. Se houver marcadores
+[COMENTARIO_INTERNO], restaure os delimitadores de comentário HTML.
+<div class="faq-item">
+                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-04" aria-expanded="true" aria-controls="faq-answer-04"><span>E se eu quiser que a MateGrowth continue cuidando?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
+                <div class="faq-item__answer" id="faq-answer-04" role="region" aria-labelledby="faq-question-04"><div class="faq-item__answer-inner"><p>Você pode contratar o cuidado mensal por US$50/mês.</p><p>A MateGrowth mantém informações e horários atualizados, atualiza feriados, publica uma atualização por semana, adiciona as fotos enviadas pela cliente, responde novas avaliações e faz uma verificação mensal do perfil.</p><p>Esse serviço é opcional.</p></div></div>
+              </div>
+FIM DO BLOCO PAUSADO: FAQ 04 -->
+<!-- BLOCO PAUSADO: FAQ 07
+Para reativar, retire este comentário externo. Se houver marcadores
+[COMENTARIO_INTERNO], restaure os delimitadores de comentário HTML.
+<div class="faq-item">
+                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-07" aria-expanded="true" aria-controls="faq-answer-07"><span>Vocês ensinam como cuidar do perfil?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
+                <div class="faq-item__answer" id="faq-answer-07" role="region" aria-labelledby="faq-question-07"><div class="faq-item__answer-inner"><p>Sim.</p><p>Depois de preparar o perfil, ensinamos você a cuidar das principais informações e continuar usando seu Google.</p></div></div>
+              </div>
+FIM DO BLOCO PAUSADO: FAQ 07 -->
+<!-- BLOCO PAUSADO: FAQ 08
+Para reativar, retire este comentário externo. Se houver marcadores
+[COMENTARIO_INTERNO], restaure os delimitadores de comentário HTML.
+<div class="faq-item">
+                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-08" aria-expanded="true" aria-controls="faq-answer-08"><span>Vocês criam a logo e organizam as fotos?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
+                <div class="faq-item__answer" id="faq-answer-08" role="region" aria-labelledby="faq-question-08"><div class="faq-item__answer-inner"><p>Sim.</p><p>A implantação inclui uma logo básica, imagem de capa, imagem de apresentação e organização das fotos enviadas pela cliente.</p><p>A cliente precisa fornecer as fotos da daycare.</p><p>Ensaio fotográfico não está incluído.</p></div></div>
+              </div>
+FIM DO BLOCO PAUSADO: FAQ 08 -->
+<!-- BLOCO PAUSADO: FAQ 09
+Para reativar, retire este comentário externo. Se houver marcadores
+[COMENTARIO_INTERNO], restaure os delimitadores de comentário HTML.
+<div class="faq-item">
+                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-09" aria-expanded="true" aria-controls="faq-answer-09"><span>Website ou uma estratégia mais completa estão incluídos?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
+                <div class="faq-item__answer" id="faq-answer-09" role="region" aria-labelledby="faq-question-09"><div class="faq-item__answer-inner"><p>Não.</p><p>Esta oferta é somente para o serviço Google para Daycare.</p><p>Website, Family Request e outros serviços para daycare são separados e não fazem parte dos US$150.</p></div></div>
+              </div>
+FIM DO BLOCO PAUSADO: FAQ 09 -->
+<!-- BLOCO PAUSADO: FAQ 10
+Para reativar, retire este comentário externo. Se houver marcadores
+[COMENTARIO_INTERNO], restaure os delimitadores de comentário HTML.
+<div class="faq-item">
+                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-10" aria-expanded="true" aria-controls="faq-answer-10"><span>Family Request está incluído?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
+                <div class="faq-item__answer" id="faq-answer-10" role="region" aria-labelledby="faq-question-10"><div class="faq-item__answer-inner"><p>Não.</p><p>O Family Request é um serviço separado e não faz parte desta oferta.</p></div></div>
+              </div>
+FIM DO BLOCO PAUSADO: FAQ 10 -->
+<!-- BLOCO PAUSADO: FAQ 11
+Para reativar, retire este comentário externo. Se houver marcadores
+[COMENTARIO_INTERNO], restaure os delimitadores de comentário HTML.
+<div class="faq-item">
+                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-11" aria-expanded="true" aria-controls="faq-answer-11"><span>Redes sociais estão incluídas?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
+                <div class="faq-item__answer" id="faq-answer-11" role="region" aria-labelledby="faq-question-11"><div class="faq-item__answer-inner"><p>Não.</p><p>Gestão de Instagram, Facebook e outras redes sociais não faz parte deste serviço.</p></div></div>
+              </div>
+FIM DO BLOCO PAUSADO: FAQ 11 -->
+<!-- BLOCO PAUSADO: FAQ 12
+Para reativar, retire este comentário externo. Se houver marcadores
+[COMENTARIO_INTERNO], restaure os delimitadores de comentário HTML.
+<div class="faq-item">
+                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-12" aria-expanded="true" aria-controls="faq-answer-12"><span>Google Ads ou Meta Ads estão incluídos? Preciso pagar anúncios?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
+                <div class="faq-item__answer" id="faq-answer-12" role="region" aria-labelledby="faq-question-12"><div class="faq-item__answer-inner"><p>Não.</p><p>Google Ads, Meta Ads e investimento em anúncios não estão incluídos nos US$150.</p><p>Você não precisa contratar anúncios pagos para ter um perfil no Google.</p></div></div>
+              </div>
+FIM DO BLOCO PAUSADO: FAQ 12 -->
+<!-- BLOCO PAUSADO: FAQ 14
+Para reativar, retire este comentário externo. Se houver marcadores
+[COMENTARIO_INTERNO], restaure os delimitadores de comentário HTML.
+<div class="faq-item">
+                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-14" aria-expanded="true" aria-controls="faq-answer-14"><span>Como começa o trabalho?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
+                <div class="faq-item__answer" id="faq-answer-14" role="region" aria-labelledby="faq-question-14"><div class="faq-item__answer-inner"><p>Entre em contato com a MateGrowth.</p><p>Vamos confirmar as informações da sua daycare e o que precisamos receber para começar a preparar seu Google.</p></div></div>
+              </div>
+FIM DO BLOCO PAUSADO: FAQ 14 --></div>
+        </div>
+      </section>
+
+<section class="final-cta compact-section" aria-labelledby="final-cta-title">
+        <div class="final-cta__wave" aria-hidden="true"></div>
+        <div class="final-cta__container">
+          <div class="final-cta__message">
+            <p class="final-cta__eyebrow">GOOGLE PARA DAYCARE</p>
+            <h2 class="final-cta__title" id="final-cta-title">Tem vaga no seu Home Daycare?</h2>
+            <p class="final-cta__copy">Prepare seu Google para sua daycare ser encontrada na sua região.</p>
+          </div>
+          <div class="final-cta__action">
+            <p class="final-cta__summary"><strong>US$150</strong><span>• pagamento único</span></p>
+            <p class="final-cta__no-monthly">Sem mensalidade obrigatória.</p>
+            <a class="final-cta__button"
+             href="https://wa.me/17746156579?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20Google%20para%20Daycare%20da%20MateGrowth%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20servi%C3%A7o."
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-describedby="final-cta-microcopy"
+             data-analytics-event="whatsapp_click"
+             data-analytics-cta-location="final_cta"
+             data-analytics-cta-text="Tirar dúvidas no WhatsApp"
+             data-analytics-product="google_para_daycare"
+             data-analytics-offer="implantacao_150"
+             data-analytics-page-type="gbp_daycare">
+            <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.7 7.4L3 20.5l1.5-4.7A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8.3 7.4c.3-.3.7-.3.9.1l.8 1.7c.1.3 0 .5-.3.8l-.5.5c.7 1.4 1.6 2.3 3 3l.6-.7c.2-.2.5-.3.8-.1l1.6.8c.4.2.4.5.2.9-.4.8-1.1 1.2-2 1-3.5-.7-6-3.3-6.6-6.3-.1-.7.2-1.3 1.5-1.7Z"/></svg><span>Tirar dúvidas no WhatsApp</span>
+          </a>
+            <p class="final-cta__microcopy" id="final-cta-microcopy">Tire suas dúvidas com a MateGrowth.</p>
+          </div>
+        </div>
+      </section>
+
+<!-- BLOCOS ORIGINAIS PRESERVADOS PARA REATIVAÇÃO FUTURA.
+Os eventos abaixo permanecem no código, mas não disparam enquanto os blocos estiverem comentados. -->
+<!-- BLOCO PAUSADO: DADOS DE PESQUISA
+Para reativar, retire este comentário externo. Se houver marcadores
+[COMENTARIO_INTERNO], restaure os delimitadores de comentário HTML.
+<section class="search-demand" aria-labelledby="search-demand-title">
         <div class="search-demand__container">
           <p class="search-demand__eyebrow">DADOS REAIS DE BUSCA</p>
 
@@ -224,14 +647,12 @@
           </p>
         </div>
       </section>
-      <!-- =========================================
-           FIM: DADOS DE PESQUISA
-      ========================================== -->
+FIM DO BLOCO PAUSADO: DADOS DE PESQUISA -->
 
-      <!-- =========================================
-           INÍCIO: PERFIL PREPARADO X PERFIL INCOMPLETO
-      ========================================== -->
-      <section class="profile-readiness" aria-labelledby="profile-readiness-title">
+<!-- BLOCO PAUSADO: PERFIL PREPARADO X INCOMPLETO
+Para reativar, retire este comentário externo. Se houver marcadores
+[COMENTARIO_INTERNO], restaure os delimitadores de comentário HTML.
+<section class="profile-readiness" aria-labelledby="profile-readiness-title">
         <div class="profile-readiness__container">
           <p class="profile-readiness__eyebrow">PERFIL QUE GERA OPORTUNIDADES</p>
 
@@ -300,162 +721,12 @@
           </p>
         </div>
       </section>
-      <!-- =========================================
-           FIM: PERFIL PREPARADO X PERFIL INCOMPLETO
-      ========================================== -->
+FIM DO BLOCO PAUSADO: PERFIL PREPARADO X INCOMPLETO -->
 
-      <!-- =========================================
-           INÍCIO: GOOGLE PARA DAYCARE
-      ========================================== -->
-      <section class="service-intro" id="servico" aria-labelledby="service-intro-title">
-        <div class="service-intro__container">
-          <p class="service-intro__eyebrow">GOOGLE COM A MATEGROWTH</p>
-
-          <h2 class="service-intro__title" id="service-intro-title">
-            Preparamos sua daycare no Google para
-            <span>conseguir novos contatos.</span>
-          </h2>
-
-          <figure class="gbp-mockup" aria-labelledby="gbp-mockup-caption">
-            <figcaption class="gbp-mockup__label" id="gbp-mockup-caption">
-              Exemplo demonstrativo de um perfil preparado
-            </figcaption>
-
-            <div class="gbp-mockup__window">
-              <div class="gbp-mockup__browser-bar" aria-hidden="true">
-                <span></span><span></span><span></span>
-              </div>
-
-              <div class="gbp-mockup__media" aria-label="Espaço reservado para a imagem completa do perfil">
-                <img class="gbp-mockup__profile-image"
-                     src="./assets/images/google-profile/daycare-profile.webp"
-                     alt="Ambiente organizado de Home Daycare apresentado no perfil demonstrativo"
-                     width="1448"
-                     height="1086"
-                     loading="lazy"
-                     decoding="async">
-              </div>
-
-              <div class="gbp-mockup__profile">
-                <div class="gbp-mockup__identity">
-                  <div>
-                    <p class="gbp-mockup__name">Jardim Feliz Family Child Care</p>
-                    <p class="gbp-mockup__category">Family day care service</p>
-                  </div>
-                  <span class="gbp-mockup__status">Perfil completo</span>
-                </div>
-
-                <div class="gbp-mockup__actions" aria-label="Áreas demonstrativas do perfil">
-                  <span>Telefone</span>
-                  <span>Horários</span> 
-                  <span>Avaliações</span>
-                </div>
-
-                <dl class="gbp-mockup__details">
-                  <div>
-                    <dt>Horário</dt>
-                    <dd>Horários cadastrados e atualizados</dd>
-                  </div>
-                  <div>
-                    <dt>Telefone</dt>
-                    <dd>(000) 000-0000</dd>
-                  </div>
-                  <div>
-                    <dt>Descrição</dt>
-                    <dd>Informações claras sobre o cuidado e o ambiente da daycare.</dd>
-                  </div>
-                </dl>
-
-                <div class="gbp-mockup__services" aria-label="Exemplos de serviços organizados">
-                  <span>Full-Time</span>
-                  <span>Infants</span>
-                  <span>Toddlers</span>
-                </div>
-              </div>
-            </div>
-          </figure>
-
-          <div class="service-intro__copy">
-            <p>
-              Criamos seu perfil no Google ou organizamos o que você já tem para sua
-              daycare aparecer bem, passar confiança e facilitar o contato das famílias.
-            </p>
-          </div>
-
-          <div class="service-intro__steps" aria-label="Como preparamos o perfil da daycare">
-            <article class="service-step">
-              <p class="service-step__number" aria-hidden="true">01</p>
-              <h3 class="service-step__title">Preparamos seu Google</h3>
-              <p>
-                Criamos o perfil ou organizamos o que você já possui com as informações
-                da sua daycare.
-              </p>
-            </article>
-
-            <article class="service-step">
-              <p class="service-step__number" aria-hidden="true">02</p>
-              <h3 class="service-step__title">Organizamos tudo para sua daycare aparecer bem</h3>
-              <p>
-                Horários, serviços, descrição, localização, imagens, fotos e informações
-                importantes para as famílias.
-              </p>
-            </article>
-
-            <article class="service-step">
-              <p class="service-step__number" aria-hidden="true">03</p>
-              <h3 class="service-step__title">Ensinamos você a cuidar do perfil</h3>
-              <p>
-                Depois de tudo pronto, mostramos como manter suas informações atualizadas
-                e continuar usando seu Google.
-              </p>
-            </article>
-          </div>
-
-          <aside class="service-intro__existing-profile"
-                 aria-labelledby="existing-profile-title">
-            <div>
-              <h3 id="existing-profile-title">Já tem um perfil no Google?</h3>
-              <p class="service-intro__existing-answer">Nós não precisamos começar do zero.</p>
-            </div>
-            <div class="service-intro__existing-content">
-              <p>
-                Organizamos o perfil que você já possui e verificamos o que pode ser
-                melhorado para sua daycare ter mais chances de receber contatos.
-              </p>
-              <p class="service-intro__existing-guidance">
-                Quando falar com a MateGrowth, diga:
-                <strong>“Quero analisar meu perfil no Google.”</strong>
-              </p>
-              <a class="service-intro__existing-cta"
-                 href="https://wa.me/17746156579?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20Google%20para%20Daycare%20da%20MateGrowth.%20J%C3%A1%20tenho%20um%20perfil%20e%20quero%20analisar%20meu%20perfil%20no%20Google."
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 data-analytics-event="whatsapp_click"
-                 data-analytics-cta-location="existing_profile"
-                 data-analytics-cta-text="Analisar meu perfil no Google"
-                 data-analytics-product="google_para_daycare"
-                 data-analytics-offer="implantacao_150"
-                 data-analytics-lead-intent="analyze_existing_profile"
-                 data-analytics-page-type="gbp_daycare">
-                Analisar meu perfil no Google
-              </a>
-            </div>
-          </aside>
-
-          <p class="service-intro__closing">
-            Seu Google preparado para aparecer melhor, passar confiança e
-            <strong>gerar novas oportunidades de contato.</strong>
-          </p>
-        </div>
-      </section>
-      <!-- =========================================
-           FIM: GOOGLE PARA DAYCARE
-      ========================================== -->
-
-      <!-- =========================================
-           INÍCIO: NOVO BLOCO MOTIVACIONAL
-      ========================================== -->
-      <section class="motivation" aria-labelledby="motivation-title">
+<!-- BLOCO PAUSADO: BLOCO MOTIVACIONAL
+Para reativar, retire este comentário externo. Se houver marcadores
+[COMENTARIO_INTERNO], restaure os delimitadores de comentário HTML.
+<section class="motivation" aria-labelledby="motivation-title">
         <div class="motivation__container">
           <p class="motivation__eyebrow">FAMÍLIAS PROCURAM NO GOOGLE</p>
 
@@ -514,156 +785,12 @@
           </p>
         </div>
       </section>
-      <!-- =========================================
-           FIM: NOVO BLOCO MOTIVACIONAL
-      ========================================== -->
+FIM DO BLOCO PAUSADO: BLOCO MOTIVACIONAL -->
 
-      <!-- =========================================
-           INÍCIO: PREÇOS
-      ========================================== -->
-      <section class="pricing" aria-labelledby="pricing-title">
-        <div class="pricing__container">
-          <p class="pricing__eyebrow">INVISTA NO CRESCIMENTO DA SUA DAYCARE</p>
-
-          <h2 class="pricing__title" id="pricing-title">
-            Prepare seu Google para <span>receber mais contatos</span> por US$150.
-          </h2>
-
-          <p class="pricing__intro">
-            Pagamento único. <strong>Sem mensalidade obrigatória.</strong>
-          </p>
-
-          <article class="pricing-card pricing-card--primary">
-            <div class="pricing-card__header">
-              <h3 class="pricing-card__title">Google preparado para sua daycare</h3>
-              <div class="pricing-card__price-block">
-                <p class="pricing-card__price">US$150</p>
-                <p class="pricing-card__frequency">pagamento único</p>
-              </div>
-            </div>
-
-            <p class="pricing-card__description">
-              Criamos seu perfil no Google ou organizamos o perfil que você já possui.
-            </p>
-
-            <div class="pricing-card__scope">
-              <section class="pricing-card__scope-group" aria-labelledby="pricing-scope-profile">
-                <h4 id="pricing-scope-profile">Seu perfil</h4>
-                <ul class="pricing-card__list">
-                  <li>criação ou organização do perfil da daycare no Google;</li>
-                  <li>cadastro das informações da empresa;</li>
-                  <li>organização dos serviços, horários, telefone e localização;</li>
-                  <li>descrição da daycare.</li>
-                </ul>
-              </section>
-
-              <section class="pricing-card__scope-group" aria-labelledby="pricing-scope-images">
-                <h4 id="pricing-scope-images">Suas imagens</h4>
-                <ul class="pricing-card__list">
-                  <li>criação de uma logo básica;</li>
-                  <li>criação da imagem de capa;</li>
-                  <li>criação da imagem de apresentação;</li>
-                  <li>organização das fotos enviadas pela cliente.</li>
-                </ul>
-              </section>
-
-              <section class="pricing-card__scope-group" aria-labelledby="pricing-scope-continue">
-                <h4 id="pricing-scope-continue">Para continuar usando</h4>
-                <ul class="pricing-card__list">
-                  <li>orientação durante a verificação do perfil;</li>
-                  <li>texto pronto para pedir avaliações;</li>
-                  <li>treinamento para cuidar do perfil.</li>
-                </ul>
-              </section>
-            </div>
-
-            <div class="pricing-card__assurances">
-              <p>O perfil fica no nome e sob o controle da sua daycare.</p>
-              <p>
-                O perfil do Google é gratuito. Os US$150 são pelo trabalho realizado
-                pela MateGrowth.
-              </p>
-            </div>
-
-            <a class="pricing-card__cta"
-               href="https://wa.me/17746156579?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20Google%20para%20Daycare%20da%20MateGrowth%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20servi%C3%A7o."
-               target="_blank"
-               rel="noopener noreferrer"
-               data-analytics-event="whatsapp_click"
-               data-analytics-cta-location="pricing"
-               data-analytics-cta-text="Quero preparar meu Google"
-               data-analytics-product="google_para_daycare"
-               data-analytics-offer="implantacao_150"
-               data-analytics-page-type="gbp_daycare">
-              Quero preparar meu Google
-            </a>
-            <p class="pricing-card__cta-note">Pagamento único • Sem mensalidade obrigatória</p>
-          </article>
-
-          <article class="pricing-card pricing-card--secondary">
-            <div class="pricing-card__header">
-              <div>
-                <p class="pricing-card__badge">OPCIONAL</p>
-                <h3 class="pricing-card__title">Quer que a MateGrowth continue cuidando?</h3>
-              </div>
-              <div class="pricing-card__price-block">
-                <p class="pricing-card__price">US$50<span>/mês</span></p>
-              </div>
-            </div>
-
-            <p class="pricing-card__description">
-              Depois de tudo pronto, você pode cuidar do perfil por conta própria ou
-              deixar a MateGrowth continuar cuidando do seu Google todos os meses.
-            </p>
-
-            <ul class="pricing-card__list">
-              <li>manter as informações e os horários atualizados;</li>
-              <li>atualizar horários especiais e feriados;</li>
-              <li>publicar uma atualização por semana no Google;</li>
-              <li>adicionar ao perfil as fotos enviadas pela cliente;</li>
-              <li>responder às novas avaliações;</li>
-              <li>conferir se as informações principais continuam corretas;</li>
-              <li>fazer uma verificação mensal do perfil.</li>
-            </ul>
-
-            <div class="pricing-card__note">
-              <p>
-                A cliente precisa enviar fotos, novidades e alterações de horário para a
-                MateGrowth.
-              </p>
-              <strong>A manutenção mensal não é obrigatória.</strong>
-              <span class="pricing-card__optional-summary">US$50/mês • opcional</span>
-            </div>
-          </article>
-
-          <aside class="pricing__excluded" aria-labelledby="pricing-excluded-title">
-            <h3 id="pricing-excluded-title">O que não está incluído</h3>
-            <ul>
-              <li>website;</li>
-              <li>Family Request;</li>
-              <li>redes sociais;</li>
-              <li>criação ou edição de vídeos;</li>
-              <li>ensaio fotográfico;</li>
-              <li>Google Ads;</li>
-              <li>Meta Ads;</li>
-              <li>investimento em anúncios;</li>
-              <li>SEO do website;</li>
-              <li>garantia de famílias;</li>
-              <li>garantia de contatos;</li>
-              <li>garantia de ligações;</li>
-              <li>garantia de posição no Google.</li>
-            </ul>
-          </aside>
-        </div>
-      </section>
-      <!-- =========================================
-           FIM: PREÇOS
-      ========================================== -->
-
-      <!-- =========================================
-           INÍCIO: CUSTO DE UMA VAGA VAZIA
-      ========================================== -->
-      <section class="vacant-cost" aria-labelledby="vacant-cost-title">
+<!-- BLOCO PAUSADO: CUSTO DE UMA VAGA VAZIA
+Para reativar, retire este comentário externo. Se houver marcadores
+[COMENTARIO_INTERNO], restaure os delimitadores de comentário HTML.
+<section class="vacant-cost" aria-labelledby="vacant-cost-title">
         <div class="vacant-cost__container">
           <p class="vacant-cost__eyebrow">VALE A PENA INVESTIR NO GOOGLE?</p>
 
@@ -733,277 +860,12 @@
           </p>
         </div>
       </section>
-      <!-- =========================================
-           FIM: CUSTO DE UMA VAGA VAZIA
-      ========================================== -->
+FIM DO BLOCO PAUSADO: CUSTO DE UMA VAGA VAZIA -->
 
-      <!-- =========================================
-           INÍCIO: RESULTADOS REAIS
-      ========================================== -->
-      <section class="real-results" aria-labelledby="real-results-title">
-        <div class="real-results__container">
-          <p class="real-results__eyebrow">RESULTADOS REAIS</p>
-
-          <h2 class="real-results__title" id="real-results-title">
-            Daycares já estão <span>tendo resultados</span> com a MateGrowth.
-          </h2>
-
-          <p class="real-results__intro">
-            Veja o que algumas clientes estão dizendo depois de começar a trabalhar com
-            a MateGrowth.
-          </p>
-
-          <div class="real-results__grid">
-            <article class="results-card results-card--featured">
-              <header class="results-card__header">
-                <div>
-                  <h3 class="results-card__name">Espaço dos Anjos Child Care</h3>
-                  <p class="results-card__relationship">Cliente MateGrowth</p>
-                </div>
-                <div class="results-card__rating">
-                  <span class="sr-only">Avaliação positiva da cliente</span>
-                  <span class="results-card__stars" aria-hidden="true">★★★★★</span>
-                </div>
-              </header>
-
-              <blockquote class="results-card__quote">
-                <p>“Estou muito satisfeita com o trabalho da MateGrowth. Em pouco tempo já obtive resultado. Fiz um atendimento e a família me encontrou através do Google.”</p>
-              </blockquote>
-
-              <!--
-                FUTURA PROVA VISUAL: adicionar o arquivo anonimizado em
-                assets/images/reviews/espaco-dos-anjos-whatsapp.webp,
-                mover data-src para src e remover hidden deste figure.
-              -->
-              <figure class="results-card__message" hidden>
-                <img data-src="./assets/images/reviews/espaco-dos-anjos-whatsapp.webp"
-                     alt="Mensagem real da cliente Espaço dos Anjos Child Care"
-                     width="720"
-                     height="960"
-                     loading="lazy"
-                     decoding="async">
-                <figcaption>Mensagem real da cliente</figcaption>
-              </figure>
-
-              <div class="results-card__outcome">
-                <p class="results-card__outcome-label">RESULTADO PERCEBIDO PELA CLIENTE</p>
-                <p><span aria-hidden="true">✓</span> Família encontrou a daycare através do Google.</p>
-              </div>
-            </article>
-
-            <article class="results-card">
-              <header class="results-card__header">
-                <div>
-                  <h3 class="results-card__name">Care’s Corner Childcare</h3>
-                  <p class="results-card__relationship">Cliente MateGrowth</p>
-                </div>
-                <div class="results-card__rating">
-                  <span class="sr-only">Avaliação positiva da cliente</span>
-                  <span class="results-card__stars" aria-hidden="true">★★★★★</span>
-                </div>
-              </header>
-
-              <blockquote class="results-card__quote">
-                <p>“Trabalho incrível! Muito atenciosos, profissionais e sempre trazendo ideias ótimas. Estou amando o resultado!”</p>
-              </blockquote>
-
-              <div class="results-card__outcome">
-                <p class="results-card__outcome-label">EXPERIÊNCIA COM A MATEGROWTH</p>
-                <p><span aria-hidden="true">✓</span> Estratégia, atenção e novas ideias.</p>
-              </div>
-            </article>
-
-            <!-- FUTURO REVIEW: MAGIC BALLOON CHILDCARE -->
-          </div>
-
-          <p class="real-results__closing">
-            Resultados reais começam com <strong>oportunidades reais de contato.</strong>
-          </p>
-        </div>
-      </section>
-      <!-- =========================================
-           FIM: RESULTADOS REAIS
-      ========================================== -->
-
-      <!-- =========================================
-           INÍCIO: FAQ
-      ========================================== -->
-      <section class="faq" aria-labelledby="faq-title">
-        <div class="faq__container">
-          <header class="faq__header">
-            <p class="faq__eyebrow">AINDA TEM ALGUMA DÚVIDA?</p>
-            <h2 class="faq__title" id="faq-title">Veja o que você precisa saber antes de começar.</h2>
-            <p class="faq__intro">Se ainda ficar alguma dúvida, fale com a MateGrowth no final da página.</p>
-          </header>
-
-          <div class="faq__accordion" data-faq-accordion>
-            <section class="faq__group" aria-labelledby="faq-group-price">
-              <h3 class="faq__group-title" id="faq-group-price">Preço e mensalidade</h3>
-
-              <div class="faq-item">
-                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-01" aria-expanded="true" aria-controls="faq-answer-01"><span>Quanto custa e o que está incluído nos US$150?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
-                <div class="faq-item__answer" id="faq-answer-01" role="region" aria-labelledby="faq-question-01"><div class="faq-item__answer-inner">
-                  <p>US$150, pagamento único.</p>
-                  <p>A MateGrowth cria ou organiza o perfil da sua daycare no Google, cadastra e organiza as informações da empresa, serviços, horários, telefone, localização e descrição.</p>
-                  <p>Também estão incluídos logo básica, imagem de capa, imagem de apresentação, organização das fotos enviadas pela cliente, orientação durante a verificação, texto para pedir avaliações e treinamento para cuidar do perfil.</p>
-                </div></div>
-              </div>
-
-              <div class="faq-item">
-                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-02" aria-expanded="true" aria-controls="faq-answer-02"><span>O perfil do Google é gratuito? Então por que pago US$150?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
-                <div class="faq-item__answer" id="faq-answer-02" role="region" aria-labelledby="faq-question-02"><div class="faq-item__answer-inner">
-                  <p>Sim. O perfil do Google é gratuito.</p>
-                  <p>Os US$150 são pelo trabalho da MateGrowth para criar ou organizar o perfil, preparar as informações e imagens e deixar o Google da sua daycare pronto para apresentar seu trabalho às famílias.</p>
-                </div></div>
-              </div>
-
-              <div class="faq-item">
-                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-03" aria-expanded="true" aria-controls="faq-answer-03"><span>Tem mensalidade obrigatória?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
-                <div class="faq-item__answer" id="faq-answer-03" role="region" aria-labelledby="faq-question-03"><div class="faq-item__answer-inner"><p>Não. A mensalidade não é obrigatória.</p><p>Depois de tudo preparado, você pode cuidar do perfil por conta própria.</p></div></div>
-              </div>
-
-              <div class="faq-item">
-                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-04" aria-expanded="true" aria-controls="faq-answer-04"><span>E se eu quiser que a MateGrowth continue cuidando?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
-                <div class="faq-item__answer" id="faq-answer-04" role="region" aria-labelledby="faq-question-04"><div class="faq-item__answer-inner"><p>Você pode contratar o cuidado mensal por US$50/mês.</p><p>A MateGrowth mantém informações e horários atualizados, atualiza feriados, publica uma atualização por semana, adiciona as fotos enviadas pela cliente, responde novas avaliações e faz uma verificação mensal do perfil.</p><p>Esse serviço é opcional.</p></div></div>
-              </div>
-            </section>
-
-            <section class="faq__group" aria-labelledby="faq-group-profile">
-              <h3 class="faq__group-title" id="faq-group-profile">Seu perfil</h3>
-
-              <div class="faq-item">
-                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-05" aria-expanded="true" aria-controls="faq-answer-05"><span>Eu já tenho um perfil no Google. Esse serviço serve para mim?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
-                <div class="faq-item__answer" id="faq-answer-05" role="region" aria-labelledby="faq-question-05"><div class="faq-item__answer-inner">
-                  <p>Sim.</p><p>Não precisamos começar do zero. A MateGrowth pode organizar o perfil que você já possui e verificar o que pode ser melhorado para aumentar suas chances de receber contatos.</p><p>Se esse for o seu caso, ao falar conosco diga: <strong>“Quero analisar meu perfil no Google.”</strong></p>
-                </div></div>
-              </div>
-
-              <div class="faq-item">
-                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-06" aria-expanded="true" aria-controls="faq-answer-06"><span>O perfil fica no meu nome e sob meu controle?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
-                <div class="faq-item__answer" id="faq-answer-06" role="region" aria-labelledby="faq-question-06"><div class="faq-item__answer-inner"><p>Sim.</p><p>O perfil pertence à sua daycare e fica sob o seu controle.</p></div></div>
-              </div>
-
-              <div class="faq-item">
-                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-07" aria-expanded="true" aria-controls="faq-answer-07"><span>Vocês ensinam como cuidar do perfil?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
-                <div class="faq-item__answer" id="faq-answer-07" role="region" aria-labelledby="faq-question-07"><div class="faq-item__answer-inner"><p>Sim.</p><p>Depois de preparar o perfil, ensinamos você a cuidar das principais informações e continuar usando seu Google.</p></div></div>
-              </div>
-            </section>
-
-            <section class="faq__group" aria-labelledby="faq-group-images">
-              <h3 class="faq__group-title" id="faq-group-images">Imagens e materiais</h3>
-
-              <div class="faq-item">
-                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-08" aria-expanded="true" aria-controls="faq-answer-08"><span>Vocês criam a logo e organizam as fotos?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
-                <div class="faq-item__answer" id="faq-answer-08" role="region" aria-labelledby="faq-question-08"><div class="faq-item__answer-inner"><p>Sim.</p><p>A implantação inclui uma logo básica, imagem de capa, imagem de apresentação e organização das fotos enviadas pela cliente.</p><p>A cliente precisa fornecer as fotos da daycare.</p><p>Ensaio fotográfico não está incluído.</p></div></div>
-              </div>
-            </section>
-
-            <section class="faq__group" aria-labelledby="faq-group-services">
-              <h3 class="faq__group-title" id="faq-group-services">Outros serviços</h3>
-
-              <div class="faq-item">
-                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-09" aria-expanded="true" aria-controls="faq-answer-09"><span>Website ou uma estratégia mais completa estão incluídos?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
-                <div class="faq-item__answer" id="faq-answer-09" role="region" aria-labelledby="faq-question-09"><div class="faq-item__answer-inner"><p>Não.</p><p>Esta oferta é somente para o serviço Google para Daycare.</p><p>Website, Family Request e outros serviços para daycare são separados e não fazem parte dos US$150.</p></div></div>
-              </div>
-
-              <div class="faq-item">
-                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-10" aria-expanded="true" aria-controls="faq-answer-10"><span>Family Request está incluído?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
-                <div class="faq-item__answer" id="faq-answer-10" role="region" aria-labelledby="faq-question-10"><div class="faq-item__answer-inner"><p>Não.</p><p>O Family Request é um serviço separado e não faz parte desta oferta.</p></div></div>
-              </div>
-
-              <div class="faq-item">
-                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-11" aria-expanded="true" aria-controls="faq-answer-11"><span>Redes sociais estão incluídas?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
-                <div class="faq-item__answer" id="faq-answer-11" role="region" aria-labelledby="faq-question-11"><div class="faq-item__answer-inner"><p>Não.</p><p>Gestão de Instagram, Facebook e outras redes sociais não faz parte deste serviço.</p></div></div>
-              </div>
-
-              <div class="faq-item">
-                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-12" aria-expanded="true" aria-controls="faq-answer-12"><span>Google Ads ou Meta Ads estão incluídos? Preciso pagar anúncios?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
-                <div class="faq-item__answer" id="faq-answer-12" role="region" aria-labelledby="faq-question-12"><div class="faq-item__answer-inner"><p>Não.</p><p>Google Ads, Meta Ads e investimento em anúncios não estão incluídos nos US$150.</p><p>Você não precisa contratar anúncios pagos para ter um perfil no Google.</p></div></div>
-              </div>
-            </section>
-
-            <section class="faq__group" aria-labelledby="faq-group-results">
-              <h3 class="faq__group-title" id="faq-group-results">Resultados</h3>
-
-              <div class="faq-item">
-                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-13" aria-expanded="true" aria-controls="faq-answer-13"><span>Vocês garantem famílias ou primeira posição no Google?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
-                <div class="faq-item__answer" id="faq-answer-13" role="region" aria-labelledby="faq-question-13"><div class="faq-item__answer-inner"><p>Não existe garantia de quantidade de famílias ou de uma posição específica no Google.</p><p>Nosso trabalho é preparar e organizar o perfil da sua daycare para aumentar sua visibilidade, passar mais confiança e aumentar suas chances de receber contatos.</p></div></div>
-              </div>
-            </section>
-
-            <section class="faq__group" aria-labelledby="faq-group-start">
-              <h3 class="faq__group-title" id="faq-group-start">Como começar</h3>
-
-              <div class="faq-item">
-                <h4 class="faq-item__heading"><button class="faq-item__question" type="button" id="faq-question-14" aria-expanded="true" aria-controls="faq-answer-14"><span>Como começa o trabalho?</span><span class="faq-item__icon" aria-hidden="true"></span></button></h4>
-                <div class="faq-item__answer" id="faq-answer-14" role="region" aria-labelledby="faq-question-14"><div class="faq-item__answer-inner"><p>Entre em contato com a MateGrowth.</p><p>Vamos confirmar as informações da sua daycare e o que precisamos receber para começar a preparar seu Google.</p></div></div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </section>
-      <!-- =========================================
-           FIM: FAQ
-      ========================================== -->
-
-      <!-- =========================================
-           INÍCIO: CTA FINAL
-      ========================================== -->
-      <section class="final-cta" aria-labelledby="final-cta-title">
-        <div class="final-cta__wave" aria-hidden="true"></div>
-        <div class="final-cta__container">
-          <p class="final-cta__eyebrow">PRONTO PARA RECEBER MAIS CONTATOS?</p>
-          <h2 class="final-cta__title" id="final-cta-title">Tem vaga no seu Home Daycare?</h2>
-
-          <p class="final-cta__urgency">
-            Não espere a <strong>vaga continuar vazia.</strong>
-          </p>
-
-          <aside class="final-cta__offer" aria-label="Resumo da oferta">
-            <div class="final-cta__price-block">
-              <strong class="final-cta__price">US$150</strong>
-              <span>pagamento único</span>
-            </div>
-            <p class="final-cta__no-monthly">Sem mensalidade obrigatória.</p>
-          </aside>
-
-          <p class="final-cta__copy">
-            Prepare seu Google para sua daycare ser encontrada por famílias da sua
-            região e <strong>receber novos contatos todos os meses.</strong>
-          </p>
-
-          <ul class="final-cta__checks">
-            <li>Perfil preparado pela MateGrowth</li>
-            <li>Perfil no nome e sob o controle da sua daycare</li>
-            <li>Treinamento incluído</li>
-          </ul>
-
-          <a class="final-cta__button"
-             href="https://wa.me/17746156579?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20Google%20para%20Daycare%20da%20MateGrowth%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20servi%C3%A7o."
-             target="_blank"
-             rel="noopener noreferrer"
-             aria-describedby="final-cta-microcopy"
-             data-analytics-event="whatsapp_click"
-             data-analytics-cta-location="final_cta"
-             data-analytics-cta-text="Quero receber mais contatos"
-             data-analytics-product="google_para_daycare"
-             data-analytics-offer="implantacao_150"
-             data-analytics-page-type="gbp_daycare">
-            Quero receber mais contatos
-          </a>
-          <p class="final-cta__microcopy" id="final-cta-microcopy">
-            Fale com a MateGrowth e tire suas dúvidas.
-          </p>
-        </div>
-      </section>
-      <!-- =========================================
-           FIM: CTA FINAL
-      ========================================== -->
-
-      <!-- =========================================
-           INÍCIO: INSTAGRAM
-      ========================================== -->
-      <section class="instagram-strip" aria-labelledby="instagram-strip-title">
+<!-- BLOCO PAUSADO: INSTAGRAM ANTES DO FOOTER
+Para reativar, retire este comentário externo. Se houver marcadores
+[COMENTARIO_INTERNO], restaure os delimitadores de comentário HTML.
+<section class="instagram-strip" aria-labelledby="instagram-strip-title">
       <a class="instagram-strip__link"
          href="https://www.instagram.com/mategrowth.us/"
          target="_blank"
@@ -1035,9 +897,7 @@
         <span class="instagram-strip__username">@mategrowth.us</span>
       </a>
       </section>
-      <!-- =========================================
-           FIM: INSTAGRAM
-      ========================================== -->
+FIM DO BLOCO PAUSADO: INSTAGRAM ANTES DO FOOTER -->
     </main>
 
     <!-- =========================================
@@ -1065,6 +925,20 @@
     <!-- =========================================
          FIM: FOOTER
     ========================================== -->
+
+    <!-- CTA fixo: presente no DOM antes do main.js com defer; o seletor atual de analytics o captura. -->
+    <div class="contact-dock"><a class="floating-whatsapp"
+               href="https://wa.me/17746156579?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20Google%20para%20Daycare%20da%20MateGrowth%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20servi%C3%A7o."
+               target="_blank"
+               rel="noopener noreferrer"
+               data-analytics-event="whatsapp_click"
+               data-analytics-cta-location="floating_whatsapp"
+               data-analytics-cta-text="Tirar dúvidas no WhatsApp"
+               data-analytics-product="google_para_daycare"
+               data-analytics-offer="implantacao_150"
+               data-analytics-page-type="gbp_daycare">
+              <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.7 7.4L3 20.5l1.5-4.7A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8.3 7.4c.3-.3.7-.3.9.1l.8 1.7c.1.3 0 .5-.3.8l-.5.5c.7 1.4 1.6 2.3 3 3l.6-.7c.2-.2.5-.3.8-.1l1.6.8c.4.2.4.5.2.9-.4.8-1.1 1.2-2 1-3.5-.7-6-3.3-6.6-6.3-.1-.7.2-1.3 1.5-1.7Z"/></svg><span>Tirar dúvidas no WhatsApp</span>
+            </a></div>
 
     <script src="./js/main.js" defer></script>
   </body>
