@@ -3128,3 +3128,128 @@ html { scroll-padding-block: 1.5rem 7rem; }
   .conversion-page { padding-bottom: 0; }
   .conversion-page .contact-dock { display: none; }
 }
+
+/* ================================================================
+   AJUSTES MOBILE FINAIS — 2026-09-10
+   1) Imagem do Hero logo abaixo do H1 no mobile.
+   2) Ordem da prova no mobile: Espaço dos Anjos -> Care's Corner -> busca.
+   3) WhatsApp flutuante compacto, somente ícone, no canto direito.
+   ================================================================ */
+
+/* Por padrão (mobile/tablet), usa a imagem inserida dentro do conteúdo. */
+.conversion-page .hero__visual--mobile {
+  display: block;
+  width: min(100%, 31rem);
+  margin: 1.25rem auto 0;
+  padding: 0;
+  aspect-ratio: 16 / 10;
+}
+
+.conversion-page .hero__visual--mobile .hero__image {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center 47%;
+  border-radius: 1.25rem;
+  box-shadow: 0 1rem 2rem rgb(14 27 43 / 8%);
+}
+
+.conversion-page .hero__visual--desktop {
+  display: none;
+}
+
+/* Mobile: reviews primeiro, dado de busca por último. */
+.conversion-page .real-results__grid > .results-card--featured {
+  order: 1;
+}
+
+.conversion-page .real-results__grid > .results-card--supporting {
+  order: 2;
+}
+
+.conversion-page .real-results__grid > .search-brief {
+  order: 3;
+}
+
+/* CTA flutuante: pequeno, redondo, somente ícone, canto inferior direito. */
+.conversion-page {
+  padding-bottom: 1rem;
+}
+
+.conversion-page .contact-dock {
+  position: fixed;
+  z-index: 60;
+  right: max(1rem, env(safe-area-inset-right, 0px));
+  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  left: auto;
+  width: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.conversion-page .floating-whatsapp {
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  min-height: 0;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-brand-dark);
+  box-shadow: 0 0.55rem 1.4rem rgb(8 115 61 / 24%);
+  color: #fff;
+}
+
+.conversion-page .floating-whatsapp > span {
+  display: none;
+}
+
+.conversion-page .floating-whatsapp .contact-icon {
+  width: 1.55rem;
+  height: 1.55rem;
+  flex: 0 0 auto;
+}
+
+.conversion-page .floating-whatsapp:hover {
+  background: #065f32;
+  transform: translateY(-0.08rem);
+}
+
+/* Desktop: volta para a composição original do Hero e para a ordem visual original. */
+@media (min-width: 56.25rem) {
+  .conversion-page .hero__visual--mobile {
+    display: none;
+  }
+
+  .conversion-page .hero__visual--desktop {
+    display: block;
+  }
+
+  .conversion-page .real-results__grid > .results-card--featured,
+  .conversion-page .real-results__grid > .results-card--supporting,
+  .conversion-page .real-results__grid > .search-brief {
+    order: initial;
+  }
+
+  .conversion-page .contact-dock {
+    right: 1.5rem;
+    bottom: 1.25rem;
+  }
+}
+
+@media (max-width: 30rem) {
+  .conversion-page .floating-whatsapp {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+
+  .conversion-page .floating-whatsapp .contact-icon {
+    width: 1.45rem;
+    height: 1.45rem;
+  }
+}
+
