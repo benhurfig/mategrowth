@@ -1,280 +1,72 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="theme-color" content="#08733d">
-    <title>MateGrowth</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1NMCRWD77"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-Q1NMCRWD77');
-    </script>
-    <style>
-      :root {
-        color-scheme: light;
-        --green: #13a05a;
-        --green-dark: #08733d;
-        --green-soft: #eaf7ef;
-        --ink: #0e1b2b;
-        --muted: #556170;
-        --surface: #ffffff;
-        --border: #dce8e1;
-      }
-
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
-
-      html {
-        overflow-x: clip;
-        background: var(--surface);
-      }
-
-      body {
-        min-width: 20rem;
-        min-height: 100svh;
-        margin: 0;
-        display: grid;
-        grid-template-rows: auto 1fr auto;
-        overflow-x: clip;
-        background: var(--surface);
-        color: var(--ink);
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-          "Segoe UI", sans-serif;
-        -webkit-font-smoothing: antialiased;
-      }
-
-      a {
-        color: inherit;
-      }
-
-      :focus-visible {
-        outline: 0.1875rem solid var(--green);
-        outline-offset: 0.25rem;
-      }
-
-      .site-header,
-      .site-main,
-      .site-footer {
-        position: relative;
-        z-index: 1;
-      }
-
-      .site-header {
-        width: min(100% - 2rem, 72rem);
-        margin-inline: auto;
-        padding-block: 1.5rem;
-      }
-
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.7rem;
-        font-size: 1.1rem;
-        font-weight: 800;
-        letter-spacing: -0.02em;
-      }
-
-      .brand::before {
-        width: 0.8rem;
-        height: 0.8rem;
-        border-radius: 50%;
-        background: var(--green);
-        box-shadow: 0 0 0 0.4rem var(--green-soft);
-        content: "";
-      }
-
-      .site-main {
-        display: grid;
-        width: min(100% - 2rem, 72rem);
-        margin-inline: auto;
-        align-items: center;
-        padding-block: clamp(3rem, 10vw, 7rem);
-      }
-
-      .hero {
-        position: relative;
-        max-width: 49rem;
-      }
-
-      .hero::after {
-        position: absolute;
-        z-index: -1;
-        width: clamp(14rem, 40vw, 28rem);
-        aspect-ratio: 1;
-        top: 50%;
-        left: min(68vw, 42rem);
-        border: clamp(2.5rem, 7vw, 5rem) solid var(--green-soft);
-        border-radius: 50%;
-        content: "";
-        transform: translateY(-50%);
-      }
-
-      .eyebrow {
-        margin: 0 0 1.25rem;
-        color: var(--green-dark);
-        font-size: 0.78rem;
-        font-weight: 800;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-      }
-
-      h1 {
-        max-width: 13ch;
-        margin: 0;
-        font-size: clamp(2.8rem, 9vw, 5.75rem);
-        font-weight: 850;
-        letter-spacing: -0.055em;
-        line-height: 0.98;
-        text-wrap: balance;
-      }
-
-      .lead {
-        max-width: 42rem;
-        margin: clamp(1.5rem, 4vw, 2rem) 0 0;
-        color: var(--muted);
-        font-size: clamp(1.08rem, 2.5vw, 1.3rem);
-        line-height: 1.65;
-      }
-
-      .service-note {
-        max-width: 39rem;
-        margin: clamp(2rem, 5vw, 2.75rem) 0 0;
-        padding: 1rem 1.1rem;
-        border-left: 0.25rem solid var(--green);
-        border-radius: 0 0.75rem 0.75rem 0;
-        background: var(--green-soft);
-        font-weight: 700;
-        line-height: 1.5;
-      }
-
-      .primary-button {
-        display: inline-flex;
-        min-height: 3.25rem;
-        margin-top: 1.5rem;
-        align-items: center;
-        justify-content: center;
-        padding: 0.9rem 1.35rem;
-        border-radius: 999px;
-        background: var(--green-dark);
-        box-shadow: 0 0.85rem 2rem rgb(8 115 61 / 18%);
-        color: #ffffff;
-        font-weight: 800;
-        text-align: center;
-        text-decoration: none;
-        transition: transform 180ms ease, background-color 180ms ease;
-      }
-
-      .primary-button:hover {
-        background: #065c31;
-        transform: translateY(-0.125rem);
-      }
-
-      .site-footer {
-        border-top: 0.0625rem solid var(--border);
-      }
-
-      .site-footer__inner {
-        display: flex;
-        width: min(100% - 2rem, 72rem);
-        margin-inline: auto;
-        flex-direction: column;
-        gap: 0.8rem;
-        padding-block: 1.5rem;
-        color: var(--muted);
-        font-size: 0.88rem;
-      }
-
-      .site-footer__brand {
-        display: flex;
-        flex-direction: column;
-        gap: 0.15rem;
-      }
-
-      .site-footer__brand strong {
-        color: var(--ink);
-      }
-
-      .instagram {
-        width: fit-content;
-        color: var(--green-dark);
-        font-weight: 750;
-        text-underline-offset: 0.2em;
-      }
-
-      @media (min-width: 40rem) {
-        .site-header,
-        .site-main,
-        .site-footer__inner {
-          width: min(100% - 4rem, 72rem);
-        }
-
-        .site-footer__inner {
-          flex-direction: row;
-          align-items: flex-end;
-          justify-content: space-between;
-        }
-      }
-
-      @media (max-width: 29rem) {
-        .primary-button {
-          width: 100%;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          scroll-behavior: auto !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header class="site-header">
-      <span class="brand">MateGrowth</span>
-    </header>
-
-    <main class="site-main">
-      <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">MateGrowth</p>
-        <h1 id="page-title">Estamos construindo algo novo.</h1>
-        <p class="lead">
-          Em breve, você poderá conhecer melhor nossos serviços para ajudar empresas a
-          serem encontradas e crescer.
-        </p>
-        <p class="service-note">
-          Enquanto isso, conheça nosso serviço Google para Daycare.
-        </p>
-        <a class="primary-button" href="./gbp-daycare/">
-          Conhecer Google para Daycare
-        </a>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="site-footer__inner">
-        <div class="site-footer__brand">
-          <strong>MateGrowth</strong>
-          <span>Smart Systems. Real Growth.</span>
-        </div>
-        <a class="instagram"
-           href="https://www.instagram.com/mategrowth.us/"
-           target="_blank"
-           rel="noopener noreferrer">
-          Instagram
-        </a>
-      </div>
-    </footer>
-  </body>
-</html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow"><!-- V1: remove noindex when the Home is approved for indexing -->
+  <meta name="theme-color" content="#101817">
+  <title>MateGrowth | Soluções digitais para Daycare</title>
+  <meta name="description" content="Websites, Google, anúncios, sistemas, automações e conteúdo digital para Home Daycare e Family Child Care.">
+  <link rel="canonical" href="https://mategrowth.com/">
+  <link rel="alternate" hreflang="pt-BR" href="https://mategrowth.com/">
+  <link rel="alternate" hreflang="en-US" href="https://mategrowth.com/en/">
+  <link rel="alternate" hreflang="es-US" href="https://mategrowth.com/es/">
+  <link rel="alternate" hreflang="x-default" href="https://mategrowth.com/">
+  <meta property="og:title" content="MateGrowth | Soluções digitais para Daycare">
+  <meta property="og:description" content="Websites, Google, anúncios, sistemas, automações e conteúdo digital para Home Daycare e Family Child Care.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mategrowth.com/">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1NMCRWD77"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-Q1NMCRWD77');</script>
+  <link rel="stylesheet" href="assets/css/home.css">
+</head>
+<body>
+<header class="site-header" data-header>
+  <div class="container nav"><a class="brand" href="./" aria-label="MateGrowth Home"><span class="brand-mark">M</span><span class="brand-name">Mate<span>Growth</span></span></a>
+    <nav class="nav-links" aria-label="Primary"><a href="#solutions" data-analytics-event="nav_click" data-analytics-target="solutions" data-analytics-page-type="home" data-analytics-page-language="pt-BR">Soluções</a><a href="#projects" data-analytics-event="nav_click" data-analytics-target="projects" data-analytics-page-type="home" data-analytics-page-language="pt-BR">Projetos</a><a href="#systems" data-analytics-event="nav_click" data-analytics-target="systems" data-analytics-page-type="home" data-analytics-page-language="pt-BR">Sistemas</a><a href="#reviews" data-analytics-event="nav_click" data-analytics-target="reviews" data-analytics-page-type="home" data-analytics-page-language="pt-BR">Reviews</a></nav>
+    <div class="lang-switch" aria-label="Language"><a href="https://mategrowth.com/" lang="pt" aria-current="page" data-analytics-event="language_switch" data-analytics-language="pt" data-analytics-page-type="home">PT</a><a href="https://mategrowth.com/en/" lang="en" data-analytics-event="language_switch" data-analytics-language="en" data-analytics-page-type="home">EN</a><a href="https://mategrowth.com/es/" lang="es" data-analytics-event="language_switch" data-analytics-language="es" data-analytics-page-type="home">ES</a></div>
+    <a class="nav-cta" href="#contact" data-analytics-event="cta_click" data-analytics-cta-location="header" data-analytics-page-language="pt-BR">Falar com a MateGrowth</a>
+    <button class="menu-button" type="button" aria-label="Abrir menu" aria-expanded="false" data-menu-button><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14M5 16h14"/></svg></button>
+  </div>
+</header>
+<div class="mobile-menu" data-mobile-menu aria-hidden="true"><nav class="mobile-menu__links"><a href="#solutions" data-analytics-event="nav_click" data-analytics-target="solutions" data-analytics-page-type="home" data-analytics-page-language="pt-BR">Soluções</a><a href="#projects" data-analytics-event="nav_click" data-analytics-target="projects" data-analytics-page-type="home" data-analytics-page-language="pt-BR">Projetos</a><a href="#systems" data-analytics-event="nav_click" data-analytics-target="systems" data-analytics-page-type="home" data-analytics-page-language="pt-BR">Sistemas</a><a href="#reviews" data-analytics-event="nav_click" data-analytics-target="reviews" data-analytics-page-type="home" data-analytics-page-language="pt-BR">Reviews</a><a href="#contact">Falar com a MateGrowth</a></nav><div class="mobile-menu__bottom"><div class="lang-switch"><a href="https://mategrowth.com/" lang="pt" aria-current="page" data-analytics-event="language_switch" data-analytics-language="pt" data-analytics-page-type="home">PT</a><a href="https://mategrowth.com/en/" lang="en" data-analytics-event="language_switch" data-analytics-language="en" data-analytics-page-type="home">EN</a><a href="https://mategrowth.com/es/" lang="es" data-analytics-event="language_switch" data-analytics-language="es" data-analytics-page-type="home">ES</a></div></div></div>
+<main>
+<section class="hero" data-section-name="hero"><div class="container hero__inner">
+  <p class="hero__eyebrow">Soluções digitais para Daycare</p>
+  <h1 class="hero__title">Modernize sua <span class="accent">Daycare.</span></h1>
+  <div class="hero-visual" aria-label="MateGrowth digital solution preview">
+    <span class="hero-orbit" aria-hidden="true"></span>
+    <div class="hero-browser"><div class="browser-bar"><i class="browser-dot"></i><i class="browser-dot"></i><i class="browser-dot"></i><span class="browser-url"></span></div><div class="project-screen"><div class="project-nav"><strong class="project-brand">Magic Balloon Childcare</strong><div class="project-mini-nav"><span></span><span></span><span></span></div></div><div class="project-screen__body"><div><p class="project-kicker">Website for Daycare</p><h3>Growing with care.</h3><p>Modern presentation built for families on mobile first.</p><span class="project-pill">Request information</span></div><div class="project-photo"></div></div></div></div>
+    <div class="hero-google-card"><div class="google-line"><span class="google-g">G</span><strong>Google Business</strong></div><p class="google-stars">★★★★★</p><p class="google-caption">Local presence • Maps • Reviews</p></div>
+    <div class="hero-system-card"><div class="hero-system-card__top"><strong>Family Request</strong><span class="status-pill">New</span></div><div class="family-row"><span class="family-avatar">MS</span><div><strong>Maria S.</strong><span>Tour request • 2 years</span></div><span class="family-arrow">→</span></div><div class="family-row"><span class="family-avatar">JL</span><div><strong>Julia L.</strong><span>Waitlist • Infant</span></div><span class="family-arrow">→</span></div></div>
+  </div>
+  <p class="hero__copy">Websites, Google, anúncios, sistemas e conteúdo digital para apresentar seu negócio de forma profissional e organizar melhor seus processos.</p>
+  <div class="hero__actions"><a class="button button--primary" href="#solutions" data-analytics-event="hero_cta_click" data-analytics-cta="solutions" data-analytics-page-language="pt-BR">Conhecer soluções<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="button button--secondary" href="#projects" data-analytics-event="hero_cta_click" data-analytics-cta="projects" data-analytics-page-language="pt-BR">Ver nossos trabalhos</a></div>
+  <ul class="hero__note"><li>Home Daycare</li><li>Family Child Care</li><li>PT • EN • ES</li></ul>
+</div></section>
+<section class="solution-ribbon" aria-label="Services"><div class="solution-ribbon__track"><span class="solution-ribbon__item">Websites</span><span class="solution-ribbon__item">Google &amp; presença local</span><span class="solution-ribbon__item">Meta Ads</span><span class="solution-ribbon__item">Google Ads</span><span class="solution-ribbon__item">CRM</span><span class="solution-ribbon__item">Family Request</span><span class="solution-ribbon__item">Tour Requests</span><span class="solution-ribbon__item">Waitlist</span><span class="solution-ribbon__item">Vídeos &amp; conteúdo</span><span class="solution-ribbon__item">Websites</span><span class="solution-ribbon__item">Google &amp; presença local</span><span class="solution-ribbon__item">Meta Ads</span><span class="solution-ribbon__item">Google Ads</span><span class="solution-ribbon__item">CRM</span><span class="solution-ribbon__item">Family Request</span><span class="solution-ribbon__item">Tour Requests</span><span class="solution-ribbon__item">Waitlist</span><span class="solution-ribbon__item">Vídeos &amp; conteúdo</span></div></section>
+<section class="solutions" id="solutions" data-section-name="solutions"><div class="container"><div class="section-head reveal"><div><p class="eyebrow">O que fazemos</p><h2 class="section-title">Soluções para modernizar sua Daycare.</h2></div><p class="section-copy">Você não precisa contratar tudo. Escolhemos e conectamos as ferramentas que fazem sentido para o momento do seu negócio.</p></div><div class="solutions-grid"><a class="solution-card  reveal" href="#projects" data-analytics-event="solution_click" data-analytics-solution="website" data-analytics-page-language="pt-BR">
+          <span class="solution-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18M7 6h.01M10 6h.01"/></svg></span><h3>Websites profissionais</h3><p>Sites modernos, rápidos e pensados para apresentar sua Daycare com clareza no celular e no computador.</p><span class="solution-card__link" aria-hidden="true">→</span></a><a class="solution-card solution-card--sand reveal" href="./gbp-daycare/" data-analytics-event="solution_click" data-analytics-solution="google" data-analytics-page-language="pt-BR">
+          <span class="solution-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9Z"/><path d="M12 7.5a4.5 4.5 0 1 0 4.2 6.1H12v-3h8"/></svg></span><h3>Google &amp; presença local</h3><p>Google Business Profile, Maps, SEO Local, reviews e uma presença melhor organizada para sua região.</p><span class="solution-card__link" aria-hidden="true">→</span></a><a class="solution-card  reveal" href="#growth" data-analytics-event="solution_click" data-analytics-solution="ads" data-analytics-page-language="pt-BR">
+          <span class="solution-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 13 12-6v10L4 13Z"/><path d="M8 14.8 9.5 20h3L11 13.5M18 9v6"/></svg></span><h3>Anúncios pagos</h3><p>Meta Ads, Google Ads e LSA quando aplicável. O canal é escolhido de acordo com sua necessidade.</p><span class="solution-card__link" aria-hidden="true">→</span></a><a class="solution-card solution-card--dark reveal" href="#systems" data-analytics-event="solution_click" data-analytics-solution="systems" data-analytics-page-language="pt-BR">
+          <span class="solution-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 8h8M8 12h5M8 16h7"/></svg></span><h3>Sistemas para Daycare</h3><p>CRM, Family Request, Tour Requests e Waitlist para organizar o atendimento de novas famílias.</p><div class="solution-card__chips"><span>CRM</span><span>Family Request</span><span>Tour</span><span>Waitlist</span></div><span class="solution-card__link" aria-hidden="true">→</span></a><a class="solution-card solution-card--wide reveal" href="#contact" data-analytics-event="solution_click" data-analytics-solution="videos" data-analytics-page-language="pt-BR">
+          <span class="solution-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="m17 10 4-2v8l-4-2v-4Z"/></svg></span><h3>Vídeos &amp; conteúdo digital</h3><p>Edição de vídeos curtos, criativos e peças digitais para apresentar melhor o seu negócio.</p><span class="solution-card__link" aria-hidden="true">→</span></a></div></div></section>
+<section class="projects" id="projects" data-section-name="projects"><div class="container"><div class="projects__head-row"><div class="section-head reveal"><div><p class="eyebrow eyebrow--light">Projetos MateGrowth</p><h2 class="section-title">Nosso trabalho precisa falar por nós.</h2></div><p class="section-copy">Uma primeira vitrine dos projetos que já estamos construindo para Daycares. Os screenshots finais entram na próxima rodada.</p></div><div class="carousel-controls"><button class="carousel-button" type="button" aria-label="Previous" data-carousel-direction="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button><button class="carousel-button" type="button" aria-label="Next" data-carousel-direction="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button></div></div><div class="projects-track" data-project-track><article class="project-card">
+          <div class="project-card__visual"><div class="case-window"><div class="case-window__bar"><i></i><i></i><i></i></div><div class="case-window__content"><div><span class="case-logo">MB</span><h3>Magic Balloon Childcare</h3><p>Framingham, MA</p></div></div></div></div>
+          <div class="project-card__body"><div class="project-card__meta"><span>Website</span><span>Multilíngue</span><span>Family Request</span></div><h3>Magic Balloon Childcare</h3><p>Framingham, MA</p><span class="project-card__coming">Portfolio case →</span></div></article><article class="project-card">
+          <div class="project-card__visual"><div class="case-window"><div class="case-window__bar"><i></i><i></i><i></i></div><div class="case-window__content"><div><span class="case-logo">EA</span><h3>Espaço dos Anjos Child Care</h3><p>Clinton, MA</p></div></div></div></div>
+          <div class="project-card__body"><div class="project-card__meta"><span>Website</span><span>Google</span><span>Family Request</span></div><h3>Espaço dos Anjos Child Care</h3><p>Clinton, MA</p><span class="project-card__coming">Portfolio case →</span></div></article><article class="project-card">
+          <div class="project-card__visual"><div class="case-window"><div class="case-window__bar"><i></i><i></i><i></i></div><div class="case-window__content"><div><span class="case-logo">CC</span><h3>Care’s Corner Childcare</h3><p>Bellingham, MA</p></div></div></div></div>
+          <div class="project-card__body"><div class="project-card__meta"><span>Website</span><span>Google</span><span>Conteúdo</span></div><h3>Care’s Corner Childcare</h3><p>Bellingham, MA</p><span class="project-card__coming">Portfolio case →</span></div></article><article class="project-card">
+          <div class="project-card__visual"><div class="case-window"><div class="case-window__bar"><i></i><i></i><i></i></div><div class="case-window__content"><div><span class="case-logo">SD</span><h3>Sunshine Daycare by Rachel</h3><p>Massachusetts</p></div></div></div></div>
+          <div class="project-card__body"><div class="project-card__meta"><span>Website</span><span>Em revisão</span><span>Multilíngue</span></div><h3>Sunshine Daycare by Rachel</h3><p>Massachusetts</p><span class="project-card__coming">Portfolio case →</span></div></article></div></div></section>
+<section class="systems" id="systems" data-section-name="systems"><div class="container systems-grid"><div class="systems-visual reveal"><div class="crm-shell"><div class="crm-topbar"><strong>MateGrowth • CRM</strong><span>Daycare</span></div><div class="crm-body"><div class="crm-sidebar"><i></i><i></i><i></i><i></i></div><div class="crm-content"><h3>Families</h3><div class="crm-table"><div class="crm-line"><span class="crm-avatar">AM</span><div><strong>Ana M.</strong><small>Family Request • Today</small></div><span class="crm-state">NEW</span></div><div class="crm-line"><span class="crm-avatar">LC</span><div><strong>Laura C.</strong><small>Tour • Sep 22</small></div><span class="crm-state crm-state--tour">TOUR</span></div><div class="crm-line"><span class="crm-avatar">RS</span><div><strong>Raquel S.</strong><small>Infant • Full-time</small></div><span class="crm-state crm-state--wait">WAITLIST</span></div></div></div></div></div><div class="system-float"><p class="system-float__label">Future-ready</p><strong>CRM + Family Request + Tour + Waitlist</strong><p>Uma base para o futuro MateGrowth Hub.</p></div></div><div class="reveal"><p class="eyebrow">Sistemas para Daycare</p><h2 class="section-title">Muito além de um website.</h2><p class="section-copy">Ferramentas simples para organizar novas famílias, solicitações de visita e próximas vagas sem transformar sua rotina em uma bagunça.</p><div class="system-list"><div class="system-item"><span class="system-item__num">01</span><div><h3>CRM</h3><p>Centralize contatos e acompanhe cada família.</p></div></div><div class="system-item"><span class="system-item__num">02</span><div><h3>Family Request</h3><p>Receba as informações importantes antes do primeiro contato.</p></div></div><div class="system-item"><span class="system-item__num">03</span><div><h3>Tour Requests</h3><p>Organize solicitações e próximos passos da visita.</p></div></div><div class="system-item"><span class="system-item__num">04</span><div><h3>Waitlist</h3><p>Mantenha famílias interessadas organizadas quando não houver vaga.</p></div></div></div></div></div></section>
+<section class="growth" id="growth" data-section-name="growth"><div class="container growth-grid"><div class="reveal"><p class="eyebrow">Google + Anúncios</p><h2 class="section-title">Presença orgânica e mídia paga, cada uma no seu papel.</h2><p class="section-copy">Podemos trabalhar sua presença no Google e também campanhas pagas. São soluções diferentes que podem funcionar separadas ou juntas.</p><a class="text-link" href="gbp-daycare/" data-analytics-event="solution_click" data-analytics-solution="google" data-analytics-location="growth">Google para Daycare</a></div><div class="channels reveal"><div class="channel-card"><span class="channel-icon">GO</span><div><h3>Google</h3><p>Perfil, Maps e SEO Local</p></div><span class="channel-arrow">→</span></div><div class="channel-card"><span class="channel-icon">ME</span><div><h3>Meta Ads</h3><p>Facebook e Instagram</p></div><span class="channel-arrow">→</span></div><div class="channel-card"><span class="channel-icon">GO</span><div><h3>Google Ads + LSA</h3><p>Pesquisa paga e LSA quando elegível</p></div><span class="channel-arrow">→</span></div></div></div></section>
+<section class="reviews" id="reviews" data-section-name="reviews"><div class="container"><div class="section-head reveal"><div><p class="eyebrow eyebrow--light">Clientes</p><h2 class="section-title">O que dizem sobre a MateGrowth.</h2></div><p class="section-copy">Além do visual, a experiência de trabalhar junto também importa.</p></div><div class="review-grid"><article class="review-card reveal"><div><div class="review-stars">★★★★★</div><blockquote>“Estou muito satisfeita com o trabalho da MateGrowth. Em pouco tempo já obtive resultado. Fiz um atendimento e a família me encontrou através do Google.”</blockquote></div><div><div class="review-client"><span class="review-client__mark">EA</span><div><strong>Espaço dos Anjos Child Care</strong><span>Cliente MateGrowth • Clinton, MA</span></div></div><div class="review-result">✓ Família encontrou a daycare através do Google.</div></div></article><article class="review-card reveal"><div><div class="review-stars">★★★★★</div><blockquote>“Trabalho incrível! Muito atenciosos, profissionais e sempre trazendo ideias ótimas. Estou amando o resultado!”</blockquote></div><div><div class="review-client"><span class="review-client__mark">CC</span><div><strong>Care’s Corner Childcare</strong><span>Cliente MateGrowth • Bellingham, MA</span></div></div><div class="review-result">✓ Estratégia, atenção e novas ideias.</div></div></article></div></div></section>
+<section class="final-cta" id="contact" data-section-name="contact"><div class="container final-cta__box reveal"><div><p class="eyebrow">MateGrowth</p><h2 class="section-title">Não sabe por onde começar?</h2><p>Conte o que você quer melhorar na sua Daycare. Primeiro entendemos a necessidade; depois indicamos a solução que faz sentido.</p></div><div class="final-cta__actions"><a class="button button--dark" href="https://wa.me/17746156579?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20MateGrowth%20e%20gostaria%20de%20conversar%20sobre%20solu%C3%A7%C3%B5es%20digitais%20para%20minha%20Daycare." target="_blank" rel="noopener noreferrer" data-analytics-event="whatsapp_click" data-analytics-cta-location="final_cta" data-analytics-page-language="pt-BR"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.7 7.4L3 20.5l1.5-4.7A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8.3 7.4c.3-.3.7-.3.9.1l.8 1.7c.1.3 0 .5-.3.8l-.5.5c.7 1.4 1.6 2.3 3 3l.6-.7c.2-.2.5-.3.8-.1l1.6.8c.4.2.4.5.2.9-.4.8-1.1 1.2-2 1-3.5-.7-6-3.3-6.6-6.3-.1-.7.2-1.3 1.5-1.7Z"/></svg>Falar no WhatsApp</a><a class="button button--outline-dark" href="sms:+17746156579?body=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20MateGrowth%20e%20gostaria%20de%20conversar%20sobre%20minha%20Daycare." data-analytics-event="sms_click" data-analytics-cta-location="final_cta" data-analytics-page-language="pt-BR"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h5M10 17h4"/></svg>Enviar Text Message</a></div></div></section>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a class="brand" href="./"><span class="brand-mark">M</span><span class="brand-name">Mate<span>Growth</span></span></a><p>Soluções digitais para modernizar a presença, os processos e as ferramentas da sua Daycare.</p></div><div><p class="footer-title">Soluções</p><div class="footer-links"><a href="#projects">Websites</a><a href="gbp-daycare/">Google</a><a href="#growth">Ads</a><a href="#systems">CRM + Systems</a></div></div><div><p class="footer-title">MateGrowth</p><div class="footer-links"><a href="#projects">Projetos</a><a href="#reviews">Reviews</a><a href="#contact">Contato</a></div></div></div><div class="footer-bottom"><span>© <span data-year></span> MateGrowth. Smart systems. Real growth.</span><div class="lang-switch"><a href="https://mategrowth.com/" lang="pt" aria-current="page" data-analytics-event="language_switch" data-analytics-language="pt" data-analytics-page-type="home">PT</a><a href="https://mategrowth.com/en/" lang="en" data-analytics-event="language_switch" data-analytics-language="en" data-analytics-page-type="home">EN</a><a href="https://mategrowth.com/es/" lang="es" data-analytics-event="language_switch" data-analytics-language="es" data-analytics-page-type="home">ES</a></div></div></div></footer>
+<div class="contact-fab" data-contact-fab><div class="contact-fab__panel"><p>Como prefere falar?</p><a class="contact-option" href="https://wa.me/17746156579?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20MateGrowth%20e%20gostaria%20de%20conversar%20sobre%20solu%C3%A7%C3%B5es%20digitais%20para%20minha%20Daycare." target="_blank" rel="noopener noreferrer" data-analytics-event="whatsapp_click" data-analytics-cta-location="floating" data-analytics-page-language="pt-BR"><span class="contact-option__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.7 7.4L3 20.5l1.5-4.7A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M8.3 7.4c.3-.3.7-.3.9.1l.8 1.7c.1.3 0 .5-.3.8l-.5.5c.7 1.4 1.6 2.3 3 3l.6-.7c.2-.2.5-.3.8-.1l1.6.8c.4.2.4.5.2.9-.4.8-1.1 1.2-2 1-3.5-.7-6-3.3-6.6-6.3-.1-.7.2-1.3 1.5-1.7Z"/></svg></span><span><strong>WhatsApp</strong><span>Falar no WhatsApp</span></span><span class="contact-option__arrow">→</span></a><a class="contact-option" href="sms:+17746156579?body=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20MateGrowth%20e%20gostaria%20de%20conversar%20sobre%20minha%20Daycare." data-analytics-event="sms_click" data-analytics-cta-location="floating" data-analytics-page-language="pt-BR"><span class="contact-option__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h5M10 17h4"/></svg></span><span><strong>Text Message</strong><span>Enviar Text Message</span></span><span class="contact-option__arrow">→</span></a></div><button class="contact-fab__button" type="button" aria-label="Abrir opções de contato" aria-expanded="false" data-contact-fab-button><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 8.6 8.6 0 0 1-3.2-.6L4 20l1.5-4.3A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11.5h.01M12 11.5h.01M16 11.5h.01"/></svg></button></div>
+<script src="assets/js/home.js" defer></script> 
+</body></html>
