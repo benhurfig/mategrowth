@@ -81,14 +81,10 @@ Dados mantidos da base fornecida:
 
 ## Analytics e privacidade
 
-- ID GA4 preservado: `G-Q1NMCRWD77`.
-- Nas páginas institucionais novas, a tag só carrega depois de aceitar análise **e apenas no domínio mategrowth.com**. Prévia local não envia dados ao GA4.
-- Não há Meta Pixel novo.
-- Clique de contato e resumo preparado não são registrados como lead confirmado ou venda.
-- A pessoa pode rever a autorização no rodapé.
-- As landing pages preservadas têm implementações próprias. O aviso de privacidade explica essa distinção.
-
-**Na revisão da conta GA4, confira também a Medição Otimizada** e suas opções de formulários/cliques externos, para manter a coleta alinhada à política do negócio. A configuração da conta e a entrega em produção não foram testadas nesta revisão local.
+- Google Analytics, Google Tag Manager e Meta Pixel foram removidos do código do website, incluindo as landing pages preservadas.
+- O website não apresenta banner ou controles de cookies, nem grava preferências de consentimento no navegador.
+- Cliques, visualizações, formulários e interações não são enviados a ferramentas de analytics.
+- O formulário de contato continua preparando a mensagem para envio pela pessoa; isso não é medido como lead ou conversão.
 
 ## Arquivos principais
 

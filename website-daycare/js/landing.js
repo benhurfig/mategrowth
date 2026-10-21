@@ -2,10 +2,9 @@
 (() => {
   'use strict';
   document.documentElement.classList.add('js');
-  const analytics = (name, values) => window.MGAnalytics?.track(name, values);
   const tablist = document.querySelector('.feature-tabs');
   const tabs = [...document.querySelectorAll('[data-feature]')];
-  function activateTab(tab, track = true) {
+  function activateTab(tab) {
     tabs.forEach(item => {
       const selected = item === tab;
       item.setAttribute('aria-selected', String(selected));
@@ -13,7 +12,6 @@
       const panel = document.getElementById(item.getAttribute('aria-controls'));
       if (panel) panel.hidden = !selected;
     });
-    if (track) analytics('showcase_tab_click', { feature: tab.dataset.feature, cta_location: 'inside' });
   }
   tabs.forEach(tab => tab.addEventListener('click', () => activateTab(tab)));
   tablist?.addEventListener('keydown', event => {
@@ -28,11 +26,6 @@
     event.preventDefault();
     activateTab(tabs[next]);
     tabs[next].focus();
-  });
-  document.querySelectorAll('[data-faq-id]').forEach(detail => {
-    detail.addEventListener('toggle', () => {
-      if (detail.open) analytics('faq_open', { faq_id: detail.dataset.faqId });
-    });
   });
   // Open the targeted FAQ before native anchor navigation; also support direct links.
   function revealFaq(hash) {
@@ -63,23 +56,19 @@
   const sticky = document.querySelector('.sticky-contact');
   const pricingTitle = document.getElementById('pricing-title');
   const contact = document.getElementById('contato');
-  const cookie = document.querySelector('.cookie-banner');
   let queued = false;
   function updateSticky() {
     queued = false;
     if (!sticky || !pricingTitle || !contact) return;
     const reachedPrices = pricingTitle.getBoundingClientRect().top < window.innerHeight * .65;
     const finalVisible = contact.getBoundingClientRect().top < window.innerHeight;
-    const preferencesOpen = cookie && !cookie.hidden;
-    sticky.hidden = !reachedPrices || finalVisible || preferencesOpen;
+    sticky.hidden = !reachedPrices || finalVisible;
   }
   function queueSticky() {
     if (!queued) { queued = true; requestAnimationFrame(updateSticky); }
   }
   window.addEventListener('scroll', queueSticky, { passive: true });
   window.addEventListener('resize', queueSticky, { passive: true });
-  document.addEventListener('mg:consent', queueSticky);
-  document.addEventListener('mg:consent-panel', queueSticky);
   updateSticky();
   document.querySelectorAll('[data-year]').forEach(el => el.textContent = String(new Date().getFullYear()));
 })();
