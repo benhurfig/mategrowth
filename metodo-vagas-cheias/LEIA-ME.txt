@@ -1,0 +1,30 @@
+MATEGROWTH — MÉTODO VAGAS CHEIAS
+
+Pasta de campanha estática para GitHub Pages / Cloudflare Pages.
+
+Arquivos:
+- index.html (landing com 7 blocos, header, footer e formulário)
+- privacidade.html
+- css/style.css
+- js/app.js
+- assets/mategrowth-mark.webp (marca copiada da página de referência)
+
+PUBLICAÇÃO:
+1. Na raiz do repositório que já publica mategrowth.com, crie a pasta metodo-vagas-cheias.
+2. Copie o CONTEÚDO desta pasta para ela, preservando as subpastas.
+3. Faça git add, commit e push para o branch de publicação usado pelo site.
+4. Se o projeto publicar a raiz via GitHub Pages, o endereço será:
+   https://mategrowth.com/metodo-vagas-cheias/
+   (somente após deploy e configuração existente do domínio).
+5. Verifique a URL, os links, o formulário no celular e a política de privacidade.
+
+FORMULÁRIO:
+- Funciona sem servidor: valida os campos e abre uma mensagem pré-preenchida no WhatsApp 1 (774) 615-6579 (número utilizado na página de referência).
+- O visitante precisa CONFIRMAR o envio no WhatsApp.
+- NÃO grava leads automaticamente no Smart Leads. Para isso, criar posteriormente endpoint autenticado, regras de dados e proteção contra spam.
+- Nenhum Meta Pixel, GA4 ou rastreamento foi incluído nesta versão; não declarar conversões até configurar adequadamente e respeitar consentimento aplicável.
+
+OBSERVAÇÕES:
+- Valores exibidos: US$400 implantação, US$100/semana, mídia separada.
+- Textos, imagens ilustrativas CSS, limites e funcionamento devem ser revisados antes da campanha.
+- Esta página não altera a antiga campanha website-daycare.
