@@ -66,3 +66,9 @@ O TESTE desta etapa usa as prioridades Preencher vagas + Criar ou melhorar o web
 ## Anúncios — ajuste em português em 09/11/2026
 
 Em /daycare/, Divulgar com anúncios abre uma pergunta com quatro escolhas múltiplas: Vagas abertas agora; Matrículas para uma turma ou data futura; Minha daycare para mais famílias da região; Outro. Exige pelo menos uma opção. O texto livre aparece e é exigido somente em Outro; ao ocultar, não segue na ficha. A idade/turma de Preencher vagas é reutilizada, sem segunda pergunta. As escolhas e Outro seguem no e-mail. A versão inglesa mantém a pergunta aberta anterior. O endpoint aceita também os formatos anteriores de ads, preservando o corpo de retries idempotentes.
+
+## Ajuda no formulário português — 09/11/2026
+
+/daycare/ não mostra mais o seletor PT/EN no topo. /daycare/en/ permanece disponível para trabalho separado. Abaixo de Enviar meu pedido há uma ajuda discreta: Ficou com alguma dúvida ao preencher? / Fale comigo no WhatsApp. O destino é wa.me/17746156579 com a mensagem aprovada, target=_blank e rel=noopener noreferrer para preservar a página e as respostas. Funciona como link mesmo sem JavaScript.
+
+O evento whatsapp_help_click usa apenas locale, form_id e cta_location=form_help, respeita escolha de Analytics e GPC, inclusive quando a tag ainda está carregando ou a escolha é revogada. Não inclui telefone, mensagem ou respostas nos parâmetros personalizados. Esse clique não chama lead nem gera generate_lead; generate_lead continua reservado à confirmação accepted do envio automático.

@@ -40,3 +40,5 @@
 @media(max-width:760px){.priorities-grid{grid-template-columns:minmax(0,1fr)}.formgrid{gap:20px}.formgrid form{padding:18px}.formgrid .priority-option{min-height:52px}}
 
 .ads-priorities{margin:8px 0 20px;min-width:0}.ads-priorities legend{font-size:16px;line-height:1.4}.ads-priorities>.notice{margin:8px 0 12px}.ads-priorities #ads-other{margin-top:14px}
+
+.form-help{font-size:14px;line-height:1.5;color:#475d4d;margin:14px 0}.form-help a{display:inline-flex;align-items:center;min-height:44px;color:#173e2a;font-weight:600;text-decoration:underline;text-underline-offset:3px}.form-help a:hover{color:#285b40}

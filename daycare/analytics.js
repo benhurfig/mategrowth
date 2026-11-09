@@ -11,9 +11,10 @@
  const pageLocation=()=>{const u=new URL(location.origin+location.pathname);for(const[k,v]of new URLSearchParams(location.search))if(/^utm_(source|medium|campaign|content|term|id)$|^(gclid|fbclid)$/.test(k)&&v.length>0&&v.length<=200&&!/[\u0000-\u001f\u007f@]/.test(v))u.searchParams.set(k,v);return u.href};
  function send(name,params={}) {
   if(!valid||!granted||!loaded||gpc()||typeof window.gtag!=='function')return false;
-  if(!['cta_click','generate_lead','page_view'].includes(name))return false;
+  if(!['cta_click','whatsapp_help_click','generate_lead','page_view'].includes(name))return false;
   const clean={locale,form_id:'daycare_intake'};
   if(name==='cta_click'&&['header','hero','content'].includes(params.cta_location))clean.cta_location=params.cta_location;
+  if(name==='whatsapp_help_click')clean.cta_location='form_help';
   window.gtag('event',name,clean);return true;
  }
  function ui() {
@@ -42,6 +43,12 @@
  function reject(){granted=false;if(valid)window['ga-disable-'+id]=true;save('denied');if(window.gtag)window.gtag('consent','update',denied);ui()}
  document.querySelector('[data-mg-preferences]')?.addEventListener('click',()=>{if(granted)reject();else allow()});
  document.querySelectorAll('a[href="#intake"]').forEach(a=>a.addEventListener('click',()=>send('cta_click',{cta_location:a.closest('header')?'header':a.closest('.hero')?'hero':'content'})));
+ // Help opens another tab, preserving the in-progress form. It is not a lead.
+ document.querySelectorAll('[data-whatsapp-help]').forEach(link=>link.addEventListener('click',()=>{
+  if(!granted||gpc())return;
+  if(loaded)send('whatsapp_help_click');
+  else if(loading)loading.then(ok=>{if(ok)send('whatsapp_help_click')});
+ }));
  // form_start is already emitted by this GA4 stream's Enhanced Measurement.
  // Do not add a second manual start event.
  window.MGDaycareAnalytics=Object.freeze({
