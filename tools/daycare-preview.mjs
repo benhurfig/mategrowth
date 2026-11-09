@@ -20,7 +20,8 @@ export function createPreviewServer(root,options={}) {
    const pathname=decodeURIComponent(url.pathname);
    if(pathname.split('/').some(x=>x.startsWith('.')||['backend','tests','tools'].includes(x))){res.writeHead(404);res.end();return}
    if(pathname==='/daycare/config.js'){
-    res.writeHead(200,{'Content-Type':'application/javascript','Cache-Control':'no-store'});res.end('window.MG_DAYCARE_CONFIG=Object.freeze('+JSON.stringify({endpoint:'/api/daycare-lead',ga4MeasurementId:options.ga4MeasurementId||''})+');');return;
+    const source=await readFile(path.join(root,'daycare/config.js'),'utf8');const id=Object.hasOwn(options,'ga4MeasurementId')?options.ga4MeasurementId:(source.match(/ga4MeasurementId:\s*['"]([^'"]*)/)?.[1]||'');
+    res.writeHead(200,{'Content-Type':'application/javascript','Cache-Control':'no-store'});res.end('window.MG_DAYCARE_CONFIG=Object.freeze('+JSON.stringify({endpoint:'/api/daycare-lead',ga4MeasurementId:id})+');');return;
    }
    let file=path.resolve(root,'.'+pathname);if(file!==root&&!file.startsWith(root+path.sep)){res.writeHead(403);res.end();return}
    const info=await stat(file);if(info.isDirectory())file=path.join(file,'index.html');
