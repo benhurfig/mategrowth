@@ -106,3 +106,10 @@ python3 tools/validar.py
 Faça backup da pasta atual. Copie os arquivos novos para a raiz do seu projeto, **preservando a pasta `.git` local**, que não faz parte deste ZIP. Revise em uma branch ou prévia antes do deploy. Este pacote não altera automaticamente o repositório nem o site online.
 
 O que ainda depende de você: aprovação dos textos, condições das ofertas existentes, eventual troca das capturas por versões mais recentes, validação do contato no aparelho final e autorização para liberar a indexação/publicar.
+
+
+## Landing de daycare — integração em 08/11/2026
+
+A nova pasta `/daycare/` (PT) e `/daycare/en/` (EN) tem envio automático por endpoint Supabase separado, usando o Resend e o remetente já configurados no SmartimateApp. O formulário institucional `/contact/` continua com o funcionamento manual descrito acima. Consulte `daycare/LEIA-ME.md` para prévia, testes, credenciais e ativação.
+
+O site atual está hospedado no GitHub Pages. O frontend desta etapa está em branch de implementação; o endpoint novo já está ativo e o envio TESTE foi aceito. As funções existentes do SmartimateApp permanecem intactas. O ID GA4 correto da MateGrowth ainda é necessário: o campo público de configuração está vazio e nenhuma coleta foi ativada. As políticas PT/EN distinguem o formulário institucional da nova ficha automática.

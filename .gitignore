@@ -26,3 +26,8 @@ Thumbs.db
 # Dependencies and local caches, if introduced later
 node_modules/
 .cache/
+
+# Daycare backend: local secrets and tooling
+.dev.vars
+.dev.vars.*
+.wrangler/

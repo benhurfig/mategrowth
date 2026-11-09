@@ -1,0 +1,6 @@
+'use strict';
+// Public configuration only. Never put a provider key or Supabase secret here.
+window.MG_DAYCARE_CONFIG = Object.freeze({
+ endpoint: 'https://hdvjtezjhalzharqdyfv.supabase.co/functions/v1/submit-mategrowth-daycare',
+ ga4MeasurementId: '' // Pending the real MateGrowth property ID. Collection stays off.
+});
