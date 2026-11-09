@@ -17,8 +17,11 @@
   window.gtag('event',name,clean);return true;
  }
  function ui() {
-  const banner=document.querySelector('[data-mg-consent]');if(banner)banner.hidden=!valid||read()!==null||gpc();
-  const prefs=document.querySelector('[data-mg-preferences]');if(prefs)prefs.hidden=!valid;
+  const prefs=document.querySelector('[data-mg-preferences]');
+  if(!prefs)return;
+  prefs.hidden=!valid;prefs.disabled=gpc();
+  prefs.textContent=gpc()?(en?'Analytics off in your browser':'Analytics desativado pelo navegador'):granted?(en?'Turn off Analytics':'Desativar Analytics'):(en?'Turn on Analytics':'Ativar Analytics');
+  prefs.setAttribute('aria-pressed',String(granted));
  }
  async function allow() {
   if(!valid||gpc())return false;
@@ -37,9 +40,7 @@
   });document.head.append(script);return loading;
  }
  function reject(){granted=false;if(valid)window['ga-disable-'+id]=true;save('denied');if(window.gtag)window.gtag('consent','update',denied);ui()}
- document.querySelector('[data-mg-accept]')?.addEventListener('click',allow);
- document.querySelector('[data-mg-reject]')?.addEventListener('click',reject);
- document.querySelector('[data-mg-preferences]')?.addEventListener('click',()=>{const banner=document.querySelector('[data-mg-consent]');if(banner)banner.hidden=false;document.querySelector('[data-mg-reject]')?.focus()});
+ document.querySelector('[data-mg-preferences]')?.addEventListener('click',()=>{if(granted)reject();else allow()});
  document.querySelectorAll('a[href="#intake"]').forEach(a=>a.addEventListener('click',()=>send('cta_click',{cta_location:a.closest('header')?'header':a.closest('.hero')?'hero':'content'})));
  // form_start is already emitted by this GA4 stream's Enhanced Measurement.
  // Do not add a second manual start event.
@@ -53,5 +54,6 @@
   },
   status(){return {configured:valid,consent:granted,loaded,receiptVerified:false}}
  });
- ui();if(valid&&read()==='granted'&&!gpc())allow();else if(gpc())reject();
+ // Automatic startup for new visitors; preserve prior opt-out and browser GPC.
+ ui();if(valid&&read()!=='denied'&&!gpc())allow();else if(gpc())reject();
 })();

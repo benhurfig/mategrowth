@@ -18,9 +18,9 @@ O botão fica bloqueado durante o POST. Repetições mantêm o mesmo UUID e corp
 
 A credencial RESEND_API_KEY já funciona no projeto Supabase e não precisa ser copiada para este repositório. Se for necessário repô-la, usar Supabase → SmartMate - PROD → Edge Functions → Secrets → RESEND_API_KEY. Nunca inserir a chave em config.js, HTML, Git ou .env publicado.
 
-O Measurement ID GA4 `G-Q1NMCRWD77`, fornecido pela cliente, está em `window.MG_DAYCARE_CONFIG.ga4MeasurementId` no arquivo `daycare/config.js`. A tag só carrega após consentimento explícito. O site institucional não possuía GA4/GTM/consentimento para reaproveitar; não foi usado o ID de outra cliente.
+O Measurement ID GA4 `G-Q1NMCRWD77`, fornecido pela cliente, está em `window.MG_DAYCARE_CONFIG.ga4MeasurementId` no arquivo `daycare/config.js`. A tag carrega automaticamente para novas visitas, sem banner de aceite; recusa anterior e GPC continuam respeitados. O site institucional não possuía GA4/GTM/consentimento para reaproveitar; não foi usado o ID de outra cliente.
 
-Com ID real, analytics.js oferece aceitar/recusar/alterar, respeita GPC e só carrega após aceitação. Eventos: `cta_click`, `form_start` automático da propriedade GA4 (confirmado com a tag real, sem segundo disparo manual) e `generate_lead` uma vez por pedido, somente após confirmação do servidor. Não envia nome, telefone, e-mail, respostas ou request ID aos eventos. UTMs permitidas são preservadas na troca PT/EN e enviadas na ficha. Consentimento recusado não impede envio comercial.
+Analytics.js carrega o GA4 automaticamente e oferece somente um controle discreto de ativar/desativar no rodapé, sem banner. Respeita GPC e recusas já salvas. Eventos: `cta_click`, `form_start` automático da propriedade GA4 (confirmado com a tag real, sem segundo disparo manual) e `generate_lead` uma vez por pedido, somente após confirmação do servidor. Não envia nome, telefone, e-mail, respostas ou request ID aos eventos. UTMs permitidas são preservadas na troca PT/EN e enviadas na ficha. Consentimento recusado não impede envio comercial.
 
 Conferir a configuração real da propriedade/Tag Assistant antes da campanha: a medição automática de formulários já está ativa e é reutilizada para form_start. Não adicionar um segundo início manual; form_submit não equivale a lead recebido. Os testes com tag simulada não comprovam recebimento no GA4.
 
@@ -51,4 +51,6 @@ A fonte completa da nova função está em backend/daycare-intake; mudanças fut
 
 Referências: https://resend.com/docs/dashboard/emails/idempotency-keys e https://supabase.com/docs/guides/functions/secrets.
 
-Recusa/revogação também usa ga-disable-G-Q1NMCRWD77 para impedir coleta automática após a retirada do consentimento. Se o SDK ainda carrega quando o servidor confirma a ficha, o lead aguarda esse carregamento e só é medido uma vez se o consentimento continuar válido.
+Recusa/revogação também usa ga-disable-G-Q1NMCRWD77 para impedir coleta automática após a retirada do consentimento. Se o SDK ainda carrega quando o servidor confirma a ficha, o lead aguarda esse carregamento e só é medido uma vez se a medição continuar habilitada.
+
+Ajuste solicitado pela cliente: removidos o texto abaixo do vídeo de demonstração e o banner de Analytics nas duas rotas. O envio, a deduplicação e a condição de generate_lead após aceite do serviço de e-mail permanecem intactos.
