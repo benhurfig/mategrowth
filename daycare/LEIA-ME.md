@@ -72,3 +72,11 @@ Em /daycare/, Divulgar com anúncios abre uma pergunta com quatro escolhas múlt
 /daycare/ não mostra mais o seletor PT/EN no topo. /daycare/en/ permanece disponível para trabalho separado. Abaixo de Enviar meu pedido há uma ajuda discreta: Ficou com alguma dúvida ao preencher? / Fale comigo no WhatsApp. O destino é wa.me/17746156579 com a mensagem aprovada, target=_blank e rel=noopener noreferrer para preservar a página e as respostas. Funciona como link mesmo sem JavaScript.
 
 O evento whatsapp_help_click usa apenas locale, form_id e cta_location=form_help, respeita escolha de Analytics e GPC, inclusive quando a tag ainda está carregando ou a escolha é revogada. Não inclui telefone, mensagem ou respostas nos parâmetros personalizados. Esse clique não chama lead nem gera generate_lead; generate_lead continua reservado à confirmação accepted do envio automático.
+
+## Correção de envio e canal de anúncio — 09/11/2026
+
+Causa reproduzida em produção: o Chrome preenchia automaticamente companyWebsite, campo oculto antispam, com o mesmo nome da daycare. A validação nativa passava, mas a função respondia 422 com fields=[companyWebsite]; o Resend não era chamado. O DOM da página que falhou confirmou :-webkit-autofill e igualdade com business.
+
+A versão atual usa um nome neutro para o campo oculto, contêiner inert e indicadores para não preencher via gerenciadores. O servidor aceita o falso positivo específico (valor igual ao nome da daycare normalizado), mantendo rejeição de valores alheios e os limites existentes. Isso também corrige o envio de páginas antigas abertas, sem exigir perda das respostas.
+
+No português, Divulgar com anúncios agora abre Onde você gostaria de anunciar sua daycare?, select opcional com Google, Facebook/Instagram, Nos dois ou recomendação. A ficha traz Canal de anúncio com a resposta por extenso, ou Não informado. Os formatos anteriores ads e adTopics/adsOther permanecem aceitos com o corpo de e-mail idêntico para retries. Inglês, UTMs, consentimento, ajuda WhatsApp e generate_lead após accepted preservados.

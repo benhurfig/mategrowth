@@ -25,7 +25,8 @@ const TIME_LABELS = {
  en:{morning:'Morning',afternoon:'Afternoon',late_afternoon:'Late afternoon',any:'No preference',other:'Another time'}
 };
 const AD_TOPICS={openings_now:'Vagas abertas agora',future_enrollment:'Matrículas para uma turma ou data futura',local_awareness:'Minha daycare para mais famílias da região',other:'Outro'};
-const answerFields = [...fields,'goals','contactTime','contactTimeOther','adTopics','adsOther'];
+const AD_CHANNELS={google:'No Google, quando uma família pesquisa por daycare',meta:'No Facebook e Instagram',both:'Nos dois',recommendation:'Ainda não sei. Quero uma recomendação'};
+const answerFields = [...fields,'goals','contactTime','contactTimeOther','adTopics','adsOther','adChannel'];
 const conditional = goal => ({spots:'group',google:'website',site:'website',ads:'ads',follow:'follow',other:'other'})[goal];
 const plain = x => x && typeof x === 'object' && !Array.isArray(x);
 export function validate(payload) {
@@ -36,7 +37,7 @@ export function validate(payload) {
  if (!IDS.test(payload.submissionId || '')) errors.push('submissionId');
  if (!['pt-BR','en'].includes(payload.locale)) errors.push('locale');
  if (payload.pagePath !== (payload.locale === 'en' ? '/daycare/en/' : '/daycare/')) errors.push('pagePath');
- if (typeof payload.companyWebsite !== 'string' || payload.companyWebsite !== '') errors.push('companyWebsite');
+ if (typeof payload.companyWebsite !== 'string' || payload.companyWebsite.length>200 || /[\u0000-\u001f\u007f]/.test(payload.companyWebsite)) errors.push('companyWebsite');
  const a = payload.answers;
  if (!plain(a)) return {errors:[...errors,'answers']};
  if (Object.keys(a).some(k=>!answerFields.includes(k))) errors.push('answers');
@@ -46,6 +47,9 @@ export function validate(payload) {
   if (typeof a[key] !== 'string' || /[\u0000-\u001f\u007f]/.test(a[key]) || a[key].length > (['business','city','name'].includes(key)?100:key==='state'?50:250)) {errors.push(key);continue;}
   answers[key]=a[key].trim();
  }
+ // Chrome may autofill the legacy hidden company field with the business name.
+ // Allow only this exact false positive; unrelated honeypot values still fail.
+ if(typeof payload.companyWebsite==='string'&&payload.companyWebsite.trim()&&payload.companyWebsite.trim()!==answers.business)errors.push('companyWebsite');
  const multiple = Object.hasOwn(a,'goals');
  if (multiple) {
   if (Object.hasOwn(a,'goal') || !Array.isArray(a.goals) || !a.goals.length || a.goals.length>OPTIONS.goal.length || new Set(a.goals).size!==a.goals.length || a.goals.some(v=>!OPTIONS.goal.includes(v))) errors.push('goals');
@@ -60,6 +64,9 @@ export function validate(payload) {
  if (answers.channel !== 'email' && (!/^[+()\d .-]+$/.test(answers.contact || '') || !/^\d{7,15}$/.test((answers.contact||'').replace(/\D/g,'')))) errors.push('contact');
  const details=new Set((multiple?(answers.goals||[]):[answers.goal]).map(conditional).filter(Boolean));
  const hasAdTopics=Object.hasOwn(a,'adTopics');
+ const newAdFormat=payload.locale==='pt-BR'&&multiple&&details.has('ads')&&!hasAdTopics&&!Object.hasOwn(a,'ads');
+ if(Object.hasOwn(a,'adChannel')&&(!newAdFormat||(answers.adChannel&&!Object.hasOwn(AD_CHANNELS,answers.adChannel))))errors.push('adChannel');
+ if(newAdFormat)details.delete('ads');
  if(hasAdTopics){
   if(payload.locale!=='pt-BR'||!multiple||!details.has('ads')||Object.hasOwn(a,'ads')||!Array.isArray(a.adTopics)||!a.adTopics.length||a.adTopics.length>4||new Set(a.adTopics).size!==a.adTopics.length||a.adTopics.some(v=>!Object.hasOwn(AD_TOPICS,v)))errors.push('adTopics');
   else answers.adTopics=Object.keys(AD_TOPICS).filter(v=>a.adTopics.includes(v));
@@ -93,6 +100,7 @@ export function buildEmail(data) {
   if(a.adsOther)rows.push('Outro objetivo dos anúncios: '+a.adsOther);
   if(a.group)rows.push('Informação de idade/turma para os anúncios: usar a resposta de vagas acima.');
  }
+ if(l==='pt'&&a.goals?.includes('ads')&&!a.adTopics&&!Object.hasOwn(a,'ads'))rows.push('Canal de anúncio: '+(AD_CHANNELS[a.adChannel]||'Não informado'));
  const text=['MateGrowth — Daycare',...rows,'','Idioma / Language: '+data.locale,'Página / Page: '+data.pagePath,'','Origem / Campaign',...Object.entries(data.attribution).map(([k,v])=>k+': '+v),'','Request ID: '+data.submissionId,'CRM: cadastro manual / manual entry'].join('\n');
  return {from:SENDER,to:[RECIPIENT],subject,text,...(a.channel==='email'?{reply_to:a.contact}:{})};
 }
