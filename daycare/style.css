@@ -38,3 +38,5 @@
 .priority-error{color:#702e1b;font-size:14px;margin-top:8px}
 .contact-time-note{margin-bottom:20px!important}
 @media(max-width:760px){.priorities-grid{grid-template-columns:minmax(0,1fr)}.formgrid{gap:20px}.formgrid form{padding:18px}.formgrid .priority-option{min-height:52px}}
+
+.ads-priorities{margin:8px 0 20px;min-width:0}.ads-priorities legend{font-size:16px;line-height:1.4}.ads-priorities>.notice{margin:8px 0 12px}.ads-priorities #ads-other{margin-top:14px}

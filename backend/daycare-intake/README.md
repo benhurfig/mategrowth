@@ -17,3 +17,5 @@ O frontend atual envia answers.goals como array não vazio dos códigos spots, g
 answers.contactTime é opcional: morning, afternoon, late_afternoon, any ou other. A opção other exige contactTimeOther de até 100 caracteres. O e-mail informa o horário local da lead; sem escolha, apresenta Não informado / Not provided. Nenhum desses dados é enviado ao Analytics.
 
 O formato anterior answers.goal continua aceito. O texto e o assunto dos e-mails antigos permanecem idênticos para preservar os retries idempotentes de visitantes com a página anterior aberta. Não enviar goal e goals juntos. Publicar o endpoint compatível antes do frontend.
+
+Português com anúncios: answers.adTopics é um array não vazio de openings_now, future_enrollment, local_awareness e other; só é aceito em pt-BR com goals incluindo ads. A escolha other exige adsOther (até 250 caracteres). Não combinar adTopics e o campo antigo ads. O campo group de spots é reutilizado para contexto dos anúncios; não é duplicado. O formato antigo ads permanece aceito para clientes abertos anteriormente e para inglês.

@@ -9,7 +9,7 @@
  try{sessionStorage.setItem('mg-daycare-campaign',JSON.stringify(attribution))}catch{}
  for(const link of document.querySelectorAll('[data-lang]')){const url=new URL(link.href);for(const[k,v]of Object.entries(attribution))url.searchParams.set(k,v);link.href=url.href;}
  let busy=false,complete=false,lastSignature='',pendingId='',pendingSince=0;
- const detailMemory=new Map(),contactMemory=new Map();let oldChannel='',otherTimeMemory='';
+ const detailMemory=new Map(),contactMemory=new Map();let oldChannel='',otherTimeMemory='',adsOtherMemory='',adsMemory=[];
  const chosenGoals=()=>Array.from(fields.querySelectorAll('input[name="goals"]:checked'),el=>el.value);
  function addInput(parent,key,caption,type='text',required=true,value='') {
   const label=document.createElement('label');label.textContent=caption;
@@ -20,10 +20,33 @@
  function updateDetails() {
   const target=byId('details'),program=byId('program').value;
   const keys=new Set(chosenGoals().map(goal=>({spots:'group',google:'website',site:'website',ads:'ads',follow:'follow',other:'other'})[goal]));
-  for(const input of target.querySelectorAll('input'))if(!program||!keys.has(input.name)){detailMemory.set(input.name,input.value);input.parentElement.remove();}
+  if(!english)keys.delete('ads');
+  for(const input of target.querySelectorAll(':scope > label > input'))if(!program||!keys.has(input.name)){detailMemory.set(input.name,input.value);input.parentElement.remove();}
+  updateAds(Boolean(program)&&chosenGoals().includes('ads'));
   if(!program)return;
   const captions={group:program==='home'?localize('Quais idades você quer atender?','Which ages are you looking to enroll?'):localize('Qual turma ou unidade é a prioridade?','Which classroom or location is the priority?'),website:localize('Link do site ou do perfil no Google (opcional)','Website or Google profile link (optional)'),ads:localize('Qual programa você quer divulgar?','Which program would you like to promote?'),follow:localize('Como vocês acompanham os pedidos de visita hoje?','How do you track tour requests today?'),other:localize('Em que podemos ajudar?','How can we help?')};
   for(const key of keys){const input=target.querySelector('[name="'+key+'"]');if(input){input.parentElement.firstChild.textContent=captions[key];continue;}addInput(target,key,captions[key],key==='website'?'url':'text',key!=='website',detailMemory.get(key)||'');}
+ }
+ const adOptions={openings_now:'Vagas abertas agora',future_enrollment:'Matrículas para uma turma ou data futura',local_awareness:'Minha daycare para mais famílias da região',other:'Outro'};
+ function chosenAds(){return Array.from(fields.querySelectorAll('input[name="adTopics"]:checked'),el=>el.value)}
+ function validateAds(show=false){const group=byId('ads-priorities');if(!group)return true;const valid=chosenAds().length>0;group.querySelector('input').setCustomValidity(valid?'':'Marque pelo menos uma opção de anúncio.');byId('ads-error').hidden=valid||!show;return valid;}
+ function updateAdsOther(){const target=byId('ads-other');if(!target)return;const input=target.querySelector('input');if(chosenAds().includes('other')){if(!input)addInput(target,'adsOther','O que mais você quer divulgar?','text',true,adsOtherMemory);}else if(input){adsOtherMemory=input.value;target.replaceChildren();}}
+ function updateAds(active){
+  if(english)return;
+  let group=byId('ads-priorities');
+  if(!active){if(group){adsMemory=chosenAds();adsOtherMemory=group.querySelector('[name="adsOther"]')?.value||adsOtherMemory;group.remove();}return;}
+  if(!group){
+   group=document.createElement('fieldset');group.id='ads-priorities';group.className='ads-priorities';
+   const legend=document.createElement('legend');legend.textContent='O que você quer divulgar nos anúncios da sua daycare?';group.append(legend);
+   const hint=document.createElement('p');hint.className='notice';hint.textContent='Pode marcar mais de uma opção.';group.append(hint);
+   const grid=document.createElement('div');grid.className='priorities-grid';group.append(grid);
+   for(const[value,text]of Object.entries(adOptions)){const label=document.createElement('label');label.className='priority-option';const input=document.createElement('input');input.type='checkbox';input.name='adTopics';input.value=value;input.checked=adsMemory.includes(value);const span=document.createElement('span');span.textContent=text;label.append(input,span);grid.append(label);}
+   const error=document.createElement('p');error.id='ads-error';error.className='priority-error';error.hidden=true;error.textContent='Marque pelo menos uma opção de anúncio.';group.append(error);
+   const reused=document.createElement('p');reused.id='ads-group-reuse';reused.className='notice';reused.textContent='A idade ou turma informada em “Preencher vagas” também será considerada nos anúncios.';group.append(reused);
+   const other=document.createElement('div');other.id='ads-other';group.append(other);byId('details').append(group);
+   group.addEventListener('change',()=>{validateAds(true);updateAdsOther()});group.querySelector('input').addEventListener('invalid',()=>{error.hidden=false});
+  }
+  byId('ads-group-reuse').hidden=!chosenGoals().includes('spots');updateAdsOther();validateAds();
  }
  function validateGoals(show=false){const valid=chosenGoals().length>0,first=fields.querySelector('input[name="goals"]');first.setCustomValidity(valid?'':localize('Marque pelo menos uma prioridade.','Select at least one priority.'));byId('priorities-error').hidden=valid||!show;return valid;}
  function updateAddress(){const target=byId('address'),previous=target.querySelector('input');if(previous&&oldChannel)contactMemory.set(oldChannel,previous.value);target.replaceChildren();const channel=byId('channel').value;oldChannel=channel;if(channel)addInput(target,'contact',channel==='email'?localize('E-mail','Email'):channel==='whatsapp'?localize('Número de WhatsApp','WhatsApp number'):localize('Telefone com código de área','Phone number with area code'),channel==='email'?'email':'tel',true,contactMemory.get(channel)||'');}
@@ -40,8 +63,9 @@
  form.addEventListener('submit',async event=>{
   event.preventDefault();if(busy||complete)return;
   for(const input of fields.querySelectorAll('input'))input.value=input.value.trim();
-  validateGoals(true);if(!form.reportValidity())return;
-  const answers={goals:chosenGoals()};for(const el of fields.querySelectorAll('input[name],select[name]'))if(el.name!=='companyWebsite'&&el.name!=='goals'&&!el.disabled)answers[el.name]=el.value.trim();
+  validateGoals(true);validateAds(true);if(!form.reportValidity())return;
+  const answers={goals:chosenGoals()};for(const el of fields.querySelectorAll('input[name],select[name]'))if(el.name!=='companyWebsite'&&el.name!=='goals'&&el.name!=='adTopics'&&!el.disabled)answers[el.name]=el.value.trim();
+  if(byId('ads-priorities'))answers.adTopics=chosenAds();
   const data={locale:english?'en':'pt-BR',pagePath:english?'/daycare/en/':'/daycare/',answers,attribution,companyWebsite:form.elements.companyWebsite.value};
   const signature=JSON.stringify(data);
   if(signature!==lastSignature){pendingId=crypto.randomUUID();pendingSince=Date.now();lastSignature=signature;}

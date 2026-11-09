@@ -24,7 +24,8 @@ const TIME_LABELS = {
  pt:{morning:'Manhã',afternoon:'Tarde',late_afternoon:'Fim da tarde',any:'Sem preferência',other:'Outro horário'},
  en:{morning:'Morning',afternoon:'Afternoon',late_afternoon:'Late afternoon',any:'No preference',other:'Another time'}
 };
-const answerFields = [...fields,'goals','contactTime','contactTimeOther'];
+const AD_TOPICS={openings_now:'Vagas abertas agora',future_enrollment:'Matrículas para uma turma ou data futura',local_awareness:'Minha daycare para mais famílias da região',other:'Outro'};
+const answerFields = [...fields,'goals','contactTime','contactTimeOther','adTopics','adsOther'];
 const conditional = goal => ({spots:'group',google:'website',site:'website',ads:'ads',follow:'follow',other:'other'})[goal];
 const plain = x => x && typeof x === 'object' && !Array.isArray(x);
 export function validate(payload) {
@@ -40,7 +41,7 @@ export function validate(payload) {
  if (!plain(a)) return {errors:[...errors,'answers']};
  if (Object.keys(a).some(k=>!answerFields.includes(k))) errors.push('answers');
  const answers = {};
- for (const key of answerFields.filter(k=>k!=='goals')) {
+ for (const key of answerFields.filter(k=>k!=='goals'&&k!=='adTopics')) {
   if (a[key] === undefined) continue;
   if (typeof a[key] !== 'string' || /[\u0000-\u001f\u007f]/.test(a[key]) || a[key].length > (['business','city','name'].includes(key)?100:key==='state'?50:250)) {errors.push(key);continue;}
   answers[key]=a[key].trim();
@@ -58,6 +59,14 @@ export function validate(payload) {
  if (answers.channel === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(answers.contact || '')) errors.push('contact');
  if (answers.channel !== 'email' && (!/^[+()\d .-]+$/.test(answers.contact || '') || !/^\d{7,15}$/.test((answers.contact||'').replace(/\D/g,'')))) errors.push('contact');
  const details=new Set((multiple?(answers.goals||[]):[answers.goal]).map(conditional).filter(Boolean));
+ const hasAdTopics=Object.hasOwn(a,'adTopics');
+ if(hasAdTopics){
+  if(payload.locale!=='pt-BR'||!multiple||!details.has('ads')||Object.hasOwn(a,'ads')||!Array.isArray(a.adTopics)||!a.adTopics.length||a.adTopics.length>4||new Set(a.adTopics).size!==a.adTopics.length||a.adTopics.some(v=>!Object.hasOwn(AD_TOPICS,v)))errors.push('adTopics');
+  else answers.adTopics=Object.keys(AD_TOPICS).filter(v=>a.adTopics.includes(v));
+  if(answers.adTopics?.includes('other')&&!answers.adsOther)errors.push('adsOther');
+  details.delete('ads');
+ }
+ if(answers.adsOther&&(!hasAdTopics||!answers.adTopics?.includes('other')))errors.push('adsOther');
  for(const detail of details)if(detail!=='website'&&!answers[detail])errors.push(detail);
  if (details.has('website') && answers.website) {try {const u=new URL(answers.website);if(!['http:','https:'].includes(u.protocol)||u.username||u.password)errors.push('website');}catch{errors.push('website');}}
  for (const key of ['group','website','ads','follow','other']) if (!details.has(key) && answers[key]) errors.push(key);
@@ -78,6 +87,11 @@ export function buildEmail(data) {
   rows.splice(at,0,(l==='pt'?'Prioridades: ':'Priorities: ')+a.goals.map(k=>values[k]).join('; '));
   const time=a.contactTime==='other'?a.contactTimeOther:TIME_LABELS[l][a.contactTime];
   rows.push((l==='pt'?'Horário preferido (horário local da lead): ':'Preferred contact time (lead’s local time): ')+(time||(l==='pt'?'Não informado':'Not provided')));
+ }
+ if(a.adTopics){
+  rows.push('Objetivos dos anúncios: '+a.adTopics.map(k=>AD_TOPICS[k]).join('; '));
+  if(a.adsOther)rows.push('Outro objetivo dos anúncios: '+a.adsOther);
+  if(a.group)rows.push('Informação de idade/turma para os anúncios: usar a resposta de vagas acima.');
  }
  const text=['MateGrowth — Daycare',...rows,'','Idioma / Language: '+data.locale,'Página / Page: '+data.pagePath,'','Origem / Campaign',...Object.entries(data.attribution).map(([k,v])=>k+': '+v),'','Request ID: '+data.submissionId,'CRM: cadastro manual / manual entry'].join('\n');
  return {from:SENDER,to:[RECIPIENT],subject,text,...(a.channel==='email'?{reply_to:a.contact}:{})};

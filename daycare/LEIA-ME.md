@@ -62,3 +62,7 @@ O formulário fica abaixo da apresentação da seção #intake, com largura comp
 Validações desta etapa: 14 testes de servidor aprovados, incluindo 63 combinações de prioridades, horário em branco/customizado, dados inválidos, compatibilidade antiga, erro e deduplicação. Chrome local em PT/EN a 390, 768 e 1440 px: formulário abaixo do título, sem overflow, campos corretos, troca de idioma e UTMs, erro preservando respostas, clique repetido e um generate_lead após aceite simulado. O e-mail anterior foi comparado com a versão anterior e continua idêntico para retries. As 58 páginas passaram na verificação estática.
 
 O TESTE desta etapa usa as prioridades Preencher vagas + Criar ou melhorar o website, retorno WhatsApp e Dias de semana, entre 16h e 17h. Assunto esperado: [TESTE] Nova lead | Preencher vagas + Criar ou melhorar o website | Revere, MA. A entrega final distingue aceite do serviço e chegada no Gmail.
+
+## Anúncios — ajuste em português em 09/11/2026
+
+Em /daycare/, Divulgar com anúncios abre uma pergunta com quatro escolhas múltiplas: Vagas abertas agora; Matrículas para uma turma ou data futura; Minha daycare para mais famílias da região; Outro. Exige pelo menos uma opção. O texto livre aparece e é exigido somente em Outro; ao ocultar, não segue na ficha. A idade/turma de Preencher vagas é reutilizada, sem segunda pergunta. As escolhas e Outro seguem no e-mail. A versão inglesa mantém a pergunta aberta anterior. O endpoint aceita também os formatos anteriores de ads, preservando o corpo de retries idempotentes.
