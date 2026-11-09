@@ -8,7 +8,7 @@
  const denied={analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'};
  const read=()=>{try{return localStorage.getItem(key)}catch{return null}};
  const save=v=>{try{localStorage.setItem(key,v)}catch{}};
- const pageLocation=()=>{const u=new URL(location.origin+location.pathname);for(const[k,v]of new URLSearchParams(location.search))if(/^utm_(source|medium|campaign|content|term|id)$|^(gclid|fbclid)$/.test(k)&&/^[a-z0-9._~-]{1,200}$/i.test(v))u.searchParams.set(k,v);return u.href};
+ const pageLocation=()=>{const u=new URL(location.origin+location.pathname);for(const[k,v]of new URLSearchParams(location.search))if(/^utm_(source|medium|campaign|content|term|id)$|^(gclid|fbclid)$/.test(k)&&v.length>0&&v.length<=200&&!/[\u0000-\u001f\u007f@]/.test(v))u.searchParams.set(k,v);return u.href};
  function send(name,params={}) {
   if(!valid||!granted||!loaded||gpc()||typeof window.gtag!=='function')return false;
   if(!['cta_click','generate_lead','page_view'].includes(name))return false;
