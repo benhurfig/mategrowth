@@ -17,7 +17,14 @@ const VALUES = {
  pt:{home:'Home / Family Child Care',center:'Child Care Center',pre:'Preschool',up_to_6:'Até 6','7_10':'7–10','11_20':'11–20','21_50':'21–50','51_100':'51–100', '101_plus':'101+', '1_2':'1–2','3_5':'3–5','6_10':'6–10', '11_plus':'11+', yes:'Sim',no:'Ainda não',unsure:'Não sei',professional:'Sim, tenho um website profissional',update:'Sim, mas precisa de ajustes',none:'Ainda não',spots:'Preencher vagas',google:'Aparecer no Google e Maps',site:'Criar ou melhorar o website',ads:'Divulgar com anúncios',follow:'Organizar visitas e retornos',other:'Outra necessidade',whatsapp:'WhatsApp',email:'E-mail',phone:'Ligação'},
  en:{home:'Home / Family Child Care',center:'Child Care Center',pre:'Preschool',up_to_6:'Up to 6','7_10':'7–10','11_20':'11–20','21_50':'21–50','51_100':'51–100','101_plus':'101+','1_2':'1–2','3_5':'3–5','6_10':'6–10','11_plus':'11+',yes:'Yes',no:'Not yet',unsure:'Not sure',professional:'Yes, a professional website',update:'Yes, it needs updating',none:'Not yet',spots:'Fill openings',google:'Show up on Google and Maps',site:'Create or update our website',ads:'Run local ads',follow:'Manage tours and follow-ups',other:'Something else',whatsapp:'WhatsApp',email:'Email',phone:'Phone call'}
 };
+// Keep the legacy single-priority email byte-for-byte stable for idempotent retries.
 const fields = Object.keys(LABELS.pt);
+const TIME_OPTIONS = ['morning','afternoon','late_afternoon','any','other'];
+const TIME_LABELS = {
+ pt:{morning:'Manhã',afternoon:'Tarde',late_afternoon:'Fim da tarde',any:'Sem preferência',other:'Outro horário'},
+ en:{morning:'Morning',afternoon:'Afternoon',late_afternoon:'Late afternoon',any:'No preference',other:'Another time'}
+};
+const answerFields = [...fields,'goals','contactTime','contactTimeOther'];
 const conditional = goal => ({spots:'group',google:'website',site:'website',ads:'ads',follow:'follow',other:'other'})[goal];
 const plain = x => x && typeof x === 'object' && !Array.isArray(x);
 export function validate(payload) {
@@ -31,21 +38,29 @@ export function validate(payload) {
  if (typeof payload.companyWebsite !== 'string' || payload.companyWebsite !== '') errors.push('companyWebsite');
  const a = payload.answers;
  if (!plain(a)) return {errors:[...errors,'answers']};
- if (Object.keys(a).some(k=>!fields.includes(k))) errors.push('answers');
+ if (Object.keys(a).some(k=>!answerFields.includes(k))) errors.push('answers');
  const answers = {};
- for (const key of fields) {
+ for (const key of answerFields.filter(k=>k!=='goals')) {
   if (a[key] === undefined) continue;
   if (typeof a[key] !== 'string' || /[\u0000-\u001f\u007f]/.test(a[key]) || a[key].length > (['business','city','name'].includes(key)?100:key==='state'?50:250)) {errors.push(key);continue;}
   answers[key]=a[key].trim();
  }
- for (const [key,values] of Object.entries(OPTIONS)) if (!values.includes(answers[key])) errors.push(key);
+ const multiple = Object.hasOwn(a,'goals');
+ if (multiple) {
+  if (Object.hasOwn(a,'goal') || !Array.isArray(a.goals) || !a.goals.length || a.goals.length>OPTIONS.goal.length || new Set(a.goals).size!==a.goals.length || a.goals.some(v=>!OPTIONS.goal.includes(v))) errors.push('goals');
+  else answers.goals=OPTIONS.goal.filter(v=>a.goals.includes(v));
+ }
+ for (const [key,values] of Object.entries(OPTIONS)) if (!(multiple&&key==='goal')&&!values.includes(answers[key])) errors.push(key);
+ if (answers.contactTime && !TIME_OPTIONS.includes(answers.contactTime)) errors.push('contactTime');
+ if (answers.contactTime==='other' && !answers.contactTimeOther) errors.push('contactTimeOther');
+ if (answers.contactTimeOther && (answers.contactTime!=='other'||answers.contactTimeOther.length>100)) errors.push('contactTimeOther');
  for (const key of ['business','city','state','name','contact']) if (!answers[key] || (key!=='contact' && answers[key].length<2)) errors.push(key);
  if (answers.channel === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(answers.contact || '')) errors.push('contact');
  if (answers.channel !== 'email' && (!/^[+()\d .-]+$/.test(answers.contact || '') || !/^\d{7,15}$/.test((answers.contact||'').replace(/\D/g,'')))) errors.push('contact');
- const detail=conditional(answers.goal);
- if (detail && detail !== 'website' && !answers[detail]) errors.push(detail);
- if (detail==='website' && answers.website) {try {const u=new URL(answers.website);if(!['http:','https:'].includes(u.protocol)||u.username||u.password)errors.push('website');}catch{errors.push('website');}}
- for (const key of ['group','website','ads','follow','other']) if (key !== detail && answers[key]) errors.push(key);
+ const details=new Set((multiple?(answers.goals||[]):[answers.goal]).map(conditional).filter(Boolean));
+ for(const detail of details)if(detail!=='website'&&!answers[detail])errors.push(detail);
+ if (details.has('website') && answers.website) {try {const u=new URL(answers.website);if(!['http:','https:'].includes(u.protocol)||u.username||u.password)errors.push('website');}catch{errors.push('website');}}
+ for (const key of ['group','website','ads','follow','other']) if (!details.has(key) && answers[key]) errors.push(key);
  const attribution={};
  if (!plain(payload.attribution)) errors.push('attribution');
  else for (const [key,value] of Object.entries(payload.attribution)) {
@@ -56,8 +71,14 @@ export function validate(payload) {
 }
 export function buildEmail(data) {
  const l=data.locale==='en'?'en':'pt',a=data.answers,labels=LABELS[l],values=VALUES[l];
- const subject=(/^TESTE(?:\b|\s|[-:])/i.test(a.business)?'[TESTE] ':'')+(l==='pt'?'Nova lead':'New lead')+' | '+values[a.goal]+' | '+a.city+', '+a.state;
+ const subject=(/^TESTE(?:\b|\s|[-:])/i.test(a.business)?'[TESTE] ':'')+(l==='pt'?'Nova lead':'New lead')+' | '+(a.goals?a.goals.map(k=>values[k]).join(' + '):values[a.goal])+' | '+a.city+', '+a.state;
  const rows=fields.filter(k=>a[k]).map(k=>labels[k]+': '+(OPTIONS[k]?values[a[k]]||a[k]:a[k]));
+ if(a.goals){
+  const at=fields.indexOf('goal');
+  rows.splice(at,0,(l==='pt'?'Prioridades: ':'Priorities: ')+a.goals.map(k=>values[k]).join('; '));
+  const time=a.contactTime==='other'?a.contactTimeOther:TIME_LABELS[l][a.contactTime];
+  rows.push((l==='pt'?'Horário preferido (horário local da lead): ':'Preferred contact time (lead’s local time): ')+(time||(l==='pt'?'Não informado':'Not provided')));
+ }
  const text=['MateGrowth — Daycare',...rows,'','Idioma / Language: '+data.locale,'Página / Page: '+data.pagePath,'','Origem / Campaign',...Object.entries(data.attribution).map(([k,v])=>k+': '+v),'','Request ID: '+data.submissionId,'CRM: cadastro manual / manual entry'].join('\n');
  return {from:SENDER,to:[RECIPIENT],subject,text,...(a.channel==='email'?{reply_to:a.contact}:{})};
 }

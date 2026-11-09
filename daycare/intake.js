@@ -9,37 +9,39 @@
  try{sessionStorage.setItem('mg-daycare-campaign',JSON.stringify(attribution))}catch{}
  for(const link of document.querySelectorAll('[data-lang]')){const url=new URL(link.href);for(const[k,v]of Object.entries(attribution))url.searchParams.set(k,v);link.href=url.href;}
  let busy=false,complete=false,lastSignature='',pendingId='',pendingSince=0;
- const detailMemory=new Map(),contactMemory=new Map();let oldDetail='',oldChannel='';
+ const detailMemory=new Map(),contactMemory=new Map();let oldChannel='',otherTimeMemory='';
+ const chosenGoals=()=>Array.from(fields.querySelectorAll('input[name="goals"]:checked'),el=>el.value);
  function addInput(parent,key,caption,type='text',required=true,value='') {
   const label=document.createElement('label');label.textContent=caption;
-  const input=document.createElement('input');input.type=type;input.name=key;input.maxLength=key==='contact'?250:250;input.required=required;input.value=value;
+  const input=document.createElement('input');input.type=type;input.name=key;input.maxLength=key==='contactTimeOther'?100:250;input.required=required;input.value=value;
   if(key==='contact')input.autocomplete=type==='email'?'email':'tel';
-  label.append(input);parent.append(label);
+  label.append(input);parent.append(label);return input;
  }
  function updateDetails() {
-  const target=byId('details'),previous=target.querySelector('input');if(previous&&oldDetail)detailMemory.set(oldDetail,previous.value);
-  target.replaceChildren();const program=byId('program').value,goal=byId('goal').value;oldDetail=program+'/'+goal;if(!program)return;
-  const value=detailMemory.get(oldDetail)||'';
-  switch(goal){
-   case 'spots':addInput(target,'group',program==='home'?localize('Quais idades você quer atender?','Which ages are you looking to enroll?'):localize('Qual turma ou unidade é a prioridade?','Which classroom or location is the priority?'),'text',true,value);break;
-   case 'google':case 'site':addInput(target,'website',localize('Link do site ou do perfil no Google (opcional)','Website or Google profile link (optional)'),'url',false,value);break;
-   case 'ads':addInput(target,'ads',localize('Qual programa você quer divulgar?','Which program would you like to promote?'),'text',true,value);break;
-   case 'follow':addInput(target,'follow',localize('Como vocês acompanham os pedidos de visita hoje?','How do you track tour requests today?'),'text',true,value);break;
-   case 'other':addInput(target,'other',localize('Em que podemos ajudar?','How can we help?'),'text',true,value);break;
-  }
+  const target=byId('details'),program=byId('program').value;
+  const keys=new Set(chosenGoals().map(goal=>({spots:'group',google:'website',site:'website',ads:'ads',follow:'follow',other:'other'})[goal]));
+  for(const input of target.querySelectorAll('input'))if(!program||!keys.has(input.name)){detailMemory.set(input.name,input.value);input.parentElement.remove();}
+  if(!program)return;
+  const captions={group:program==='home'?localize('Quais idades você quer atender?','Which ages are you looking to enroll?'):localize('Qual turma ou unidade é a prioridade?','Which classroom or location is the priority?'),website:localize('Link do site ou do perfil no Google (opcional)','Website or Google profile link (optional)'),ads:localize('Qual programa você quer divulgar?','Which program would you like to promote?'),follow:localize('Como vocês acompanham os pedidos de visita hoje?','How do you track tour requests today?'),other:localize('Em que podemos ajudar?','How can we help?')};
+  for(const key of keys){const input=target.querySelector('[name="'+key+'"]');if(input){input.parentElement.firstChild.textContent=captions[key];continue;}addInput(target,key,captions[key],key==='website'?'url':'text',key!=='website',detailMemory.get(key)||'');}
  }
+ function validateGoals(show=false){const valid=chosenGoals().length>0,first=fields.querySelector('input[name="goals"]');first.setCustomValidity(valid?'':localize('Marque pelo menos uma prioridade.','Select at least one priority.'));byId('priorities-error').hidden=valid||!show;return valid;}
  function updateAddress(){const target=byId('address'),previous=target.querySelector('input');if(previous&&oldChannel)contactMemory.set(oldChannel,previous.value);target.replaceChildren();const channel=byId('channel').value;oldChannel=channel;if(channel)addInput(target,'contact',channel==='email'?localize('E-mail','Email'):channel==='whatsapp'?localize('Número de WhatsApp','WhatsApp number'):localize('Telefone com código de área','Phone number with area code'),channel==='email'?'email':'tel',true,contactMemory.get(channel)||'');}
- for(const id of ['program','goal'])byId(id).addEventListener('change',updateDetails);
+ function updateTime(){const target=byId('contact-time-other'),input=target.querySelector('input');if(byId('contact-time').value==='other'){if(!input){const added=addInput(target,'contactTimeOther',localize('Qual horário você prefere?','What time works for you?'),'text',true,otherTimeMemory);added.placeholder=localize('Dias de semana, entre 16h e 17h','Weekdays, between 4 and 5 PM');}}else if(input){otherTimeMemory=input.value;target.replaceChildren();}}
+ byId('program').addEventListener('change',updateDetails);
+ byId('priorities').addEventListener('change',()=>{validateGoals(true);updateDetails()});
+ fields.querySelector('input[name="goals"]').addEventListener('invalid',()=>{byId('priorities-error').hidden=false});
  byId('channel').addEventListener('change',updateAddress);
- fields.disabled=false;updateDetails();updateAddress();
+ byId('contact-time').addEventListener('change',updateTime);
+ fields.disabled=false;updateDetails();updateAddress();updateTime();validateGoals();
  function message(text,error=false){status.textContent=text;status.hidden=!text;status.setAttribute('role',error?'alert':'status');}
  function endpoint(){try{const url=new URL(config.endpoint,location.href);if(!config.endpoint||(!['https:'].includes(url.protocol)&&!(location.hostname==='127.0.0.1'||location.hostname==='localhost')))return '';return url.href}catch{return ''}}
  form.addEventListener('input',event=>{event.target.removeAttribute('aria-invalid');if(!busy)message('')});
  form.addEventListener('submit',async event=>{
   event.preventDefault();if(busy||complete)return;
   for(const input of fields.querySelectorAll('input'))input.value=input.value.trim();
-  if(!form.reportValidity())return;
-  const answers={};for(const el of fields.querySelectorAll('input[name],select[name]'))if(el.name!=='companyWebsite')answers[el.name]=el.value.trim();
+  validateGoals(true);if(!form.reportValidity())return;
+  const answers={goals:chosenGoals()};for(const el of fields.querySelectorAll('input[name],select[name]'))if(el.name!=='companyWebsite'&&el.name!=='goals'&&!el.disabled)answers[el.name]=el.value.trim();
   const data={locale:english?'en':'pt-BR',pagePath:english?'/daycare/en/':'/daycare/',answers,attribution,companyWebsite:form.elements.companyWebsite.value};
   const signature=JSON.stringify(data);
   if(signature!==lastSignature){pendingId=crypto.randomUUID();pendingSince=Date.now();lastSignature=signature;}

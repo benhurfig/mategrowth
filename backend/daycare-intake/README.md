@@ -9,3 +9,11 @@ Status accepted significa que o provedor retornou sucesso com um ID de mensagem.
 Deploy realizado via ferramenta Supabase com entrypoint index.ts e ambos os arquivos incluídos. Para alterações futuras, republicar exclusivamente essa função. A hospedagem GitHub Pages serve somente o frontend e não executa estes arquivos.
 
 Testes: node --test tests/daycare-handler.test.mjs a partir da raiz do repositório. Os casos automatizados injetam um provedor falso e não enviam e-mails. Idempotency-Key estável protege retries por 24h no Resend; não é uma promessa de deduplicação permanente.
+
+## Prioridades múltiplas e horário de retorno
+
+O frontend atual envia answers.goals como array não vazio dos códigos spots, google, site, ads, follow e other. O servidor normaliza a ordem, exige as perguntas de todas as escolhas e compartilha website entre google/site. Campos condicionais ocultos são retirados do DOM e do payload.
+
+answers.contactTime é opcional: morning, afternoon, late_afternoon, any ou other. A opção other exige contactTimeOther de até 100 caracteres. O e-mail informa o horário local da lead; sem escolha, apresenta Não informado / Not provided. Nenhum desses dados é enviado ao Analytics.
+
+O formato anterior answers.goal continua aceito. O texto e o assunto dos e-mails antigos permanecem idênticos para preservar os retries idempotentes de visitantes com a página anterior aberta. Não enviar goal e goals juntos. Publicar o endpoint compatível antes do frontend.

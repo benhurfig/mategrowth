@@ -54,3 +54,11 @@ Referências: https://resend.com/docs/dashboard/emails/idempotency-keys e https:
 Recusa/revogação também usa ga-disable-G-Q1NMCRWD77 para impedir coleta automática após a retirada do consentimento. Se o SDK ainda carrega quando o servidor confirma a ficha, o lead aguarda esse carregamento e só é medido uma vez se a medição continuar habilitada.
 
 Ajuste solicitado pela cliente: removidos o texto abaixo do vídeo de demonstração e o banner de Analytics nas duas rotas. O envio, a deduplicação e a condição de generate_lead após aceite do serviço de e-mail permanecem intactos.
+
+## Atualização: prioridades e horário de retorno
+
+O formulário fica abaixo da apresentação da seção #intake, com largura completa e campos curtos em duas colunas no desktop. As seis prioridades são checkboxes; exige ao menos uma. As perguntas consideram todas as escolhas, preservam respostas ainda relevantes e não enviam campos retirados. O website compartilhado aparece uma vez. A preferência opcional de horário usa o horário local da lead e não confirma atendimento.
+
+Validações desta etapa: 14 testes de servidor aprovados, incluindo 63 combinações de prioridades, horário em branco/customizado, dados inválidos, compatibilidade antiga, erro e deduplicação. Chrome local em PT/EN a 390, 768 e 1440 px: formulário abaixo do título, sem overflow, campos corretos, troca de idioma e UTMs, erro preservando respostas, clique repetido e um generate_lead após aceite simulado. O e-mail anterior foi comparado com a versão anterior e continua idêntico para retries. As 58 páginas passaram na verificação estática.
+
+O TESTE desta etapa usa as prioridades Preencher vagas + Criar ou melhorar o website, retorno WhatsApp e Dias de semana, entre 16h e 17h. Assunto esperado: [TESTE] Nova lead | Preencher vagas + Criar ou melhorar o website | Revere, MA. A entrega final distingue aceite do serviço e chegada no Gmail.
