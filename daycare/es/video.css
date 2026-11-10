@@ -1,0 +1,2 @@
+/* Preserve the demo's native portrait ratio so text uses the full player width. */
+html[lang="es"] .storyfilm video{aspect-ratio:9/16;height:auto;object-fit:contain}
