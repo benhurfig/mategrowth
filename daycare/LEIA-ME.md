@@ -80,3 +80,11 @@ Causa reproduzida em produção: o Chrome preenchia automaticamente companyWebsi
 A versão atual usa um nome neutro para o campo oculto, contêiner inert e indicadores para não preencher via gerenciadores. O servidor aceita o falso positivo específico (valor igual ao nome da daycare normalizado), mantendo rejeição de valores alheios e os limites existentes. Isso também corrige o envio de páginas antigas abertas, sem exigir perda das respostas.
 
 No português, Divulgar com anúncios agora abre Onde você gostaria de anunciar sua daycare?, select opcional com Google, Facebook/Instagram, Nos dois ou recomendação. A ficha traz Canal de anúncio com a resposta por extenso, ou Não informado. Os formatos anteriores ads e adTopics/adsOther permanecem aceitos com o corpo de e-mail idêntico para retries. Inglês, UTMs, consentimento, ajuda WhatsApp e generate_lead após accepted preservados.
+
+## Ajuda por SMS — 10/11/2026
+
+Somente em /daycare/, Enviar SMS acompanha o WhatsApp na ajuda abaixo do envio. Usa sms:+17746156579, número documentado em LEIA-ME.md da raiz para SMS / WhatsApp. Não preenche mensagem nem envia automaticamente. Os links ficam lado a lado quando há espaço e empilhados até 480px. sms_help_click segue as mesmas regras de Analytics/GPC do WhatsApp, somente locale, form_id e cta_location=form_help; não gera generate_lead nem envia a ficha.
+
+## Contato após envio — 10/11/2026
+
+PT: WhatsApp e SMS aparecem também em Pedido enviado, somente após accepted, sob Deseja falar comigo agora sobre seu formulário?. Ambos preparam Oi, Ben! Acabei de enviar meu formulário pela página da MateGrowth e gostaria de conversar sobre meu pedido. A pessoa decide quando enviar; nenhum dado da ficha é incluído. SMS antes do envio passa a usar a mesma mensagem de dúvida do WhatsApp. Links SMS adaptam o separador body no iOS/iPadOS. Eventos de ajuda mantidos, diferenciados por cta_location=form_help ou form_success; contato não gera novo lead. Inglês preservado.

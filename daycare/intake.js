@@ -1,5 +1,9 @@
 (() => {
  'use strict';
+ // iOS SMS handlers use &body; other platforms use ?body.
+ if(/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)){
+  document.querySelectorAll('[data-sms-help]').forEach(link=>{link.href=link.getAttribute('href').replace('?body=','&body=')});
+ }
  const byId=id=>document.getElementById(id),english=document.documentElement.lang==='en',localize=(pt,en)=>english?en:pt;
  const config=window.MG_DAYCARE_CONFIG||{},form=byId('form'),fields=byId('inputs'),status=byId('form-status'),button=byId('submit-request');
  const keys=new Set(['utm_source','utm_medium','utm_campaign','utm_content','utm_term','utm_id','gclid','fbclid']);
