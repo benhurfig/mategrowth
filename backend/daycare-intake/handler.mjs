@@ -35,8 +35,8 @@ export function validate(payload) {
  const top = new Set(['submissionId','locale','pagePath','answers','attribution','companyWebsite']);
  if (Object.keys(payload).some(k=>!top.has(k))) errors.push('payload');
  if (!IDS.test(payload.submissionId || '')) errors.push('submissionId');
- if (!['pt-BR','en'].includes(payload.locale)) errors.push('locale');
- if (payload.pagePath !== (payload.locale === 'en' ? '/daycare/en/' : '/daycare/')) errors.push('pagePath');
+ if (!['pt-BR','en','es'].includes(payload.locale)) errors.push('locale');
+ if (payload.pagePath !== (payload.locale === 'es' ? '/daycare/es/' : payload.locale === 'en' ? '/daycare/en/' : '/daycare/')) errors.push('pagePath');
  if (typeof payload.companyWebsite !== 'string' || payload.companyWebsite.length>200 || /[\u0000-\u001f\u007f]/.test(payload.companyWebsite)) errors.push('companyWebsite');
  const a = payload.answers;
  if (!plain(a)) return {errors:[...errors,'answers']};
@@ -64,7 +64,7 @@ export function validate(payload) {
  if (answers.channel !== 'email' && (!/^[+()\d .-]+$/.test(answers.contact || '') || !/^\d{7,15}$/.test((answers.contact||'').replace(/\D/g,'')))) errors.push('contact');
  const details=new Set((multiple?(answers.goals||[]):[answers.goal]).map(conditional).filter(Boolean));
  const hasAdTopics=Object.hasOwn(a,'adTopics');
- const newAdFormat=payload.locale==='pt-BR'&&multiple&&details.has('ads')&&!hasAdTopics&&!Object.hasOwn(a,'ads');
+ const newAdFormat=['pt-BR','es'].includes(payload.locale)&&multiple&&details.has('ads')&&!hasAdTopics&&!Object.hasOwn(a,'ads');
  if(Object.hasOwn(a,'adChannel')&&(!newAdFormat||(answers.adChannel&&!Object.hasOwn(AD_CHANNELS,answers.adChannel))))errors.push('adChannel');
  if(newAdFormat)details.delete('ads');
  if(hasAdTopics){
@@ -101,6 +101,7 @@ export function buildEmail(data) {
   if(a.group)rows.push('Informação de idade/turma para os anúncios: usar a resposta de vagas acima.');
  }
  if(l==='pt'&&a.goals?.includes('ads')&&!a.adTopics&&!Object.hasOwn(a,'ads'))rows.push('Canal de anúncio: '+(AD_CHANNELS[a.adChannel]||'Não informado'));
+ if(data.locale==='es')rows.push('Idioma de atendimento: espanhol — Landing em espanhol');
  const text=['MateGrowth — Daycare',...rows,'','Idioma / Language: '+data.locale,'Página / Page: '+data.pagePath,'','Origem / Campaign',...Object.entries(data.attribution).map(([k,v])=>k+': '+v),'','Request ID: '+data.submissionId,'CRM: cadastro manual / manual entry'].join('\n');
  return {from:SENDER,to:[RECIPIENT],subject,text,...(a.channel==='email'?{reply_to:a.contact}:{})};
 }

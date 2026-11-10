@@ -1,0 +1,27 @@
+'use strict';
+window.MGDaycareSpanish=Object.freeze({
+ "Quais idades você quer atender?": "¿Qué edades quieres atender?",
+ "Qual turma ou unidade é a prioridade?": "¿Qué aula o sede es la prioridad?",
+ "Link do site ou do perfil no Google (opcional)": "Enlace del sitio web o perfil de Google (opcional)",
+ "Qual programa você quer divulgar?": "¿Qué programa quieres promocionar?",
+ "Como vocês acompanham os pedidos de visita hoje?": "¿Cómo dan seguimiento a las solicitudes de visita actualmente?",
+ "Em que podemos ajudar?": "¿En qué podemos ayudarte?",
+ "No Google, quando uma família pesquisa por daycare": "En Google, cuando una familia busca daycare",
+ "No Facebook e Instagram": "En Facebook e Instagram",
+ "Nos dois": "En ambos",
+ "Ainda não sei. Quero uma recomendação": "Aún no lo sé. Quiero una recomendación",
+ "Onde você gostaria de anunciar sua daycare?": "¿Dónde te gustaría anunciar tu daycare?",
+ "Marque pelo menos uma prioridade.": "Selecciona al menos una prioridad.",
+ "E-mail": "Correo electrónico",
+ "Número de WhatsApp": "Número de WhatsApp",
+ "Telefone com código de área": "Teléfono con código de área",
+ "Qual horário você prefere?": "¿Qué horario prefieres?",
+ "Dias de semana, entre 16h e 17h": "Entre semana, de 4 a 5 p. m.",
+ "Selecione (opcional)": "Selecciona (opcional)",
+ "Não conseguimos confirmar o pedido anterior. Escreva para mategrowthus@gmail.com antes de enviar novamente.": "No pudimos confirmar la solicitud anterior. Escribe a mategrowthus@gmail.com antes de volver a enviarla.",
+ "O envio está indisponível no momento. Suas respostas continuam aqui. Tente novamente mais tarde.": "El envío no está disponible en este momento. Tus respuestas siguen aquí. Inténtalo más tarde.",
+ "Enviando…": "Enviando…",
+ "Enviando seu pedido…": "Enviando tu solicitud…",
+ "Não conseguimos confirmar o envio. Suas respostas continuam preenchidas. Tente novamente.": "No pudimos confirmar el envío. Tus respuestas siguen completas. Inténtalo de nuevo.",
+ "Enviar meu pedido →": "Enviar mi solicitud →"
+});

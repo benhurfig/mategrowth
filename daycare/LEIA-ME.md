@@ -88,3 +88,7 @@ Somente em /daycare/, Enviar SMS acompanha o WhatsApp na ajuda abaixo do envio. 
 ## Contato após envio — 10/11/2026
 
 PT: WhatsApp e SMS aparecem também em Pedido enviado, somente após accepted, sob Deseja falar comigo agora sobre seu formulário?. Ambos preparam Oi, Ben! Acabei de enviar meu formulário pela página da MateGrowth e gostaria de conversar sobre meu pedido. A pessoa decide quando enviar; nenhum dado da ficha é incluído. SMS antes do envio passa a usar a mesma mensagem de dúvida do WhatsApp. Links SMS adaptam o separador body no iOS/iPadOS. Eventos de ajuda mantidos, diferenciados por cta_location=form_help ou form_success; contato não gera novo lead. Inglês preservado.
+
+## Espanhol — 10/11/2026
+
+/daycare/es/ parte da versão PT atual, com mesmas opções internas, campos condicionais e contatos antes/depois de accepted. Textos e mensagens em espanhol; dicionário es/i18n.js reutiliza intake.js. Locale es e caminho /daycare/es/ aceitos na função; ficha mantém os rótulos de gestão em português e identifica Idioma de atendimento: espanhol — Landing em espanhol. Corpo dos e-mails PT/EN preservado para idempotência. Demo original MateGrowth-Demo-Reels-ES.mp4 copiada de Downloads sem reencodificação. Estilos, GA4 e consentimento compartilhados, sem nova biblioteca.

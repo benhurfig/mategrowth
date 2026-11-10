@@ -1,7 +1,7 @@
 (() => {
  'use strict';
  const config=window.MG_DAYCARE_CONFIG||{},id=config.ga4MeasurementId||'',valid=/^G-[A-Z0-9]+$/.test(id);
- const en=document.documentElement.lang==='en',locale=en?'en':'pt-BR';
+ const en=document.documentElement.lang==='en',es=document.documentElement.lang==='es',locale=es?'es':en?'en':'pt-BR';
  const key='mg-daycare-analytics-choice',seen=new Set(),pending=new Set();let granted=false,loaded=false,loading=null,pageView=false;
  const gpc=()=>navigator.globalPrivacyControl===true;
  if(valid)window['ga-disable-'+id]=true;
@@ -21,7 +21,7 @@
   const prefs=document.querySelector('[data-mg-preferences]');
   if(!prefs)return;
   prefs.hidden=!valid;prefs.disabled=gpc();
-  prefs.textContent=gpc()?(en?'Analytics off in your browser':'Analytics desativado pelo navegador'):granted?(en?'Turn off Analytics':'Desativar Analytics'):(en?'Turn on Analytics':'Ativar Analytics');
+  prefs.textContent=gpc()?(es?'Analytics desactivado por tu navegador':en?'Analytics off in your browser':'Analytics desativado pelo navegador'):granted?(es?'Desactivar Analytics':en?'Turn off Analytics':'Desativar Analytics'):(es?'Activar Analytics':en?'Turn on Analytics':'Ativar Analytics');
   prefs.setAttribute('aria-pressed',String(granted));
  }
  async function allow() {
