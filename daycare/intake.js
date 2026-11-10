@@ -4,7 +4,7 @@
  if(/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)){
   document.querySelectorAll('[data-sms-help]').forEach(link=>{link.href=link.getAttribute('href').replace('?body=','&body=')});
  }
- const byId=id=>document.getElementById(id),english=document.documentElement.lang==='en',spanish=document.documentElement.lang==='es',localize=(pt,en)=>spanish?(window.MGDaycareSpanish?.[pt]||pt):english?en:pt;
+ const byId=id=>document.getElementById(id),centers=document.documentElement.dataset.intake==='centers',english=/^en(?:-|$)/.test(document.documentElement.lang),spanish=document.documentElement.lang==='es',localize=(pt,en)=>spanish?(window.MGDaycareSpanish?.[pt]||pt):english?en:pt;
  const config=window.MG_DAYCARE_CONFIG||{},form=byId('form'),fields=byId('inputs'),status=byId('form-status'),button=byId('submit-request');
  const keys=new Set(['utm_source','utm_medium','utm_campaign','utm_content','utm_term','utm_id','gclid','fbclid']);
  let attribution={};try{const saved=JSON.parse(sessionStorage.getItem('mg-daycare-campaign')||'{}');for(const[k,v]of Object.entries(saved))if(keys.has(k)&&typeof v==='string'&&v.length<=200&&!/[\u0000-\u001f\u007f]/.test(v))attribution[k]=v}catch{}
@@ -24,24 +24,47 @@
  function updateDetails() {
   const target=byId('details'),program=byId('program').value;
   const keys=new Set(chosenGoals().map(goal=>({spots:'group',google:'website',site:'website',ads:'ads',follow:'follow',other:'other'})[goal]));
-  if(!english)keys.delete('ads');
+  if(!english||centers)keys.delete('ads');
+  if(centers)keys.delete('group');
   for(const input of target.querySelectorAll(':scope > label > input'))if(!program||!keys.has(input.name)){detailMemory.set(input.name,input.value);input.parentElement.remove();}
   updateAds(Boolean(program)&&chosenGoals().includes('ads'));
+  if(centers)updatePrograms(Boolean(program)&&chosenGoals().includes('spots'));
   if(!program)return;
   const captions={group:program==='home'?localize('Quais idades você quer atender?','Which ages are you looking to enroll?'):localize('Qual turma ou unidade é a prioridade?','Which classroom or location is the priority?'),website:localize('Link do site ou do perfil no Google (opcional)','Website or Google profile link (optional)'),ads:localize('Qual programa você quer divulgar?','Which program would you like to promote?'),follow:localize('Como vocês acompanham os pedidos de visita hoje?','How do you track tour requests today?'),other:localize('Em que podemos ajudar?','How can we help?')};
   for(const key of keys){const input=target.querySelector('[name="'+key+'"]');if(input){input.parentElement.firstChild.textContent=captions[key];continue;}addInput(target,key,captions[key],key==='website'?'url':'text',key!=='website',detailMemory.get(key)||'');}
  }
  const adChannels={google:'No Google, quando uma família pesquisa por daycare',meta:'No Facebook e Instagram',both:'Nos dois',recommendation:'Ainda não sei. Quero uma recomendação'};
  function updateAds(active){
-  if(english)return;
+  if(english&&!centers)return;
   let group=byId('ads-channel-wrap');
   if(!active){if(group){adChannelMemory=group.querySelector('select').value;group.remove();}return;}
   if(group)return;
-  group=document.createElement('div');group.id='ads-channel-wrap';const label=document.createElement('label');label.textContent=localize('Onde você gostaria de anunciar sua daycare?','Where would you like to advertise your daycare?');
+  group=document.createElement('div');group.id='ads-channel-wrap';const label=document.createElement('label');label.textContent=localize('Onde você gostaria de anunciar sua daycare?',centers?'Where would you like to advertise your center?':'Where would you like to advertise your daycare?');
   const select=document.createElement('select');select.name='adChannel';select.id='ad-channel';
   const blank=document.createElement('option');blank.value='';blank.textContent=localize('Selecione (opcional)','Select (optional)');select.append(blank);
-  for(const[value,text]of Object.entries(adChannels)){const option=document.createElement('option');option.value=value;option.textContent=localize(text,text);select.append(option);}
+  for(const[value,text]of Object.entries(adChannels)){const option=document.createElement('option');option.value=value;option.textContent=localize(text,({google:'On Google, when a family searches for child care',meta:'On Facebook and Instagram',both:'Both',recommendation:'I’m not sure. I’d like a recommendation'})[value]);select.append(option);}
   select.value=adChannelMemory;label.append(select);group.append(label);byId('details').append(group);
+ }
+ const programLabels={infant:'Infant',toddler:'Toddler',preschool:'Preschool',pre_k:'Pre-K',school_age:'School-age',whole_center:'The entire center'};
+ let programMemory=[],locationMemory='';
+ function validatePrograms(show=false){
+  const group=byId('program-interests');if(!group)return true;
+  const first=group.querySelector('input[name="programInterests"]'),valid=group.querySelectorAll('input[name="programInterests"]:checked').length>0;
+  first.setCustomValidity(valid?'':'Select at least one program or the entire center.');byId('programs-error').hidden=valid||!show;return valid;
+ }
+ function updatePrograms(active){
+  let group=byId('program-interests');
+  if(!active){if(group){programMemory=Array.from(group.querySelectorAll('[name="programInterests"]:checked'),el=>el.value);locationMemory=group.querySelector('[name="priorityLocation"]').value;group.remove();}return;}
+  if(group)return;
+  group=document.createElement('fieldset');group.id='program-interests';group.setAttribute('aria-describedby','programs-hint programs-error');
+  const legend=document.createElement('legend');legend.textContent='Which programs would you like more inquiries for?';
+  const hint=document.createElement('p');hint.id='programs-hint';hint.className='notice';hint.textContent='Select all that apply, or choose the entire center.';
+  const grid=document.createElement('div');grid.className='priorities-grid';
+  for(const[value,text]of Object.entries(programLabels)){const label=document.createElement('label');label.className='priority-option';const input=document.createElement('input');input.type='checkbox';input.name='programInterests';input.value=value;input.checked=programMemory.includes(value);const span=document.createElement('span');span.textContent=text;label.append(input,span);grid.append(label);}
+  const error=document.createElement('p');error.id='programs-error';error.className='priority-error';error.hidden=true;error.textContent='Select at least one program or the entire center.';
+  group.append(legend,hint,grid,error);const location=addInput(group,'priorityLocation','Priority location (optional, if you have more than one)','text',false,locationMemory);location.maxLength=100;
+  group.addEventListener('change',event=>{if(event.target.name==='programInterests'){for(const input of grid.querySelectorAll('input'))if(event.target.checked&&(event.target.value==='whole_center'||input.value==='whole_center')&&input!==event.target)input.checked=false;validatePrograms(true);}});
+  grid.querySelector('input').addEventListener('invalid',()=>{error.hidden=false});byId('details').append(group);validatePrograms();
  }
  function validateGoals(show=false){const valid=chosenGoals().length>0,first=fields.querySelector('input[name="goals"]');first.setCustomValidity(valid?'':localize('Marque pelo menos uma prioridade.','Select at least one priority.'));byId('priorities-error').hidden=valid||!show;return valid;}
  function updateAddress(){const target=byId('address'),previous=target.querySelector('input');if(previous&&oldChannel)contactMemory.set(oldChannel,previous.value);target.replaceChildren();const channel=byId('channel').value;oldChannel=channel;if(channel)addInput(target,'contact',channel==='email'?localize('E-mail','Email'):channel==='whatsapp'?localize('Número de WhatsApp','WhatsApp number'):localize('Telefone com código de área','Phone number with area code'),channel==='email'?'email':'tel',true,contactMemory.get(channel)||'');}
@@ -58,9 +81,10 @@
  form.addEventListener('submit',async event=>{
   event.preventDefault();if(busy||complete)return;
   for(const input of fields.querySelectorAll('input'))input.value=input.value.trim();
-  validateGoals(true);if(!form.reportValidity())return;
-  const answers={goals:chosenGoals()};for(const el of fields.querySelectorAll('input[name],select[name]'))if(el.name!=='companyWebsite'&&el.name!=='mg_contact_check'&&el.name!=='goals'&&!el.disabled)answers[el.name]=el.value.trim();
-  const data={locale:spanish?'es':english?'en':'pt-BR',pagePath:spanish?'/daycare/es/':english?'/daycare/en/':'/daycare/',answers,attribution,companyWebsite:(form.elements.mg_contact_check||form.elements.companyWebsite).value};
+  validateGoals(true);if(centers)validatePrograms(true);if(!form.reportValidity())return;
+  const answers={goals:chosenGoals()};for(const el of fields.querySelectorAll('input[name],select[name]'))if(el.name!=='companyWebsite'&&el.name!=='mg_contact_check'&&el.name!=='goals'&&el.name!=='programInterests'&&!el.disabled)answers[el.name]=el.value.trim();
+  if(centers&&byId('program-interests'))answers.programInterests=Array.from(fields.querySelectorAll('[name="programInterests"]:checked'),el=>el.value);
+  const data={locale:centers?'en-US':spanish?'es':english?'en':'pt-BR',pagePath:centers?'/daycare/en/':spanish?'/daycare/es/':english?'/daycare/en/':'/daycare/',answers,attribution,companyWebsite:(form.elements.mg_contact_check||form.elements.companyWebsite).value};
   const signature=JSON.stringify(data);
   if(signature!==lastSignature){pendingId=crypto.randomUUID();pendingSince=Date.now();lastSignature=signature;}
   // Do not automatically resend an ambiguous request after the provider's 24h dedup window.

@@ -1,7 +1,7 @@
 (() => {
  'use strict';
  const config=window.MG_DAYCARE_CONFIG||{},id=config.ga4MeasurementId||'',valid=/^G-[A-Z0-9]+$/.test(id);
- const en=document.documentElement.lang==='en',es=document.documentElement.lang==='es',locale=es?'es':en?'en':'pt-BR';
+ const centers=document.documentElement.dataset.intake==='centers',en=/^en(?:-|$)/.test(document.documentElement.lang),es=document.documentElement.lang==='es',locale=centers?'en-US':es?'es':en?'en':'pt-BR';
  const key='mg-daycare-analytics-choice',seen=new Set(),pending=new Set();let granted=false,loaded=false,loading=null,pageView=false;
  const gpc=()=>navigator.globalPrivacyControl===true;
  if(valid)window['ga-disable-'+id]=true;
@@ -12,7 +12,7 @@
  function send(name,params={}) {
   if(!valid||!granted||!loaded||gpc()||typeof window.gtag!=='function')return false;
   if(!['cta_click','whatsapp_help_click','sms_help_click','generate_lead','page_view'].includes(name))return false;
-  const clean={locale,form_id:'daycare_intake'};
+  const clean={locale,form_id:centers?'childcare_centers_intake':'daycare_intake'};
   if(name==='cta_click'&&['header','hero','content'].includes(params.cta_location))clean.cta_location=params.cta_location;
   if(['whatsapp_help_click','sms_help_click'].includes(name))clean.cta_location=params.cta_location==='form_success'?'form_success':'form_help';
   window.gtag('event',name,clean);return true;

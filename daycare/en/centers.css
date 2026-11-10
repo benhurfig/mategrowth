@@ -1,0 +1,3 @@
+/* Match the approved portrait demo while keeping the shared landing layout. */
+html[data-intake="centers"] .storyfilm video{aspect-ratio:9/16;height:auto;object-fit:contain}
+#program-interests{margin-top:16px;min-width:0}#program-interests legend{font-size:16px;line-height:1.4}#program-interests .priorities-grid{margin-top:10px}

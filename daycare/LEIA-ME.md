@@ -92,3 +92,11 @@ PT: WhatsApp e SMS aparecem também em Pedido enviado, somente após accepted, s
 ## Espanhol — 10/11/2026
 
 /daycare/es/ parte da versão PT atual, com mesmas opções internas, campos condicionais e contatos antes/depois de accepted. Textos e mensagens em espanhol; dicionário es/i18n.js reutiliza intake.js. Locale es e caminho /daycare/es/ aceitos na função; ficha mantém os rótulos de gestão em português e identifica Idioma de atendimento: espanhol — Landing em espanhol. Corpo dos e-mails PT/EN preservado para idempotência. Demo original MateGrowth-Demo-Reels-ES.mp4 copiada de Downloads sem reencodificação. Estilos, GA4 e consentimento compartilhados, sem nova biblioteca.
+
+## Centers e preschools — 10/11/2026
+
+Rota de revisão /daycare/en/, lang en-US e identificação Child Care Centers · English. Base PT atual, mesmas prioridades, campos condicionais, contatos e integrações. A página diferencia o formulário comercial da diretora do Family Request das famílias. Exemplos reais e depoimentos são identificados como family child care. Demo EN original preservada, player 9/16 e capa 1080px.
+
+Somente nessa rota de centers, Fill openings abre programInterests (Infant, Toddler, Preschool, Pre-K, School-age ou The entire center) e priorityLocation opcional. The entire center é exclusivo das demais opções. Ao retirar Fill openings, campos são ocultos e não seguem na ficha, com memória local enquanto a página fica aberta. Nenhuma resposta entra no GA4. Locale en-US e form_id childcare_centers_intake, com mesmo consentimento e generate_lead só após accepted. Não altera o formato das fichas antigas.
+
+A pedido do usuário, a nova versão para centers ocupa /daycare/en/ em vez de /childcare-centers/. Canonical e payload usam /daycare/en/. A página inglesa anterior foi preservada na documentação local da revisão. /childcare-centers/ nunca foi publicada e não recebeu redirect. O servidor mantém o caminho antigo somente para compatibilidade de fichas já abertas e retries. Nenhum novo envio real foi solicitado nesta troca.

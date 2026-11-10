@@ -26,7 +26,8 @@ const TIME_LABELS = {
 };
 const AD_TOPICS={openings_now:'Vagas abertas agora',future_enrollment:'Matrículas para uma turma ou data futura',local_awareness:'Minha daycare para mais famílias da região',other:'Outro'};
 const AD_CHANNELS={google:'No Google, quando uma família pesquisa por daycare',meta:'No Facebook e Instagram',both:'Nos dois',recommendation:'Ainda não sei. Quero uma recomendação'};
-const answerFields = [...fields,'goals','contactTime','contactTimeOther','adTopics','adsOther','adChannel'];
+const CENTER_PROGRAMS={infant:'Infant',toddler:'Toddler',preschool:'Preschool',pre_k:'Pre-K',school_age:'School-age',whole_center:'The entire center'};
+const answerFields = [...fields,'programInterests','priorityLocation','goals','contactTime','contactTimeOther','adTopics','adsOther','adChannel'];
 const conditional = goal => ({spots:'group',google:'website',site:'website',ads:'ads',follow:'follow',other:'other'})[goal];
 const plain = x => x && typeof x === 'object' && !Array.isArray(x);
 export function validate(payload) {
@@ -35,14 +36,15 @@ export function validate(payload) {
  const top = new Set(['submissionId','locale','pagePath','answers','attribution','companyWebsite']);
  if (Object.keys(payload).some(k=>!top.has(k))) errors.push('payload');
  if (!IDS.test(payload.submissionId || '')) errors.push('submissionId');
- if (!['pt-BR','en','es'].includes(payload.locale)) errors.push('locale');
- if (payload.pagePath !== (payload.locale === 'es' ? '/daycare/es/' : payload.locale === 'en' ? '/daycare/en/' : '/daycare/')) errors.push('pagePath');
+ const centers=payload.locale==='en-US'&&['/daycare/en/','/childcare-centers/'].includes(payload.pagePath);
+ if (!['pt-BR','en','es','en-US'].includes(payload.locale)) errors.push('locale');
+ if (payload.locale==='en-US'?!centers:payload.pagePath !== (payload.locale === 'es' ? '/daycare/es/' : payload.locale === 'en' ? '/daycare/en/' : '/daycare/')) errors.push('pagePath');
  if (typeof payload.companyWebsite !== 'string' || payload.companyWebsite.length>200 || /[\u0000-\u001f\u007f]/.test(payload.companyWebsite)) errors.push('companyWebsite');
  const a = payload.answers;
  if (!plain(a)) return {errors:[...errors,'answers']};
  if (Object.keys(a).some(k=>!answerFields.includes(k))) errors.push('answers');
  const answers = {};
- for (const key of answerFields.filter(k=>k!=='goals'&&k!=='adTopics')) {
+ for (const key of answerFields.filter(k=>k!=='goals'&&k!=='adTopics'&&k!=='programInterests')) {
   if (a[key] === undefined) continue;
   if (typeof a[key] !== 'string' || /[\u0000-\u001f\u007f]/.test(a[key]) || a[key].length > (['business','city','name'].includes(key)?100:key==='state'?50:250)) {errors.push(key);continue;}
   answers[key]=a[key].trim();
@@ -51,11 +53,13 @@ export function validate(payload) {
  // Allow only this exact false positive; unrelated honeypot values still fail.
  if(typeof payload.companyWebsite==='string'&&payload.companyWebsite.trim()&&payload.companyWebsite.trim()!==answers.business)errors.push('companyWebsite');
  const multiple = Object.hasOwn(a,'goals');
+ if(centers&&!multiple)errors.push('goals');
  if (multiple) {
   if (Object.hasOwn(a,'goal') || !Array.isArray(a.goals) || !a.goals.length || a.goals.length>OPTIONS.goal.length || new Set(a.goals).size!==a.goals.length || a.goals.some(v=>!OPTIONS.goal.includes(v))) errors.push('goals');
   else answers.goals=OPTIONS.goal.filter(v=>a.goals.includes(v));
  }
  for (const [key,values] of Object.entries(OPTIONS)) if (!(multiple&&key==='goal')&&!values.includes(answers[key])) errors.push(key);
+ if(centers&&!['center','pre'].includes(answers.program))errors.push('program');
  if (answers.contactTime && !TIME_OPTIONS.includes(answers.contactTime)) errors.push('contactTime');
  if (answers.contactTime==='other' && !answers.contactTimeOther) errors.push('contactTimeOther');
  if (answers.contactTimeOther && (answers.contactTime!=='other'||answers.contactTimeOther.length>100)) errors.push('contactTimeOther');
@@ -64,7 +68,18 @@ export function validate(payload) {
  if (answers.channel !== 'email' && (!/^[+()\d .-]+$/.test(answers.contact || '') || !/^\d{7,15}$/.test((answers.contact||'').replace(/\D/g,'')))) errors.push('contact');
  const details=new Set((multiple?(answers.goals||[]):[answers.goal]).map(conditional).filter(Boolean));
  const hasAdTopics=Object.hasOwn(a,'adTopics');
- const newAdFormat=['pt-BR','es'].includes(payload.locale)&&multiple&&details.has('ads')&&!hasAdTopics&&!Object.hasOwn(a,'ads');
+ const needsPrograms=centers&&multiple&&details.has('group');
+ if(needsPrograms){
+  if(!Array.isArray(a.programInterests)||!a.programInterests.length||a.programInterests.length>6||new Set(a.programInterests).size!==a.programInterests.length||a.programInterests.some(v=>!Object.hasOwn(CENTER_PROGRAMS,v))||(a.programInterests.includes('whole_center')&&a.programInterests.length>1))errors.push('programInterests');
+  else answers.programInterests=Object.keys(CENTER_PROGRAMS).filter(v=>a.programInterests.includes(v));
+  if(answers.priorityLocation&&answers.priorityLocation.length>100)errors.push('priorityLocation');
+  details.delete('group');
+ }else{
+  if(Object.hasOwn(a,'programInterests'))errors.push('programInterests');
+  if(Object.hasOwn(a,'priorityLocation'))errors.push('priorityLocation');
+ }
+
+ const newAdFormat=(['pt-BR','es'].includes(payload.locale)||centers)&&multiple&&details.has('ads')&&!hasAdTopics&&!Object.hasOwn(a,'ads');
  if(Object.hasOwn(a,'adChannel')&&(!newAdFormat||(answers.adChannel&&!Object.hasOwn(AD_CHANNELS,answers.adChannel))))errors.push('adChannel');
  if(newAdFormat)details.delete('ads');
  if(hasAdTopics){
@@ -86,8 +101,9 @@ export function validate(payload) {
  return {errors:[...new Set(errors)],data:{submissionId:payload.submissionId,locale:payload.locale,pagePath:payload.pagePath,answers,attribution,companyWebsite:''}};
 }
 export function buildEmail(data) {
- const l=data.locale==='en'?'en':'pt',a=data.answers,labels=LABELS[l],values=VALUES[l];
- const subject=(/^TESTE(?:\b|\s|[-:])/i.test(a.business)?'[TESTE] ':'')+(l==='pt'?'Nova lead':'New lead')+' | '+(a.goals?a.goals.map(k=>values[k]).join(' + '):values[a.goal])+' | '+a.city+', '+a.state;
+ const centers=data.locale==='en-US'&&['/daycare/en/','/childcare-centers/'].includes(data.pagePath);
+ const l=(data.locale==='en'||centers)?'en':'pt',a=data.answers,labels=LABELS[l],values=VALUES[l];
+ const subject=(/^TESTE(?:\b|\s|[-:])/i.test(a.business)?(centers?'[TESTE EN CENTERS] ':'[TESTE] '):'')+(l==='pt'?'Nova lead':'New lead')+' | '+(a.goals?a.goals.map(k=>values[k]).join(' + '):values[a.goal])+' | '+a.city+', '+a.state;
  const rows=fields.filter(k=>a[k]).map(k=>labels[k]+': '+(OPTIONS[k]?values[a[k]]||a[k]:a[k]));
  if(a.goals){
   const at=fields.indexOf('goal');
@@ -100,6 +116,8 @@ export function buildEmail(data) {
   if(a.adsOther)rows.push('Outro objetivo dos anúncios: '+a.adsOther);
   if(a.group)rows.push('Informação de idade/turma para os anúncios: usar a resposta de vagas acima.');
  }
+ if(centers&&a.goals?.includes('ads'))rows.push('Advertising channel: '+(({google:'On Google, when a family searches for child care',meta:'On Facebook and Instagram',both:'Both',recommendation:'I’m not sure. I’d like a recommendation'})[a.adChannel]||'Not provided'));
+ if(centers){rows.unshift('Landing: Child Care Centers · English');if(a.programInterests)rows.push('Programs to promote: '+a.programInterests.map(v=>CENTER_PROGRAMS[v]).join('; '));if(a.priorityLocation)rows.push('Priority location: '+a.priorityLocation);}
  if(l==='pt'&&a.goals?.includes('ads')&&!a.adTopics&&!Object.hasOwn(a,'ads'))rows.push('Canal de anúncio: '+(AD_CHANNELS[a.adChannel]||'Não informado'));
  if(data.locale==='es')rows.push('Idioma de atendimento: espanhol — Landing em espanhol');
  const text=['MateGrowth — Daycare',...rows,'','Idioma / Language: '+data.locale,'Página / Page: '+data.pagePath,'','Origem / Campaign',...Object.entries(data.attribution).map(([k,v])=>k+': '+v),'','Request ID: '+data.submissionId,'CRM: cadastro manual / manual entry'].join('\n');
